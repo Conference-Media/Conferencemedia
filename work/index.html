@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Our Work | Conference Media</title>
+<meta name="description" content="Browse conference photo and video projects by Conference Media: recap videos, keynote recordings, sponsor and booth photography, interviews, and headshots.">
+<link rel="canonical" href="https://conferencemedia.ca/work/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Conference Media">
+<meta property="og:title" content="Our Work | Conference Media">
+<meta property="og:description" content="Browse conference photo and video projects by Conference Media: recap videos, keynote recordings, sponsor and booth photography, interviews, and headshots.">
+<meta property="og:url" content="https://conferencemedia.ca/work/">
+<meta property="og:image" content="https://conferencemedia.ca/img/reel-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/png" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: a streaming-service browse page. A featured billboard up top, then horizontal rows of projects by type; any card opens a detail panel. Brand: black, off-white serif, red punctuation. */
+:root{
+  --black:#000000;
+  --stage:#111111;
+  --paper:#F2EFE9;
+  --muted:#A9A49B;
+  --line:#2A2A2A;
+  --red:#E8392F;
+  --ph:#F5C84B;
+  --serif:"Gloock","Georgia",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gutter:clamp(16px,4vw,56px);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--black);color:var(--paper);font-family:var(--sans);font-size:16px;line-height:1.55;overflow-x:hidden}
+a{color:inherit}
+img{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
+.r{color:var(--red)}
+.ph{color:var(--ph)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font:600 15px var(--sans);padding:13px 22px;border-radius:999px;background:var(--red);color:#fff;white-space:nowrap;border:0;cursor:pointer}
+.btn.ghost{background:rgba(242,239,233,.14);color:var(--paper);box-shadow:inset 0 0 0 1.5px rgba(242,239,233,.6)}
+.btn.light{background:var(--paper);color:#000}
+
+/* header floats over the billboard, turns solid on scroll */
+.top{position:fixed;left:0;right:0;top:0;z-index:20;padding:calc(env(safe-area-inset-top,0px) + 14px) var(--gutter) 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(180deg,rgba(0,0,0,.75),rgba(0,0,0,0));transition:background .3s ease}
+.top.solid{background:rgba(0,0,0,.92)}
+.top-left{display:flex;align-items:center;gap:28px;min-width:0}
+.logo img{height:34px;width:auto}
+.top nav{display:flex;gap:20px;font-size:14px}
+.top nav a{text-decoration:none;color:var(--muted)}
+.top nav a[aria-current]{color:var(--paper);font-weight:600}
+@media (max-width:640px){.top nav{display:none}.logo img{height:26px}.top .btn{padding:10px 14px;font-size:13px}}
+
+/* billboard */
+.billboard{position:relative;min-height:clamp(560px,86vh,860px);display:flex;align-items:flex-end;overflow:hidden;background:#000 url("/img/reel-poster.jpg") center/cover}
+.billboard video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.billboard .fill{display:none}
+@media (min-aspect-ratio:3/4) and (min-width:700px){
+  .billboard .fill{display:block;filter:blur(30px) brightness(.5);transform:scale(1.15)}
+  .billboard .main{object-fit:contain;object-position:72% center}
+}
+.billboard::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,0) 80%),linear-gradient(180deg,rgba(0,0,0,0) 55%,#000 100%)}
+.bb-copy{position:relative;z-index:1;padding:0 var(--gutter) clamp(48px,8vw,96px);max-width:720px}
+.badge{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--paper);margin-bottom:12px}
+.badge::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
+.bb-copy h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6.4vw,84px);line-height:1;margin:0 0 16px;text-wrap:balance}
+.meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;color:#D6D2CA;margin:0 0 14px;padding:0;list-style:none}
+.meta li+li::before{content:"";display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--red);margin-right:16px;vertical-align:3px}
+.bb-copy p{margin:0 0 24px;color:#D6D2CA;max-width:36em}
+.bb-actions{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:520px){.bb-actions{flex-wrap:nowrap}.bb-actions .btn{flex:1 1 0;min-width:0;padding:13px 10px}}
+
+/* category jump chips */
+.chips{display:flex;gap:10px;overflow-x:auto;padding:4px var(--gutter) 8px;margin-top:-8px;position:relative;z-index:2;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips a{flex:0 0 auto;text-decoration:none;font-size:14px;font-weight:500;padding:9px 16px;border-radius:999px;border:1.5px solid var(--line);color:var(--paper);background:var(--stage)}
+.chips a:hover{border-color:var(--paper)}
+
+/* rows */
+.row{padding-top:clamp(28px,4vw,44px);scroll-margin-top:72px}
+.row h2{font-family:var(--serif);font-weight:400;font-size:clamp(22px,2.4vw,30px);margin:0 0 12px;padding-inline:var(--gutter)}
+.rail-wrap{position:relative}
+.rail{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);padding:6px var(--gutter) 18px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.card{flex:0 0 clamp(240px,26vw,340px);scroll-snap-align:start;position:relative;border:0;padding:0;background:var(--stage);border-radius:6px;overflow:hidden;cursor:pointer;aspect-ratio:16/9;color:var(--paper);text-align:left;font:inherit;transition:transform .25s ease,box-shadow .25s ease}
+.rail.tall .card{flex-basis:clamp(150px,15vw,200px);aspect-ratio:3/4}
+.card img{width:100%;height:100%;object-fit:cover}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.85) 100%)}
+.card .cap{position:absolute;left:12px;right:12px;bottom:10px;z-index:1}
+.card .cap b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(17px,1.5vw,20px);line-height:1.15}
+.card .cap span{display:block;font-size:12px;color:#CFCAC2;margin-top:3px}
+.card .tag{position:absolute;top:10px;left:10px;z-index:1;font-size:11px;font-weight:600;letter-spacing:.04em;background:var(--red);color:#fff;padding:4px 8px;border-radius:3px}
+@media (hover:hover){.card:hover{transform:scale(1.06);z-index:2;box-shadow:0 14px 40px rgba(0,0,0,.6)}}
+@media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
+.arrow{display:none}
+@media (hover:hover) and (min-width:800px){
+  .arrow{display:flex;position:absolute;top:6px;bottom:18px;width:var(--gutter);min-width:44px;align-items:center;justify-content:center;border:0;background:rgba(0,0,0,.55);color:var(--paper);font-size:28px;cursor:pointer;z-index:3;opacity:0;transition:opacity .2s}
+  .arrow.prev{left:0}.arrow.next{right:0}
+  .rail-wrap:hover .arrow{opacity:1}
+}
+
+/* closing */
+.cta{text-align:center;padding:clamp(72px,10vw,130px) var(--gutter);border-top:1px solid var(--line);margin-top:clamp(48px,7vw,80px)}
+.cta h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.6vw,60px);line-height:1.08;max-width:15em;margin:0 auto 32px;text-wrap:balance}
+.cta .bb-actions{justify-content:center}
+footer{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:36px var(--gutter) 44px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+footer img{height:30px;width:auto}
+.ph-note{font-size:13px;color:var(--ph);text-align:center;padding:10px var(--gutter) 0}
+
+/* detail panel */
+.scrim{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.75);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:calc(env(safe-area-inset-top,0px) + 32px) 12px 32px}
+.panel{position:relative;width:min(860px,100%);background:#141414;border-radius:8px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.7)}
+.panel-media{position:relative;aspect-ratio:16/9;background:#000}
+.panel-media img,.panel-media video{width:100%;height:100%;object-fit:cover}
+.panel-media video{object-fit:contain;background:#000}
+.panel-media::after{content:"";position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(180deg,rgba(20,20,20,0),#141414);pointer-events:none}
+.panel-media.playing::after{display:none}
+.close{position:absolute;top:12px;right:12px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:rgba(0,0,0,.7);color:var(--paper);font-size:22px;line-height:1;cursor:pointer}
+.panel-body{padding:4px clamp(20px,4vw,40px) clamp(24px,4vw,40px)}
+.panel-body h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.6vw,44px);line-height:1.05;margin:0 0 12px}
+.panel-body .meta{color:var(--muted)}
+.panel-cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px;margin-top:8px}
+.panel-cols p{margin:0 0 14px;color:#D6D2CA}
+.facts{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:14px;color:var(--muted)}
+.facts b{display:block;font-family:var(--serif);font-weight:400;font-size:22px;color:var(--paper);line-height:1.1}
+.delivered{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:6px;font-size:15px;color:#D6D2CA}
+.delivered li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);margin-right:10px;vertical-align:2px}
+.panel-body h3{font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--muted);margin:18px 0 6px}
+.panel-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+@media (max-width:640px){.panel-cols{grid-template-columns:1fr;gap:22px}.panel-cols .facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.panel-actions{flex-wrap:nowrap}.panel-actions .btn{flex:1 1 0;min-width:0;padding:13px 10px}}
+</style>
+
+</head>
+<body>
+<header class="top" id="top">
+  <div class="top-left">
+    <a class="logo" href="/" aria-label="Conference Media home"><img src="/img/logo.png" alt="Conference Media"></a>
+    <nav aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/work/" aria-current="page">Work</a>
+    </nav>
+  </div>
+  <a class="btn" href="/#book">Request Pricing</a>
+</header>
+
+<main>
+  <section class="billboard" aria-labelledby="bb-h">
+    <video class="fill" autoplay muted loop playsinline poster="/img/reel-poster.jpg" aria-hidden="true"><source src="/media/reel.mp4" type="video/mp4"><source src="/media/reel.webm" type="video/webm"></video>
+    <video class="main" autoplay muted loop playsinline poster="/img/reel-poster.jpg" aria-hidden="true"><source src="/media/reel.mp4" type="video/mp4"><source src="/media/reel.webm" type="video/webm"></video>
+    <div class="bb-copy">
+      <span class="badge">FEATURED CASE STUDY</span>
+      <h1 id="bb-h">Quebec Hotel Investment Conference<span class="r">.</span></h1>
+      <ul class="meta"><li>Fairmont, Montreal</li><li>400 attendees</li><li>Covered in French</li></ul>
+      <p>Two weeks' notice, a new city, and an event run entirely in French. We sent about 50 clips to the client's team live, then delivered recap videos, 500 photos, and eight interviews.</p>
+      <div class="bb-actions">
+        <button class="btn light" type="button" data-open="quebec" data-play="1">▶ Watch Recap</button>
+        <button class="btn ghost" type="button" data-open="quebec">More Info</button>
+      </div>
+    </div>
+  </section>
+
+  <nav class="chips" aria-label="Browse by type" id="chips"></nav>
+  <div id="rows"></div>
+  <p class="ph-note">Preview only: details in yellow are placeholders until each case study is written.</p>
+
+  <section class="cta" aria-labelledby="cta-h">
+    <h2 id="cta-h">Your event could be next<span class="r">.</span></h2>
+    <div class="bb-actions">
+      <a class="btn ghost" href="/">Back to Home</a>
+      <a class="btn" href="/#book">Request Pricing</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <img src="/img/logo.png" alt="Conference Media">
+  <span>Toronto, ON.<br>Serving the GTA and travelling across Canada.</span>
+  <span>by Papr Mache</span>
+</footer>
+
+<div class="scrim" id="scrim" hidden>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="p-title">
+    <button class="close" id="p-close" type="button" aria-label="Close">×</button>
+    <div class="panel-media" id="p-media"></div>
+    <div class="panel-body">
+      <h2 id="p-title"></h2>
+      <ul class="meta" id="p-meta"></ul>
+      <div class="panel-cols">
+        <div>
+          <p id="p-summary"></p>
+          <h3>WHAT WE DELIVERED:</h3>
+          <ul class="delivered" id="p-delivered"></ul>
+        </div>
+        <ul class="facts" id="p-facts"></ul>
+      </div>
+      <div class="panel-actions" id="p-actions"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var HOME='/';
+  var PH='Event name, venue, and results to add.';
+  // Real projects carry real facts. Everything marked ph:true is a placeholder.
+  var P={
+    quebec:{t:'Quebec Hotel Investment Conference',img:'quebec.jpg',pos:'center 55%',sub:'Fairmont, Montreal',cs:true,video:'/media/quebec-full.mp4',
+      meta:['Big Picture Conferences','Fairmont, Montreal','1 day','French'],
+      summary:'Big Picture Conferences reached out two weeks before the event, after we shot their Canadian Hotel Investors Conference. Our crew of two drove in from Toronto, arrived early to learn the venue, and covered the day entirely in French.',
+      facts:[['400','attendees'],['~50','clips sent live'],['~500','photos'],['8','interviews']],
+      delivered:['About 50 phone clips texted live for LinkedIn','Recap video and stage photos the next day','Full photo gallery the day after','Two more recap videos and eight interviews a week later']},
+    hrpa:{t:'HRPA Summit 2024',img:'hrpa.jpg',sub:'Westin Harbour Castle, Toronto',cs:true,
+      meta:['HRPA','Westin Harbour Castle, Toronto'],
+      summary:'Full coverage of the HRPA Summit, with a recap video in the client\'s hands within hours of the closing session.',
+      facts:[['2,000+','attendees'],['50+','vendor booths'],['Same day','recap video']],
+      delivered:['Same-day recap video','Event, stage, and booth photography','On-floor attendee interviews']},
+    hrff:{t:'HR Future Fest',img:'hrff-stage.jpg',ph:true},
+    design:{t:'Design Thinkers 2025',img:'design-thinkers.jpg',ph:true},
+    mccarthy:{t:'McCarthy Tétrault',img:'mccarthy.jpg',ph:true},
+    bdo:{t:'BDO',img:'bdo.jpg',pos:'center 30%',ph:true},
+    ballroom:{t:'Keynote in the ballroom',img:'ballroom.jpg',ph:true},
+    keynoteroom:{t:'Ballroom keynote',img:'keynote-room.jpg',ph:true},
+    ey:{t:'EY Design Studio',img:'ey-booth.jpg',ph:true},
+    airmiles:{t:'Air Miles',img:'airmiles.jpg',ph:true},
+    haventree:{t:'Haventree Bank',img:'haventree.jpg',ph:true},
+    ic:{t:'IC Savings',img:'icsavings.jpg',ph:true},
+    networking:{t:'Sponsor conversations',img:'networking.jpg',ph:true},
+    stageblue:{t:'Keynote speaker',img:'stage-blue.jpg',ph:true},
+    pink:{t:'Opening keynote',img:'pink-suit.jpg',ph:true},
+    performer:{t:'Evening performance',img:'performer.jpg',ph:true},
+    qa:{t:'Audience Q&A',img:'qa.jpg',ph:true},
+    qa2:{t:'Roundtable Q&A',img:'qa2.jpg',ph:true},
+    panel:{t:'Panel discussion',img:'panel.jpg',ph:true},
+    hrffspk:{t:'HR Future Fest keynote',img:'hrff-speaker.jpg',ph:true},
+    i1:{t:'Attendee testimonial',img:'interview1.jpg',ph:true},
+    i2:{t:'Speaker interview',img:'interview2.jpg',ph:true},
+    i3:{t:'On-floor interview',img:'interview3.jpg',ph:true},
+    i4:{t:'HRPA attendee interview',img:'interview4.jpg',ph:true},
+    i5:{t:'Sponsor interview',img:'interview5.jpg',ph:true},
+    selfie:{t:'Crowd selfie',img:'selfie.jpg',ph:true},
+    group:{t:'Team moment',img:'group.jpg',ph:true},
+    kitchen:{t:'Hospitality suite',img:'kitchen.jpg',ph:true},
+    crowd:{t:'Standing ovation',img:'crowd.jpg',ph:true},
+    audience:{t:'In the audience',img:'audience.jpg',ph:true}
+  };
+  for(var h=0;h<8;h++){P['hs'+h]={t:'Portrait studio',img:'headshot-'+h+'.jpg',ph:true,portrait:true}}
+  var ROWS=[
+    {id:'conferences',t:'Recent conferences',items:['quebec','hrpa','hrff','design','mccarthy','bdo','ballroom','keynoteroom']},
+    {id:'sponsors',t:'Sponsor and booth activations',items:['ey','airmiles','haventree','ic','networking']},
+    {id:'keynotes',t:'Keynotes and panels',items:['stageblue','pink','performer','hrffspk','panel','qa','qa2']},
+    {id:'interviews',t:'Interviews and testimonials',items:['i4','i1','i2','i3','i5']},
+    {id:'portraits',t:'Portrait studio',tall:true,items:['hs0','hs1','hs2','hs3','hs4','hs5','hs6','hs7']},
+    {id:'candid',t:'Candid moments',items:['selfie','crowd','group','audience','kitchen']}
+  ];
+  function el(tag,attrs,html){var e=document.createElement(tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(html!=null)e.innerHTML=html;return e}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+  var chips=document.getElementById('chips'),rows=document.getElementById('rows');
+  ROWS.forEach(function(r){
+    chips.appendChild(el('a',{href:'#'+r.id},esc(r.t)));
+    var sec=el('section',{class:'row',id:r.id,'aria-labelledby':r.id+'-h'});
+    sec.appendChild(el('h2',{id:r.id+'-h'},esc(r.t)+'<span class="r">.</span>'));
+    var wrap=el('div',{class:'rail-wrap'}),rail=el('div',{class:'rail'+(r.tall?' tall':'')});
+    r.items.forEach(function(k){
+      var p=P[k],b=el('button',{class:'card',type:'button','data-open':k,'aria-label':p.t});
+      b.innerHTML=(p.cs?'<span class="tag">CASE STUDY</span>':'')+
+        '<img loading="lazy" src="/img/'+p.img+'" alt=""'+(p.pos?' style="object-position:'+p.pos+'"':'')+'>'+
+        '<span class="cap"><b>'+esc(p.t)+'</b>'+(r.tall?'':'<span'+(p.ph?' class="ph"':'')+'>'+esc(p.sub||'Details to add')+'</span>')+'</span>';
+      rail.appendChild(b);
+    });
+    var prev=el('button',{class:'arrow prev',type:'button','aria-label':'Scroll '+r.t+' left'},'‹'),
+        next=el('button',{class:'arrow next',type:'button','aria-label':'Scroll '+r.t+' right'},'›');
+    prev.onclick=function(){rail.scrollBy({left:-rail.clientWidth*.85,behavior:'smooth'})};
+    next.onclick=function(){rail.scrollBy({left:rail.clientWidth*.85,behavior:'smooth'})};
+    wrap.appendChild(prev);wrap.appendChild(rail);wrap.appendChild(next);sec.appendChild(wrap);rows.appendChild(sec);
+  });
+
+  // detail panel
+  var scrim=document.getElementById('scrim'),media=document.getElementById('p-media'),lastFocus=null;
+  function open(k,play){
+    var p=P[k];lastFocus=document.activeElement;
+    media.className='panel-media';
+    if(play&&p.video){media.classList.add('playing');media.innerHTML='<video src="'+p.video+'" controls autoplay playsinline poster="/img/'+p.img+'"></video>'}
+    else media.innerHTML='<img src="/img/'+p.img+'" alt="'+esc(p.t)+'"'+(p.pos?' style="object-position:'+p.pos+'"':'')+'>';
+    document.getElementById('p-title').innerHTML=esc(p.t)+'<span class="r">.</span>';
+    document.getElementById('p-meta').innerHTML=(p.meta||['Client','Venue']).map(function(m){return '<li'+(p.ph?' class="ph"':'')+'>'+esc(m)+'</li>'}).join('');
+    document.getElementById('p-summary').innerHTML=p.ph?'<span class="ph">'+PH+' Two or three sentences on the brief and how the day went.</span>':esc(p.summary);
+    document.getElementById('p-delivered').innerHTML=(p.delivered||['Deliverable','Deliverable','Deliverable']).map(function(d){return '<li'+(p.ph?' class="ph"':'')+'>'+esc(d)+'</li>'}).join('');
+    document.getElementById('p-facts').innerHTML=(p.facts||[['000','attendees'],['00','sponsors']]).map(function(f){return '<li'+(p.ph?' class="ph"':'')+'><b'+(p.ph?' class="ph"':'')+'>'+esc(f[0])+'</b>'+esc(f[1])+'</li>'}).join('');
+    var acts='';
+    if(p.video&&!play)acts+='<button class="btn light" type="button" data-open="'+k+'" data-play="1">▶ Watch Recap</button>';
+    if(p.study)acts+='<a class="btn ghost" href="'+p.study+'" target="_blank" rel="noopener">Read Case Study</a>';
+    acts+='<a class="btn" href="'+HOME+'#book">Request Pricing</a>';
+    document.getElementById('p-actions').innerHTML=acts;
+    scrim.hidden=false;document.body.style.overflow='hidden';scrim.scrollTop=0;
+    document.getElementById('p-close').focus();
+  }
+  function close(){
+    var v=media.querySelector('video');if(v)v.pause();
+    media.innerHTML='';scrim.hidden=true;document.body.style.overflow='';
+    if(lastFocus&&lastFocus.focus)lastFocus.focus();
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('[data-open]');
+    if(t){e.preventDefault();open(t.getAttribute('data-open'),!!t.getAttribute('data-play'));return}
+    if(e.target===scrim)close();
+  });
+  document.getElementById('p-close').onclick=close;
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!scrim.hidden)close()});
+
+  // header turns solid once you scroll off the billboard
+  var top=document.getElementById('top');
+  function onScroll(){top.classList.toggle('solid',window.scrollY>60)}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  document.querySelectorAll('.billboard video').forEach(function(v){v.muted=true;var pr=v.play&&v.play();if(pr&&pr.catch)pr.catch(function(){})});
+})();
+</script>
+
+</body>
+</html>
