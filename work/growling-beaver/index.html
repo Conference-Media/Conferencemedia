@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Growling Beaver Event Video and Photography | Conference Media</title>
+<meta name="description" content="Event video, photography, and interviews for Parkinson Canada's Growling Beaver ride in Beaver Valley: a 48-hour vertical recap, photos to CBC within the hour, testimonials, and short social clips.">
+<link rel="canonical" href="https://conferencemedia.ca/work/growling-beaver/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Conference Media">
+<meta property="og:title" content="Parkinson Canada Growling Beaver | Conference Media">
+<meta property="og:description" content="Event video, photography, and interviews for Parkinson Canada's 160 km fall fundraising ride.">
+<meta property="og:url" content="https://conferencemedia.ca/work/growling-beaver/">
+<meta property="og:image" content="https://conferencemedia.ca/img/cycling.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/png" href="/img/logo.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"Article","headline":"Parkinson Canada Growling Beaver: event video, photography, and interviews","description":"How Conference Media covered Parkinson Canada's Growling Beaver fundraising ride in Beaver Valley, Ontario.","image":"https://conferencemedia.ca/img/cycling.jpg","inLanguage":"en","author":{"@type":"Organization","name":"Conference Media","url":"https://conferencemedia.ca/"},"publisher":{"@type":"Organization","name":"Conference Media","logo":{"@type":"ImageObject","url":"https://conferencemedia.ca/img/logo.png"}},"about":{"@type":"Event","name":"The Growling Beaver (Pedaling for Parkinson's)","startDate":"2025-10","location":{"@type":"Place","name":"Beaver Valley","address":{"@type":"PostalAddress","addressLocality":"Collingwood","addressRegion":"ON","addressCountry":"CA"}},"organizer":{"@type":"Organization","name":"Parkinson Canada"}}},
+ {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://conferencemedia.ca/"},{"@type":"ListItem","position":2,"name":"Our Work","item":"https://conferencemedia.ca/work/"},{"@type":"ListItem","position":3,"name":"Parkinson Canada Growling Beaver","item":"https://conferencemedia.ca/work/growling-beaver/"}]}
+]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: case study template (shared with /work/qhic/). Billboard with the recap, then a centred reading column with full-bleed photo moments. Same brand system as the homepage and Work page. */
+:root{
+  --black:#000000;
+  --stage:#111111;
+  --paper:#F2EFE9;
+  --muted:#A9A49B;
+  --body:#D6D2CA;
+  --line:#2A2A2A;
+  --red:#E8392F;
+  --ph:#F5C84B;
+  --serif:"Gloock","Georgia",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gutter:clamp(16px,4vw,56px);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--black);color:var(--paper);font-family:var(--sans);font-size:17px;line-height:1.65}
+a{color:inherit}
+img{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
+.r{color:var(--red)}
+.ph{color:var(--ph)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font:600 15px var(--sans);padding:13px 22px;border-radius:999px;background:var(--red);color:#fff;white-space:nowrap;border:0;cursor:pointer}
+.btn.ghost{background:rgba(242,239,233,.14);color:var(--paper);box-shadow:inset 0 0 0 1.5px rgba(242,239,233,.6)}
+.btn.light{background:var(--paper);color:#000}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:520px){.actions{flex-wrap:nowrap}.actions .btn{flex:1 1 0;min-width:0;padding:13px 10px}}
+
+.top{position:fixed;left:0;right:0;top:0;z-index:20;padding:calc(env(safe-area-inset-top,0px) + 14px) var(--gutter) 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(180deg,rgba(0,0,0,.75),rgba(0,0,0,0));transition:background .3s ease}
+.top.solid{background:rgba(0,0,0,.92)}
+.top-left{display:flex;align-items:center;gap:28px;min-width:0}
+.logo img{height:34px;width:auto}
+.top nav{display:flex;gap:20px;font-size:14px}
+.top nav a{text-decoration:none;color:var(--muted)}
+.top nav a[aria-current]{color:var(--paper);font-weight:600}
+@media (max-width:640px){.top nav{display:none}.logo img{height:26px}.top .btn{padding:10px 14px;font-size:13px}}
+
+/* billboard */
+.billboard{position:relative;min-height:clamp(560px,86vh,860px);display:flex;align-items:flex-end;overflow:hidden;background:#000 url("/img/cycling.jpg") center/cover}
+.billboard video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.billboard .fill{display:none}
+@media (min-aspect-ratio:3/4) and (min-width:700px){
+  .billboard .fill{display:block;filter:blur(30px) brightness(.5);transform:scale(1.15)}
+  .billboard .main{object-fit:contain;object-position:72% center}
+}
+.billboard::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,0) 80%),linear-gradient(180deg,rgba(0,0,0,0) 55%,#000 100%)}
+.bb-copy{position:relative;z-index:1;padding:0 var(--gutter) clamp(48px,8vw,96px);max-width:760px}
+.crumbs{font-size:14px;color:var(--muted);margin:0 0 14px}
+.crumbs a{text-decoration:none}
+.crumbs a:hover{color:var(--paper)}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6.4vw,84px);line-height:1;margin:0 0 10px;text-wrap:balance}
+.fr{font-family:var(--serif);font-size:clamp(18px,2vw,24px);color:var(--muted);margin:0 0 18px}
+.lede{margin:0 0 26px;color:var(--body);max-width:36em;font-size:clamp(17px,1.5vw,19px)}
+
+/* at a glance */
+.glance{max-width:1100px;margin:0 auto;padding:clamp(40px,6vw,64px) var(--gutter);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 24px;border-bottom:1px solid var(--line)}
+.glance div{min-width:0}
+.glance b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.6vw,46px);line-height:1.05}
+.glance span{display:block;font-size:14px;color:var(--muted);margin-top:6px}
+@media (max-width:720px){.glance{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.facts{max-width:1100px;margin:0 auto;padding:28px var(--gutter) 0;display:flex;flex-wrap:wrap;gap:10px 28px;font-size:15px;color:var(--muted);list-style:none}
+.facts li b{color:var(--paper);font-weight:600;margin-right:6px}
+
+/* story */
+article{max-width:720px;margin:0 auto;padding:clamp(48px,7vw,88px) var(--gutter) 0}
+article h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.6vw,44px);line-height:1.08;margin:clamp(48px,7vw,72px) 0 16px;text-wrap:balance}
+article h2:first-child{margin-top:0}
+article p{margin:0 0 18px;color:var(--body)}
+article p strong{color:var(--paper)}
+.when{list-style:none;margin:8px 0 24px;padding:0;border-top:1px solid var(--line)}
+.when li{display:grid;grid-template-columns:9em 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);color:var(--body)}
+.when li b{font-family:var(--serif);font-weight:400;font-size:19px;color:var(--paper)}
+@media (max-width:520px){.when li{grid-template-columns:1fr;gap:2px}}
+blockquote{margin:32px 0;padding:0 0 0 22px;border-left:3px solid var(--red);font-family:var(--serif);font-size:clamp(22px,2.4vw,28px);line-height:1.3}
+blockquote cite{display:block;font-family:var(--sans);font-style:normal;font-size:14px;color:var(--muted);margin-top:12px}
+
+/* photo moments */
+.strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:1280px;margin:clamp(40px,6vw,64px) auto;padding:0 var(--gutter)}
+.strip img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:4px}
+@media (max-width:640px){.strip{grid-template-columns:1fr 1fr}.strip img:nth-child(3){display:none}}
+
+/* closing */
+.cta{text-align:center;padding:clamp(72px,10vw,130px) var(--gutter);border-top:1px solid var(--line);margin-top:clamp(56px,8vw,96px)}
+.cta h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.6vw,60px);line-height:1.08;max-width:15em;margin:0 auto 16px;text-wrap:balance}
+.cta p{color:var(--muted);max-width:32em;margin:0 auto 30px}
+.cta .actions{justify-content:center}
+footer{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:36px var(--gutter) 44px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+footer img{height:30px;width:auto}
+
+/* photo placeholders until the real photos arrive */
+.strip .need{aspect-ratio:3/4;border:1px dashed var(--ph);border-radius:4px;display:flex;align-items:flex-end;padding:14px;font-size:13px;color:var(--ph)}
+@media (max-width:640px){.strip .need:nth-child(3){display:none}}
+.note{font-size:14px;color:var(--ph);border:1px dashed var(--ph);border-radius:4px;padding:12px 14px;margin:0 0 18px}
+/* recap player */
+.scrim{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 24px) 12px 24px}
+.scrim video{max-width:100%;max-height:100%;border-radius:6px;background:#000}
+.close{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);right:12px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(242,239,233,.15);color:var(--paper);font-size:24px;cursor:pointer}
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <div class="top-left">
+    <a class="logo" href="/" aria-label="Conference Media home"><img src="/img/logo.png" alt="Conference Media"></a>
+    <nav aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/work/" aria-current="page">Work</a>
+    </nav>
+  </div>
+  <a class="btn" href="/#book">Request Pricing</a>
+</header>
+
+<main>
+  <section class="billboard" aria-labelledby="h">
+    <div class="bb-copy">
+      <p class="crumbs"><a href="/work/">Our Work</a> / Case study</p>
+      <h1 id="h">Parkinson Canada Growling Beaver<span class="r">.</span></h1>
+      <p class="fr">Pedaling for Parkinson's</p>
+      <p class="lede">Riders, a 160 km route through Beaver Valley's fall colours, and a fundraiser that raised over $600,000. We followed the ride by car and had a vertical recap back to Parkinson Canada in 48 hours.</p>
+      <div class="actions">
+        <a class="btn light" href="#delivered">See What We Delivered</a>
+        <a class="btn" href="/#book">Request Pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="glance" aria-label="At a glance">
+    <div><b>$600K+</b><span>raised for Parkinson Canada</span></div>
+    <div><b>160 km</b><span>longest route, followed by car</span></div>
+    <div><b>1 hour</b><span>to deliver photos for CBC</span></div>
+    <div><b>48 hours</b><span>for the vertical recap video</span></div>
+  </section>
+  <ul class="facts">
+    <li><b>Client</b>Parkinson Canada</li>
+    <li><b>Event</b>The Growling Beaver, part of Pedaling for Parkinson's</li>
+    <li><b>Location</b>Beaver Valley, near Collingwood, Ontario</li>
+    <li><b>Date</b>October 2025</li>
+    <li><b>Routes</b>40, 60, 100, and 160 km</li>
+  </ul>
+
+  <article>
+    <h2>About the project<span class="r">.</span></h2>
+    <p>Pedaling for Parkinson's is Parkinson Canada's annual cycling fundraiser, with four rides across the country: the Capital Ride, the Prince Edward County Ride, Go the Distance, and the Growling Beaver.</p>
+    <p>The Growling Beaver is the toughest of the four. Riders take on a 160 km route through Beaver Valley in peak fall colours, with shorter 100, 60, and 40 km options. This year's ride raised over $600,000.</p>
+    <p>Parkinson Canada brought us in a few weeks after we covered their SuperWalk in Toronto.</p>
+
+    <h2>One request. One hour<span class="r">.</span></h2>
+    <p>During the ride, Parkinson Canada needed photos for a CBC story. Our team edited a set of publication-ready photos and delivered them within the hour, while the event was still going.</p>
+
+    <h2>The challenge: a route that moved<span class="r">.</span></h2>
+    <p>We mapped the course ahead of time and picked our lookouts. Then, partway through the event, the riders changed routes.</p>
+    <p>We kept pace by car, leapfrogging ahead and repositioning so we could still catch riders at the best spots in the valley. The 15-second recap, delivered 48 hours later, came out of those shots.</p>
+  </article>
+
+  <div class="strip" aria-label="Photos from the ride">
+    <img src="/img/cycling.jpg" alt="Riders celebrating at the Growling Beaver" loading="lazy">
+    <div class="need">Photo needed: riders on the road, in the fall colours</div>
+    <div class="need">Photo needed: the finish line</div>
+  </div>
+
+  <article id="delivered">
+    <h2>What we delivered<span class="r">.</span></h2>
+    <p>One ride, eight kinds of content, each delivered when Parkinson Canada needed it most.</p>
+    <ul class="when">
+      <li><b>Within the hour</b><span>Publication-ready photos for a CBC story</span></li>
+      <li><b>Same day</b><span>Behind-the-scenes mobile album, plus the first event photos</span></li>
+      <li><b>48 hours</b><span>15-second vertical recap video, and the rest of the mobile album</span></li>
+      <li><b>Within 5 business days</b><span>Full event photo album</span></li>
+      <li><b>10 to 15 business days</b><span>90-second recap video</span></li>
+      <li><b>5 to 10 business days after the recap</b><span>Five testimonial interviews plus a bonus interview, five on-the-spot rider interviews, and ten Paprclips</span></li>
+      <li><b>Archived</b><span>A stock footage library of rider passes, sponsor banners and booths, and crowd moments</span></li>
+    </ul>
+
+    <h3 style="font-family:var(--serif);font-weight:400;font-size:26px;margin:36px 0 10px">Two recap videos, two jobs</h3>
+    <p>The <strong>15-second vertical recap</strong> was built to stop the scroll on phones, with riders in motion against the valley's colours. The <strong>90-second recap</strong> gives the day room to breathe: the riders, the atmosphere, and the wins.</p>
+
+    <h3 style="font-family:var(--serif);font-weight:400;font-size:26px;margin:36px 0 10px">Real voices</h3>
+    <p>We filmed <strong>five testimonial interviews</strong>, plus a bonus, using questions we wrote for the event alongside Parkinson Canada's own. Many of the riders are personally affected by Parkinson's disease. We provided accessibility accommodations so everyone could speak comfortably.</p>
+    <p>We also caught <strong>five riders on the spot</strong> with quick prompts, for raw reactions while the ride was happening. Both sets of interviews were cut into <strong>Paprclips</strong>: our under-one-minute edits of the strongest moments, made for sharing. Parkinson Canada ordered ten.</p>
+
+    <h3 style="font-family:var(--serif);font-weight:400;font-size:26px;margin:36px 0 10px">Social content in real time</h3>
+    <p>On ride day, we shot 5 to 15 second clips and photos from an attendee's point of view, in vertical and horizontal formats, and dropped them in a shared folder so the team could post while the excitement was at its peak.</p>
+
+    <h3 style="font-family:var(--serif);font-weight:400;font-size:26px;margin:36px 0 10px">A library for next year</h3>
+    <p>The footage we didn't use became a stock library, ready for social posts, sponsor decks, and next year's promo video.</p>
+
+    <blockquote class="ph">“Client quote goes here: one or two sentences from the Parkinson Canada team.”<cite>Name, title, Parkinson Canada</cite></blockquote>
+
+    <h2>The ride doesn't end at the finish line<span class="r">.</span></h2>
+    <p>With the right content, the story keeps going. Thank you to Parkinson Canada for trusting us to help tell it.</p>
+  </article>
+
+  <div class="strip" aria-label="More photos from the ride">
+    <div class="need">Photo needed: sponsors and booths</div>
+    <div class="need">Photo needed: an interview being filmed</div>
+    <div class="need">Photo needed: crowd or volunteers</div>
+  </div>
+
+  <section class="cta" aria-labelledby="cta-h">
+    <h2 id="cta-h">Planning a fundraiser, ride, or special event<span class="r">?</span></h2>
+    <p>We bring the same crew and turnaround to events outside the ballroom.</p>
+    <div class="actions">
+      <a class="btn ghost" href="/work/">More Work</a>
+      <a class="btn" href="/#book">Request Pricing</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <img src="/img/logo.png" alt="Conference Media">
+  <span>Toronto, ON.<br>Serving the GTA and travelling across Canada.</span>
+  <span>by Papr Mache</span>
+</footer>
+
+<script>
+(function(){
+  var top=document.getElementById('top');
+  function onScroll(){top.classList.toggle('solid',window.scrollY>60)}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+</body>
+</html>
