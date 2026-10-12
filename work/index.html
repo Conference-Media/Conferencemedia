@@ -161,6 +161,11 @@ h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6.4vw,84px);lin
 .pv-meta li:not(.cs)::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:2px}
 .pv-meta .cs{font-size:11px;font-weight:600;letter-spacing:.04em;background:var(--red);color:#fff;padding:3px 8px;border-radius:3px}
 .pv-body p{margin:0 0 14px;color:var(--body);max-width:40em}
+.pv-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:6px 0 20px;padding:18px 0 0;list-style:none;border-top:1px solid var(--line)}
+.pv-facts b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(26px,3vw,36px);line-height:1.05;color:var(--paper)}
+.pv-facts span{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+.pv-facts .ph b,.pv-facts .ph span{color:var(--ph)}
+@media (max-width:560px){.pv-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .pv-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
 .pv-tags li{font-size:13px;padding:5px 11px;border-radius:999px;border:1px solid var(--line);color:var(--paper)}
 .pv-close{position:absolute;top:12px;right:12px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:rgba(0,0,0,.7);color:var(--paper);font-size:22px;cursor:pointer}
@@ -264,8 +269,8 @@ footer img{height:30px;width:auto}
       <div class="rail-wrap">
         <button class="arrow prev" type="button" aria-label="Scroll greatest hits left">‹</button>
         <div class="rail" id="hits-rail">
-          <a class="card tile" href="#" data-summary="The Human Resources Professionals Association's annual summit, bringing HR professionals from across Ontario to Toronto." data-when="November 2024" data-where="Westin Harbour Castle, Toronto"><div class="shot"><img src="/img/hrpa.jpg" alt="HRPA Summit attendee interviewed on camera" loading="lazy"></div><span class="date">NOV 2024</span><b>HRPA Summit 2024</b><span class="tags ph">Conference, Recaps, Testimonials</span></a>
-          <a class="card tile" href="/work/qhic/" data-summary="The Quebec hotel industry's investment conference, bringing together owners, investors, and operators for a day in Montreal." data-when="September 2026" data-where="Fairmont, Montreal" data-video="/media/quebec-full.mp4"><div class="shot"><img src="/img/qhic-3.jpg" alt="Panel at the Quebec Hotel Investment Conference" loading="lazy" style="object-position:center 35%"><span class="cs">CASE STUDY</span></div><span class="date">SEP 2026</span><b>Quebec Hotel Investment Conference</b><span class="tags ph">Conference, Recaps, Photography</span></a>
+          <a class="card tile" href="#" data-summary="The Human Resources Professionals Association's annual summit, bringing HR professionals from across Ontario to Toronto." data-when="November 2024" data-where="Westin Harbour Castle, Toronto" data-facts="2,000+|attendees;50+|vendor booths;Same day|recap video"><div class="shot"><img src="/img/hrpa.jpg" alt="HRPA Summit attendee interviewed on camera" loading="lazy"></div><span class="date">NOV 2024</span><b>HRPA Summit 2024</b><span class="tags ph">Conference, Recaps, Testimonials</span></a>
+          <a class="card tile" href="/work/qhic/" data-summary="The Quebec hotel industry's investment conference, bringing together owners, investors, and operators for a day in Montreal." data-when="September 2026" data-where="Fairmont, Montreal" data-video="/media/quebec-full.mp4" data-facts="400|attendees;~50|clips sent live;~500|photos;8|interviews"><div class="shot"><img src="/img/qhic-3.jpg" alt="Panel at the Quebec Hotel Investment Conference" loading="lazy" style="object-position:center 35%"><span class="cs">CASE STUDY</span></div><span class="date">SEP 2026</span><b>Quebec Hotel Investment Conference</b><span class="tags ph">Conference, Recaps, Photography</span></a>
           <a class="card tile" href="#" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">JUN 2026</span><b>IAB Canada State of the Nation 2026</b><span class="tags ph">Conference, Recaps</span></a>
           <a class="card tile" href="#" data-summary="" data-ph="1"><div class="shot"><img src="/img/cycling.jpg" alt="Cyclists celebrating at the Growling Beaver ride" loading="lazy"></div><span class="date">OCT 2025</span><b>Parkinson Canada Growling Beaver</b><span class="tags ph">Special event, Recaps</span></a>
           <a class="card tile" href="#" data-summary="" data-ph="1"><div class="shot"><img src="/img/design-thinkers.jpg" alt="Attendees celebrating at Design Thinkers 2025" loading="lazy"></div><span class="date">OCT 2025</span><b>Design Thinkers 2025</b><span class="tags ph">Conference, Photography</span></a>
@@ -290,7 +295,7 @@ footer img{height:30px;width:auto}
     </div>
     <!-- Source list: every project is here in the page for search engines; the script lays them out in rows of three. -->
     <div id="pool">
-      <a class="card" href="/work/qhic/" data-tags="conference recaps testimonials photography" data-summary="The Quebec hotel industry's investment conference, bringing together owners, investors, and operators for a day in Montreal." data-when="September 2026" data-where="Fairmont, Montreal" data-video="/media/quebec-full.mp4"><div class="shot"><img src="/img/qhic-3.jpg" alt="Panel at the Quebec Hotel Investment Conference" loading="lazy" style="object-position:center 35%"><span class="cs">CASE STUDY</span></div><span class="date">SEP 2026</span><b>Quebec Hotel Investment Conference</b><span class="tags">Conference, Recaps, Testimonials, Photography</span></a>
+      <a class="card" href="/work/qhic/" data-tags="conference recaps testimonials photography" data-summary="The Quebec hotel industry's investment conference, bringing together owners, investors, and operators for a day in Montreal." data-when="September 2026" data-where="Fairmont, Montreal" data-video="/media/quebec-full.mp4" data-facts="400|attendees;~50|clips sent live;~500|photos;8|interviews"><div class="shot"><img src="/img/qhic-3.jpg" alt="Panel at the Quebec Hotel Investment Conference" loading="lazy" style="object-position:center 35%"><span class="cs">CASE STUDY</span></div><span class="date">SEP 2026</span><b>Quebec Hotel Investment Conference</b><span class="tags">Conference, Recaps, Testimonials, Photography</span></a>
       <a class="card" href="#" data-tags="conference recaps photography" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">JUN 2026</span><b>IAB Canada State of the Nation 2026</b><span class="tags">Conference, Recaps, Photography</span></a>
       <a class="card" href="#" data-tags="special-event photography" data-summary="" data-ph="1"><div class="shot empty">CHIC</div><span class="date">APR 2026</span><b>CHIC Capital</b><span class="tags">Special event, Photography</span></a>
       <a class="card" href="#" data-tags="conference photography" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">APR 2026</span><b>IAB Canada Enterprise 2026</b><span class="tags">Conference, Photography</span></a>
@@ -302,7 +307,7 @@ footer img{height:30px;width:auto}
       <a class="card" href="#" data-tags="conference recaps" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">JUN 2025</span><b>IAB Canada State of the Nation 2025</b><span class="tags">Conference, Recaps</span></a>
       <a class="card" href="#" data-tags="conference fireside-chat" data-summary="" data-ph="1"><div class="shot empty">HRPA</div><span class="date">MAY 2025</span><b>HRPA Law</b><span class="tags">Conference, Fireside chat</span></a>
       <a class="card" href="#" data-tags="conference" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">APR 2025</span><b>IAB Canada Enterprise 2025</b><span class="tags">Conference</span></a>
-      <a class="card" href="#" data-tags="conference recaps testimonials photography" data-summary="The Human Resources Professionals Association's annual summit, bringing HR professionals from across Ontario to Toronto." data-when="November 2024" data-where="Westin Harbour Castle, Toronto"><div class="shot"><img src="/img/hrpa.jpg" alt="HRPA Summit attendee interviewed on camera" loading="lazy"></div><span class="date">NOV 2024</span><b>HRPA Summit 2024</b><span class="tags">Conference, Recaps, Testimonials, Photography</span></a>
+      <a class="card" href="#" data-tags="conference recaps testimonials photography" data-summary="The Human Resources Professionals Association's annual summit, bringing HR professionals from across Ontario to Toronto." data-when="November 2024" data-where="Westin Harbour Castle, Toronto" data-facts="2,000+|attendees;50+|vendor booths;Same day|recap video"><div class="shot"><img src="/img/hrpa.jpg" alt="HRPA Summit attendee interviewed on camera" loading="lazy"></div><span class="date">NOV 2024</span><b>HRPA Summit 2024</b><span class="tags">Conference, Recaps, Testimonials, Photography</span></a>
       <a class="card" href="#" data-tags="conference" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">APR 2024</span><b>IAB Canada Enterprise 2024</b><span class="tags">Conference</span></a>
       <a class="card" href="#" data-tags="conference photography" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">FEB 2024</span><b>IAB Canada 2024</b><span class="tags">Conference, Photography</span></a>
     </div>
@@ -325,6 +330,7 @@ footer img{height:30px;width:auto}
       <div class="pv-actions" id="pv-actions"></div>
       <ul class="pv-meta" id="pv-meta"></ul>
       <p id="pv-sum"></p>
+      <ul class="pv-facts" id="pv-facts"></ul>
       <ul class="pv-tags" id="pv-tags"></ul>
     </div>
   </div>
@@ -429,15 +435,14 @@ footer img{height:30px;width:auto}
     if(play&&video){pvMedia.classList.add('playing');pvMedia.innerHTML='<video src="'+video+'" controls autoplay playsinline></video>'+titleHtml}
     else if(img){pvMedia.innerHTML='<img src="'+img.getAttribute('src')+'" alt="'+esc(img.alt)+'"'+(img.getAttribute('style')?' style="'+img.getAttribute('style')+'"':'')+'>'+titleHtml}
     else{pvMedia.innerHTML='<div class="empty">'+esc(card.querySelector('.shot').textContent)+'</div>'+titleHtml}
-    var acts='';
-    if(video&&!play)acts+='<button class="btn light" type="button" data-play>\u25B6 Watch Recap</button>';
-    acts+=hasPage?'<a class="btn ghost" href="'+href+'">View Project</a>':'<span class="btn ghost" aria-disabled="true" style="opacity:.5;cursor:default">Project page coming soon</span>';
-    acts+='<a class="btn" href="/#book" data-quote>Request Pricing</a>';
+    var acts=hasPage?'<a class="btn" href="'+href+'">View Project</a>':'<span class="btn ghost" aria-disabled="true" style="opacity:.5;cursor:default">Project page coming soon</span>';
     document.getElementById('pv-actions').innerHTML=acts;
     var when=card.getAttribute('data-when')||date,where=card.getAttribute('data-where');
     document.getElementById('pv-meta').innerHTML='<li>'+esc(when)+'</li>'+(where?'<li>'+esc(where)+'</li>':'<li class="ph">Location to add</li>')+(hasPage?'<li class="cs">CASE STUDY</li>':'');
     var sum=card.getAttribute('data-summary');
     document.getElementById('pv-sum').innerHTML=ph?'<span class="ph">Two or three sentences about this project go here once we have the details.</span>':esc(sum);
+    var facts=card.getAttribute('data-facts');
+    document.getElementById('pv-facts').innerHTML=(facts?facts.split(';'):['000|attendees','00|sponsors','00|photos']).map(function(f){var x=f.split('|');return '<li'+(facts?'':' class="ph"')+'><b>'+esc(x[0])+'</b><span>'+esc(x[1])+'</span></li>'}).join('');
     document.getElementById('pv-tags').innerHTML=tags.map(function(t){return '<li>'+esc(t)+'</li>'}).join('');
     var playBtn=pv.querySelector('[data-play]');if(playBtn)playBtn.onclick=function(){openPv(card,true)};
     if(pv.hidden){pv.hidden=false;pv.classList.add('open');document.body.style.overflow='hidden';pv.scrollTop=0}
