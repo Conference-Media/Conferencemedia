@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Our Work | Conference Media</title>
-<meta name="description" content="Browse conference photo and video projects by Conference Media: recap videos, keynote recordings, sponsor and booth photography, interviews, and headshots.">
+<meta name="description" content="Browse conference photo and video projects by Conference Media: recap videos, keynote recordings, testimonials, sponsor and event photography for conferences, special events, workshops and fireside chats.">
 <link rel="canonical" href="https://conferencemedia.ca/work/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Conference Media">
 <meta property="og:title" content="Our Work | Conference Media">
-<meta property="og:description" content="Browse conference photo and video projects by Conference Media: recap videos, keynote recordings, sponsor and booth photography, interviews, and headshots.">
+<meta property="og:description" content="Conference photo and video projects by Conference Media, newest first.">
 <meta property="og:url" content="https://conferencemedia.ca/work/">
-<meta property="og:image" content="https://conferencemedia.ca/img/reel-poster.jpg">
+<meta property="og:image" content="https://conferencemedia.ca/img/qhic-3.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#000000">
 <link rel="icon" type="image/png" href="/img/logo.png">
@@ -19,12 +19,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Inter:wght@400;500;600&display=swap">
 <style>
-/* Layout: a streaming-service browse page. A featured billboard up top, then horizontal rows of projects by type; any card opens a detail panel. Brand: black, off-white serif, red punctuation. */
+/* Layout: Work page as a table of contents. Featured billboard, filter bar, greatest hits, an ask, then every project newest first in rows of three with an ask after each row, loading as you scroll. Request Pricing opens the form in a lightbox. */
 :root{
   --black:#000000;
   --stage:#111111;
   --paper:#F2EFE9;
   --muted:#A9A49B;
+  --body:#D6D2CA;
   --line:#2A2A2A;
   --red:#E8392F;
   --ph:#F5C84B;
@@ -44,14 +45,23 @@ img{display:block;max-width:100%}
 :focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
 .r{color:var(--red)}
 .ph{color:var(--ph)}
+section[id]{scroll-margin-top:130px}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font:600 15px var(--sans);padding:13px 22px;border-radius:999px;background:var(--red);color:#fff;white-space:nowrap;border:0;cursor:pointer}
 .btn.ghost{background:rgba(242,239,233,.14);color:var(--paper);box-shadow:inset 0 0 0 1.5px rgba(242,239,233,.6)}
 .btn.light{background:var(--paper);color:#000}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:520px){.actions{flex-wrap:nowrap}.actions .btn{flex:1 1 0;min-width:0;padding:13px 10px}}
 
-/* header floats over the billboard, turns solid on scroll */
+.wrap{max-width:1280px;margin:0 auto;padding:0 var(--gutter)}
+.sec-head{margin-bottom:22px}
+.kicker{font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--muted);margin:0 0 8px}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4vw,52px);line-height:1.05;margin:0;text-wrap:balance}
+.count{font-size:14px;color:var(--muted);margin:10px 0 0}
+
+/* header */
 .top{position:fixed;left:0;right:0;top:0;z-index:20;padding:calc(env(safe-area-inset-top,0px) + 14px) var(--gutter) 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(180deg,rgba(0,0,0,.75),rgba(0,0,0,0));transition:background .3s ease}
-.top.solid{background:rgba(0,0,0,.92)}
+.top.solid{background:rgba(0,0,0,.95)}
 .top-left{display:flex;align-items:center;gap:28px;min-width:0}
 .logo img{height:34px;width:auto}
 .top nav{display:flex;gap:20px;font-size:14px}
@@ -59,8 +69,8 @@ img{display:block;max-width:100%}
 .top nav a[aria-current]{color:var(--paper);font-weight:600}
 @media (max-width:640px){.top nav{display:none}.logo img{height:26px}.top .btn{padding:10px 14px;font-size:13px}}
 
-/* billboard */
-.billboard{position:relative;min-height:clamp(560px,86vh,860px);display:flex;align-items:flex-end;overflow:hidden;background:#000 url("/img/reel-poster.jpg") center/cover}
+/* featured */
+.billboard{position:relative;min-height:clamp(520px,78vh,800px);display:flex;align-items:flex-end;overflow:hidden;background:#000 url("/img/qhic-3.jpg") center/cover}
 .billboard video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .billboard .fill{display:none}
 @media (min-aspect-ratio:3/4) and (min-width:700px){
@@ -68,114 +78,232 @@ img{display:block;max-width:100%}
   .billboard .main{object-fit:contain;object-position:72% center}
 }
 .billboard::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,0) 80%),linear-gradient(180deg,rgba(0,0,0,0) 55%,#000 100%)}
-.bb-copy{position:relative;z-index:1;padding:0 var(--gutter) clamp(48px,8vw,96px);max-width:720px}
-.badge{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--paper);margin-bottom:12px}
+.bb-copy{position:relative;z-index:1;padding:0 var(--gutter) clamp(36px,6vw,72px);max-width:720px}
+.badge{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.04em;margin-bottom:12px}
 .badge::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
-.bb-copy h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6.4vw,84px);line-height:1;margin:0 0 16px;text-wrap:balance}
-.meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;color:#D6D2CA;margin:0 0 14px;padding:0;list-style:none}
-.meta li+li::before{content:"";display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--red);margin-right:16px;vertical-align:3px}
-.bb-copy p{margin:0 0 24px;color:#D6D2CA;max-width:36em}
-.bb-actions{display:flex;gap:12px;flex-wrap:wrap}
-@media (max-width:520px){.bb-actions{flex-wrap:nowrap}.bb-actions .btn{flex:1 1 0;min-width:0;padding:13px 10px}}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6.4vw,84px);line-height:1;margin:0 0 14px;text-wrap:balance}
+.bb-copy p{margin:0 0 24px;color:var(--body);max-width:36em}
 
-/* category jump chips */
-.chips{display:flex;gap:10px;overflow-x:auto;padding:4px var(--gutter) 8px;margin-top:-8px;position:relative;z-index:2;scrollbar-width:none}
-.chips::-webkit-scrollbar{display:none}
-.chips a{flex:0 0 auto;text-decoration:none;font-size:14px;font-weight:500;padding:9px 16px;border-radius:999px;border:1.5px solid var(--line);color:var(--paper);background:var(--stage)}
-.chips a:hover{border-color:var(--paper)}
+/* filter bar */
+.filters{position:sticky;top:calc(env(safe-area-inset-top,0px) + 62px);z-index:10;background:rgba(0,0,0,.95);border-bottom:1px solid var(--line)}
+.filters-in{display:flex;gap:8px;align-items:center;overflow-x:auto;padding:12px var(--gutter);scrollbar-width:none;max-width:1280px;margin:0 auto}
+.filters-in::-webkit-scrollbar{display:none}
+.filter{flex:0 0 auto;font:500 14px var(--sans);padding:8px 15px;border-radius:999px;border:1.5px solid var(--line);color:var(--paper);background:var(--stage);cursor:pointer}
+.filter[aria-pressed="true"]{background:var(--paper);color:#000;border-color:var(--paper)}
+@media (max-width:640px){.filters{top:calc(env(safe-area-inset-top,0px) + 54px)}}
 
-/* rows */
-.row{padding-top:clamp(28px,4vw,44px);scroll-margin-top:72px}
-.row h2{font-family:var(--serif);font-weight:400;font-size:clamp(22px,2.4vw,30px);margin:0 0 12px;padding-inline:var(--gutter)}
+/* cards (shared by greatest hits and all work) */
+.card{display:grid;gap:8px;align-content:start;text-decoration:none;color:var(--paper)}
+.card .shot{position:relative;aspect-ratio:16/10;border-radius:6px;overflow:hidden;background:var(--stage)}
+.card .shot img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+@media (hover:hover){.card:hover .shot img{transform:scale(1.04)}}
+@media (prefers-reduced-motion:reduce){.card .shot img{transition:none}}
+.card .shot.empty{display:flex;align-items:flex-end;padding:14px;font-family:var(--serif);font-size:24px;color:#3a3a3a;border:1px solid var(--line)}
+.card .cs{position:absolute;top:10px;left:10px;font-size:11px;font-weight:600;letter-spacing:.04em;background:var(--red);color:#fff;padding:4px 8px;border-radius:3px}
+.card .date{font-size:12px;color:var(--muted);letter-spacing:.03em}
+.card b{font-family:var(--serif);font-weight:400;font-size:22px;line-height:1.15}
+.card .tags{font-size:13px;color:var(--muted)}
+
+/* section 1: greatest hits */
+.hits{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:22px 14px}
+.hits .card{grid-column:span 2}
+.hits .card:nth-child(1),.hits .card:nth-child(2){grid-column:span 3}
+.hits .card:nth-child(1) .shot,.hits .card:nth-child(2) .shot{aspect-ratio:16/9}
+.hits .card:nth-child(1) b,.hits .card:nth-child(2) b{font-size:clamp(24px,2.4vw,30px)}
+@media (max-width:860px){.hits{grid-template-columns:1fr 1fr}.hits .card,.hits .card:nth-child(2){grid-column:span 1}.hits .card:nth-child(1){grid-column:span 2}}
+@media (max-width:520px){.hits{grid-template-columns:1fr}.hits .card,.hits .card:nth-child(1){grid-column:span 1}}
+
+/* asks */
+.ask{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;border:1px solid var(--line);border-radius:6px;padding:clamp(20px,3vw,30px);background:var(--stage)}
+.ask p{margin:0;font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);line-height:1.15}
+@media (max-width:600px){.ask{flex-direction:column;align-items:stretch;text-align:center}}
+
+
+/* greatest hits rail (Netflix-style row) */
 .rail-wrap{position:relative}
-.rail{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);padding:6px var(--gutter) 18px;scrollbar-width:none}
+.rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);padding:6px var(--gutter) 18px;scrollbar-width:none}
 .rail::-webkit-scrollbar{display:none}
-.card{flex:0 0 clamp(240px,26vw,340px);scroll-snap-align:start;position:relative;border:0;padding:0;background:var(--stage);border-radius:6px;overflow:hidden;cursor:pointer;aspect-ratio:16/9;color:var(--paper);text-align:left;font:inherit;transition:transform .25s ease,box-shadow .25s ease}
-.rail.tall .card{flex-basis:clamp(150px,15vw,200px);aspect-ratio:3/4}
-.card img{width:100%;height:100%;object-fit:cover}
-.card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.85) 100%)}
-.card .cap{position:absolute;left:12px;right:12px;bottom:10px;z-index:1}
-.card .cap b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(17px,1.5vw,20px);line-height:1.15}
-.card .cap span{display:block;font-size:12px;color:#CFCAC2;margin-top:3px}
-.card .tag{position:absolute;top:10px;left:10px;z-index:1;font-size:11px;font-weight:600;letter-spacing:.04em;background:var(--red);color:#fff;padding:4px 8px;border-radius:3px}
-@media (hover:hover){.card:hover{transform:scale(1.06);z-index:2;box-shadow:0 14px 40px rgba(0,0,0,.6)}}
-@media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
+.tile{flex:0 0 clamp(260px,30vw,420px);scroll-snap-align:start;position:relative;display:block;border-radius:6px;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
+.tile .shot{aspect-ratio:16/9;border-radius:6px}
+.tile::after{content:"";position:absolute;inset:0;border-radius:6px;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.88) 100%);pointer-events:none}
+.tile .date,.tile b,.tile .tags{position:absolute;left:14px;right:14px;z-index:1}
+.tile b{bottom:30px;font-size:clamp(19px,1.7vw,24px)}
+.tile .date{bottom:auto;top:12px;left:auto;right:12px;text-align:right;color:#DAD6CE;text-shadow:0 1px 6px rgba(0,0,0,.7)}
+.tile .tags{bottom:10px;font-size:12px;color:#CFCAC2}
+@media (hover:hover){.tile:hover{transform:scale(1.05);z-index:2;box-shadow:0 14px 40px rgba(0,0,0,.6)}.tile:hover .shot img{transform:none}}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
 .arrow{display:none}
 @media (hover:hover) and (min-width:800px){
-  .arrow{display:flex;position:absolute;top:6px;bottom:18px;width:var(--gutter);min-width:44px;align-items:center;justify-content:center;border:0;background:rgba(0,0,0,.55);color:var(--paper);font-size:28px;cursor:pointer;z-index:3;opacity:0;transition:opacity .2s}
+  .arrow{display:flex;position:absolute;top:6px;bottom:18px;width:var(--gutter);min-width:44px;align-items:center;justify-content:center;border:0;background:rgba(0,0,0,.6);color:var(--paper);font-size:30px;cursor:pointer;z-index:3;opacity:0;transition:opacity .2s}
   .arrow.prev{left:0}.arrow.next{right:0}
   .rail-wrap:hover .arrow{opacity:1}
 }
 
+/* project preview (Netflix-style) */
+.preview{position:fixed;inset:0;z-index:45;background:rgba(0,0,0,.78);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:calc(env(safe-area-inset-top,0px) + 32px) 12px 32px}
+.pv{position:relative;width:min(820px,100%);background:#141414;border-radius:8px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.7)}
+.preview.open .pv{animation:pop .28s ease-out}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.preview.open .pv{animation:none}}
+.pv-media{position:relative;aspect-ratio:16/9;background:#000}
+.pv-media img{width:100%;height:100%;object-fit:cover}
+.pv-media video{width:100%;height:100%;object-fit:contain;background:#000}
+.pv-media .empty{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:40px;color:#333}
+.pv-media::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(180deg,rgba(20,20,20,0),#141414);pointer-events:none}
+.pv-media.playing::after{display:none}
+.pv-title{position:absolute;left:clamp(20px,4vw,36px);right:clamp(20px,4vw,36px);bottom:16px;z-index:1}
+.pv-title h2{font-size:clamp(28px,4vw,46px);text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.pv-media.playing .pv-title{display:none}
+.pv-body{padding:16px clamp(20px,4vw,36px) clamp(24px,4vw,36px)}
+.pv-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+@media (max-width:520px){.pv-actions .btn{flex:1 1 40%;min-width:0;padding:13px 10px}.pv-actions .btn.light{flex-basis:100%}}
+.pv-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:var(--muted);margin:0 0 12px}
+.pv-meta .cs{font-size:11px;font-weight:600;letter-spacing:.04em;background:var(--red);color:#fff;padding:3px 8px;border-radius:3px}
+.pv-body p{margin:0 0 14px;color:var(--body);max-width:40em}
+.pv-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.pv-tags li{font-size:13px;padding:5px 11px;border-radius:999px;border:1px solid var(--line);color:var(--paper)}
+.pv-close{position:absolute;top:12px;right:12px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:rgba(0,0,0,.7);color:var(--paper);font-size:22px;cursor:pointer}
+
+/* section 2: all work */
+.feed{display:grid;gap:clamp(28px,4vw,40px)}
+.row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 14px}
+@media (max-width:860px){.row3{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.row3{grid-template-columns:1fr}}
+#pool{display:none}
+.loader{height:1px}
+.end{text-align:center;color:var(--muted);font-size:14px;margin:8px 0 0}
+.empty-state{text-align:center;color:var(--muted);padding:40px 0}
+.ph-note{font-size:13px;color:var(--ph);margin:22px 0 0}
+
 /* closing */
-.cta{text-align:center;padding:clamp(72px,10vw,130px) var(--gutter);border-top:1px solid var(--line);margin-top:clamp(48px,7vw,80px)}
-.cta h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.6vw,60px);line-height:1.08;max-width:15em;margin:0 auto 32px;text-wrap:balance}
-.cta .bb-actions{justify-content:center}
-footer{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:36px var(--gutter) 44px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+footer{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:36px var(--gutter) 44px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;margin-top:clamp(64px,9vw,112px)}
 footer img{height:30px;width:auto}
-.ph-note{font-size:13px;color:var(--ph);text-align:center;padding:10px var(--gutter) 0}
 
-/* detail panel */
-.scrim{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.75);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:calc(env(safe-area-inset-top,0px) + 32px) 12px 32px}
-.panel{position:relative;width:min(860px,100%);background:#141414;border-radius:8px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.7)}
-.panel-media{position:relative;aspect-ratio:16/9;background:#000}
-.panel-media img,.panel-media video{width:100%;height:100%;object-fit:cover}
-.panel-media video{object-fit:contain;background:#000}
-.panel-media::after{content:"";position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(180deg,rgba(20,20,20,0),#141414);pointer-events:none}
-.panel-media.playing::after{display:none}
-.close{position:absolute;top:12px;right:12px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:rgba(0,0,0,.7);color:var(--paper);font-size:22px;line-height:1;cursor:pointer}
-.panel-body{padding:4px clamp(20px,4vw,40px) clamp(24px,4vw,40px)}
-.panel-body h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.6vw,44px);line-height:1.05;margin:0 0 12px}
-.panel-body .meta{color:var(--muted)}
-.panel-cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px;margin-top:8px}
-.panel-cols p{margin:0 0 14px;color:#D6D2CA}
-.facts{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:14px;color:var(--muted)}
-.facts b{display:block;font-family:var(--serif);font-weight:400;font-size:22px;color:var(--paper);line-height:1.1}
-.delivered{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:6px;font-size:15px;color:#D6D2CA}
-.delivered li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);margin-right:10px;vertical-align:2px}
-.panel-body h3{font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--muted);margin:18px 0 6px}
-.panel-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
-@media (max-width:640px){.panel-cols{grid-template-columns:1fr;gap:22px}.panel-cols .facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.panel-actions{flex-wrap:nowrap}.panel-actions .btn{flex:1 1 0;min-width:0;padding:13px 10px}}
+/* quote lightbox */
+.modal{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.8);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:calc(env(safe-area-inset-top,0px) + 24px) 12px 24px}
+.sheet{position:relative;width:min(640px,100%);background:#141414;border:1px solid var(--line);border-radius:8px;padding:clamp(24px,4vw,40px)}
+.modal.open .sheet{animation:rise .3s ease-out}
+@keyframes rise{from{transform:translateY(16px);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.modal.open .sheet{animation:none}}
+.x{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(242,239,233,.12);color:var(--paper);font-size:22px;cursor:pointer}
+.sheet h2{font-size:clamp(28px,3.4vw,38px);text-align:center;margin:0 0 8px;padding:0 36px}
+.sheet .sub{color:var(--muted);text-align:center;margin:0 0 24px}
+.qf{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 14px}
+.qf label{display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:600;color:var(--paper)}
+.qf .full{grid-column:1/-1}
+.qf input:not([type=range]):not([type=checkbox]),.qf textarea{display:block;width:100%;min-width:0;height:50px;margin:0;padding:0 14px;font:400 16px/1.2 var(--sans);color:var(--paper);background:var(--black);border:1.5px solid #3A3A3A;border-radius:6px;-webkit-appearance:none;appearance:none;color-scheme:dark}
+.qf textarea{height:auto;min-height:110px;padding:12px 14px;line-height:1.5;resize:vertical}
+.qf input[type=date]{display:flex;align-items:center;line-height:50px}
+.qf input[type=date]::-webkit-datetime-edit{padding:0;flex:1}
+.qf input:focus,.qf textarea:focus{outline:2px solid var(--red);outline-offset:1px;border-color:transparent}
+.qf ::placeholder{color:#6F6B64}
+.field{display:flex;flex-direction:column;gap:10px}
+.budget-head{display:flex;justify-content:space-between;align-items:baseline}
+.budget-head output{font-family:var(--serif);font-size:24px;font-variant-numeric:tabular-nums}
+.qf input[type=range]{width:100%;height:28px;padding:0;margin:0;border:0;background:transparent;cursor:pointer;-webkit-appearance:none;appearance:none;--fill:41%}
+.qf input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--red) var(--fill),#3A3A3A var(--fill))}
+.qf input[type=range]::-moz-range-track{height:6px;border-radius:3px;background:#3A3A3A}
+.qf input[type=range]::-moz-range-progress{height:6px;border-radius:3px;background:var(--red)}
+.qf input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;margin-top:-9px;border-radius:50%;background:var(--paper);border:3px solid var(--red)}
+.qf input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--paper);border:3px solid var(--red)}
+.budget-scale{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.svc{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.svc legend{font-size:14px;font-weight:600;padding:0;margin-bottom:10px;width:100%}
+.svc label{flex-direction:row;cursor:pointer}
+.svc input{position:absolute;opacity:0;width:1px;height:1px}
+.svc span{display:inline-block;padding:11px 18px;border:1.5px solid #3A3A3A;border-radius:999px;font-weight:500;font-size:15px;background:var(--black)}
+.svc input:checked + span{background:var(--red);border-color:var(--red);color:#fff}
+.svc input:focus-visible + span{outline:2px solid var(--red);outline-offset:2px}
+.qf .btn{grid-column:1/-1;justify-self:center;padding:15px 32px;font-size:16px;margin-top:4px}
+.sent{grid-column:1/-1;margin:0;text-align:center;color:var(--muted);font-size:15px}
+@media (max-width:480px){.qf{grid-template-columns:1fr}}
 </style>
-
 </head>
 <body>
+
 <header class="top" id="top">
   <div class="top-left">
     <a class="logo" href="/" aria-label="Conference Media home"><img src="/img/logo.png" alt="Conference Media"></a>
-    <nav aria-label="Main">
-      <a href="/">Home</a>
-      <a href="/work/" aria-current="page">Work</a>
-    </nav>
+    <nav aria-label="Main"><a href="/">Home</a><a href="/work/" aria-current="page">Work</a></nav>
   </div>
-  <a class="btn" href="/#book">Request Pricing</a>
+  <a class="btn" href="/#book" data-quote>Request Pricing</a>
 </header>
 
 <main>
   <section class="billboard" aria-labelledby="bb-h">
-    <video class="fill" autoplay muted loop playsinline poster="/img/reel-poster.jpg" aria-hidden="true"><source src="/media/reel.mp4" type="video/mp4"><source src="/media/reel.webm" type="video/webm"></video>
-    <video class="main" autoplay muted loop playsinline poster="/img/reel-poster.jpg" aria-hidden="true"><source src="/media/reel.mp4" type="video/mp4"><source src="/media/reel.webm" type="video/webm"></video>
+    <video class="fill" autoplay muted loop playsinline poster="/img/qhic-3.jpg" aria-hidden="true"><source src="/media/reel.mp4" type="video/mp4"><source src="/media/reel.webm" type="video/webm"></video>
+    <video class="main" autoplay muted loop playsinline poster="/img/qhic-3.jpg" aria-hidden="true"><source src="/media/reel.mp4" type="video/mp4"><source src="/media/reel.webm" type="video/webm"></video>
     <div class="bb-copy">
-      <span class="badge">FEATURED CASE STUDY</span>
+      <span class="badge">FEATURED PROJECT</span>
       <h1 id="bb-h">Quebec Hotel Investment Conference<span class="r">.</span></h1>
-      <ul class="meta"><li>Fairmont, Montreal</li><li>400 attendees</li><li>Covered in French</li></ul>
-      <p>Two weeks' notice, a new city, and an event run entirely in French. We sent about 50 clips to the client's team live, then delivered recap videos, 500 photos, and eight interviews.</p>
-      <div class="bb-actions">
-        <button class="btn light" type="button" data-open="quebec" data-play="1">▶ Watch Recap</button>
-        <a class="btn ghost" href="/work/qhic/">Read Case Study</a>
+      <p>A two-person crew, a new city, and an event run entirely in French.</p>
+      <div class="actions">
+        <a class="btn light" href="/work/qhic/">View Project</a>
+        <a class="btn" href="/#book" data-quote>Request Pricing</a>
       </div>
     </div>
   </section>
 
-  <nav class="chips" aria-label="Browse by type" id="chips"><a href="#conferences">Recent conferences</a><a href="#sponsors">Sponsor and booth activations</a><a href="#keynotes">Keynotes and panels</a><a href="#interviews">Interviews and testimonials</a><a href="#portraits">Portrait studio</a><a href="#candid">Candid moments</a></nav>
-  <div id="rows"><section class="row" id="conferences" aria-labelledby="conferences-h"><h2 id="conferences-h">Recent conferences<span class="r">.</span></h2><div class="rail-wrap"><button class="arrow prev" type="button" aria-label="Scroll Recent conferences left">‹</button><div class="rail"><a class="card" href="/work/qhic/" data-open="quebec"><span class="tag">CASE STUDY</span><img loading="lazy" src="/img/quebec.jpg" alt="Quebec Hotel Investment Conference" style="object-position:center 55%"><span class="cap"><b>Quebec Hotel Investment Conference</b><span>Fairmont, Montreal</span></span></a><button class="card" type="button" data-open="hrpa" aria-label="HRPA Summit 2024"><span class="tag">CASE STUDY</span><img loading="lazy" src="/img/hrpa.jpg" alt="HRPA Summit 2024"><span class="cap"><b>HRPA Summit 2024</b><span>Westin Harbour Castle, Toronto</span></span></button><button class="card" type="button" data-open="hrff" aria-label="HR Future Fest"><img loading="lazy" src="/img/hrff-stage.jpg" alt="HR Future Fest"><span class="cap"><b>HR Future Fest</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="design" aria-label="Design Thinkers 2025"><img loading="lazy" src="/img/design-thinkers.jpg" alt="Design Thinkers 2025"><span class="cap"><b>Design Thinkers 2025</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="mccarthy" aria-label="McCarthy Tétrault"><img loading="lazy" src="/img/mccarthy.jpg" alt="McCarthy Tétrault"><span class="cap"><b>McCarthy Tétrault</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="bdo" aria-label="BDO"><img loading="lazy" src="/img/bdo.jpg" alt="BDO" style="object-position:center 30%"><span class="cap"><b>BDO</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="ballroom" aria-label="Keynote in the ballroom"><img loading="lazy" src="/img/ballroom.jpg" alt="Keynote in the ballroom"><span class="cap"><b>Keynote in the ballroom</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="keynoteroom" aria-label="Ballroom keynote"><img loading="lazy" src="/img/keynote-room.jpg" alt="Ballroom keynote"><span class="cap"><b>Ballroom keynote</b><span class="ph">Details to add</span></span></button></div><button class="arrow next" type="button" aria-label="Scroll Recent conferences right">›</button></div></section><section class="row" id="sponsors" aria-labelledby="sponsors-h"><h2 id="sponsors-h">Sponsor and booth activations<span class="r">.</span></h2><div class="rail-wrap"><button class="arrow prev" type="button" aria-label="Scroll Sponsor and booth activations left">‹</button><div class="rail"><button class="card" type="button" data-open="ey" aria-label="EY Design Studio"><img loading="lazy" src="/img/ey-booth.jpg" alt="EY Design Studio"><span class="cap"><b>EY Design Studio</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="airmiles" aria-label="Air Miles"><img loading="lazy" src="/img/airmiles.jpg" alt="Air Miles"><span class="cap"><b>Air Miles</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="haventree" aria-label="Haventree Bank"><img loading="lazy" src="/img/haventree.jpg" alt="Haventree Bank"><span class="cap"><b>Haventree Bank</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="ic" aria-label="IC Savings"><img loading="lazy" src="/img/icsavings.jpg" alt="IC Savings"><span class="cap"><b>IC Savings</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="networking" aria-label="Sponsor conversations"><img loading="lazy" src="/img/networking.jpg" alt="Sponsor conversations"><span class="cap"><b>Sponsor conversations</b><span class="ph">Details to add</span></span></button></div><button class="arrow next" type="button" aria-label="Scroll Sponsor and booth activations right">›</button></div></section><section class="row" id="keynotes" aria-labelledby="keynotes-h"><h2 id="keynotes-h">Keynotes and panels<span class="r">.</span></h2><div class="rail-wrap"><button class="arrow prev" type="button" aria-label="Scroll Keynotes and panels left">‹</button><div class="rail"><button class="card" type="button" data-open="stageblue" aria-label="Keynote speaker"><img loading="lazy" src="/img/stage-blue.jpg" alt="Keynote speaker"><span class="cap"><b>Keynote speaker</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="pink" aria-label="Opening keynote"><img loading="lazy" src="/img/pink-suit.jpg" alt="Opening keynote"><span class="cap"><b>Opening keynote</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="performer" aria-label="Evening performance"><img loading="lazy" src="/img/performer.jpg" alt="Evening performance"><span class="cap"><b>Evening performance</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="hrffspk" aria-label="HR Future Fest keynote"><img loading="lazy" src="/img/hrff-speaker.jpg" alt="HR Future Fest keynote"><span class="cap"><b>HR Future Fest keynote</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="panel" aria-label="Panel discussion"><img loading="lazy" src="/img/panel.jpg" alt="Panel discussion"><span class="cap"><b>Panel discussion</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="qa" aria-label="Audience Q&amp;A"><img loading="lazy" src="/img/qa.jpg" alt="Audience Q&amp;A"><span class="cap"><b>Audience Q&amp;A</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="qa2" aria-label="Roundtable Q&amp;A"><img loading="lazy" src="/img/qa2.jpg" alt="Roundtable Q&amp;A"><span class="cap"><b>Roundtable Q&amp;A</b><span class="ph">Details to add</span></span></button></div><button class="arrow next" type="button" aria-label="Scroll Keynotes and panels right">›</button></div></section><section class="row" id="interviews" aria-labelledby="interviews-h"><h2 id="interviews-h">Interviews and testimonials<span class="r">.</span></h2><div class="rail-wrap"><button class="arrow prev" type="button" aria-label="Scroll Interviews and testimonials left">‹</button><div class="rail"><button class="card" type="button" data-open="i4" aria-label="HRPA attendee interview"><img loading="lazy" src="/img/interview4.jpg" alt="HRPA attendee interview"><span class="cap"><b>HRPA attendee interview</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="i1" aria-label="Attendee testimonial"><img loading="lazy" src="/img/interview1.jpg" alt="Attendee testimonial"><span class="cap"><b>Attendee testimonial</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="i2" aria-label="Speaker interview"><img loading="lazy" src="/img/interview2.jpg" alt="Speaker interview"><span class="cap"><b>Speaker interview</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="i3" aria-label="On-floor interview"><img loading="lazy" src="/img/interview3.jpg" alt="On-floor interview"><span class="cap"><b>On-floor interview</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="i5" aria-label="Sponsor interview"><img loading="lazy" src="/img/interview5.jpg" alt="Sponsor interview"><span class="cap"><b>Sponsor interview</b><span class="ph">Details to add</span></span></button></div><button class="arrow next" type="button" aria-label="Scroll Interviews and testimonials right">›</button></div></section><section class="row" id="portraits" aria-labelledby="portraits-h"><h2 id="portraits-h">Portrait studio<span class="r">.</span></h2><div class="rail-wrap"><button class="arrow prev" type="button" aria-label="Scroll Portrait studio left">‹</button><div class="rail tall"><button class="card" type="button" data-open="hs0" aria-label="Portrait studio"><img loading="lazy" src="/img/headshot-0.jpg" alt="Portrait studio"><span class="cap"><b>Portrait studio</b></span></button><button class="card" type="button" data-open="hs1" aria-label="Portrait studio"><img loading="lazy" src="/img/headshot-1.jpg" alt="Portrait studio"><span class="cap"><b>Portrait studio</b></span></button><button class="card" type="button" data-open="hs2" aria-label="Portrait studio"><img loading="lazy" src="/img/headshot-2.jpg" alt="Portrait studio"><span class="cap"><b>Portrait studio</b></span></button><button class="card" type="button" data-open="hs3" aria-label="Portrait studio"><img loading="lazy" src="/img/headshot-3.jpg" alt="Portrait studio"><span class="cap"><b>Portrait studio</b></span></button><button class="card" type="button" data-open="hs4" aria-label="Portrait studio"><img loading="lazy" src="/img/headshot-4.jpg" alt="Portrait studio"><span class="cap"><b>Portrait studio</b></span></button><button class="card" type="button" data-open="hs5" aria-label="Portrait studio"><img loading="lazy" src="/img/headshot-5.jpg" alt="Portrait studio"><span class="cap"><b>Portrait studio</b></span></button><button class="card" type="button" data-open="hs6" aria-label="Portrait studio"><img loading="lazy" src="/img/headshot-6.jpg" alt="Portrait studio"><span class="cap"><b>Portrait studio</b></span></button><button class="card" type="button" data-open="hs7" aria-label="Portrait studio"><img loading="lazy" src="/img/headshot-7.jpg" alt="Portrait studio"><span class="cap"><b>Portrait studio</b></span></button></div><button class="arrow next" type="button" aria-label="Scroll Portrait studio right">›</button></div></section><section class="row" id="candid" aria-labelledby="candid-h"><h2 id="candid-h">Candid moments<span class="r">.</span></h2><div class="rail-wrap"><button class="arrow prev" type="button" aria-label="Scroll Candid moments left">‹</button><div class="rail"><button class="card" type="button" data-open="selfie" aria-label="Crowd selfie"><img loading="lazy" src="/img/selfie.jpg" alt="Crowd selfie"><span class="cap"><b>Crowd selfie</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="crowd" aria-label="Standing ovation"><img loading="lazy" src="/img/crowd.jpg" alt="Standing ovation"><span class="cap"><b>Standing ovation</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="group" aria-label="Team moment"><img loading="lazy" src="/img/group.jpg" alt="Team moment"><span class="cap"><b>Team moment</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="audience" aria-label="In the audience"><img loading="lazy" src="/img/audience.jpg" alt="In the audience"><span class="cap"><b>In the audience</b><span class="ph">Details to add</span></span></button><button class="card" type="button" data-open="kitchen" aria-label="Hospitality suite"><img loading="lazy" src="/img/kitchen.jpg" alt="Hospitality suite"><span class="cap"><b>Hospitality suite</b><span class="ph">Details to add</span></span></button></div><button class="arrow next" type="button" aria-label="Scroll Candid moments right">›</button></div></section></div>
-  <p class="ph-note">Preview only: details in yellow are placeholders until each case study is written.</p>
+  <nav class="filters" aria-label="Filter projects">
+    <div class="filters-in">
+      <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+      <button class="filter" type="button" data-filter="conference" aria-pressed="false">Conference</button>
+      <button class="filter" type="button" data-filter="special-event" aria-pressed="false">Special event</button>
+      <button class="filter" type="button" data-filter="workshop" aria-pressed="false">Workshop</button>
+      <button class="filter" type="button" data-filter="fireside-chat" aria-pressed="false">Fireside chat</button>
+      <button class="filter" type="button" data-filter="recaps" aria-pressed="false">Recaps</button>
+      <button class="filter" type="button" data-filter="testimonials" aria-pressed="false">Testimonials</button>
+      <button class="filter" type="button" data-filter="photography" aria-pressed="false">Photography</button>
+    </div>
+  </nav>
 
-  <section class="cta" aria-labelledby="cta-h">
-    <h2 id="cta-h">Your event could be next<span class="r">.</span></h2>
-    <div class="bb-actions">
-      <a class="btn ghost" href="/">Back to Home</a>
-      <a class="btn" href="/#book">Request Pricing</a>
+  <!-- Section 1: greatest hits -->
+  <section id="hits" aria-labelledby="hits-h" style="padding-top:clamp(56px,8vw,96px)">
+    <div class="wrap"><div class="sec-head"><p class="kicker">GREATEST HITS:</p><h2 id="hits-h">Where to start<span class="r">.</span></h2></div></div>
+      <div class="rail-wrap">
+        <button class="arrow prev" type="button" aria-label="Scroll greatest hits left">‹</button>
+        <div class="rail" id="hits-rail">
+          <a class="card tile" href="#" data-summary="Full coverage of the HRPA Summit at the Westin Harbour Castle in Toronto: 2,000+ attendees, 50+ vendor booths, and a recap video in the client's hands within hours of the closing session."><div class="shot"><img src="/img/hrpa.jpg" alt="HRPA Summit attendee interviewed on camera" loading="lazy"></div><span class="date">NOV 2024</span><b>HRPA Summit 2024</b><span class="tags ph">Conference, Recaps, Testimonials</span></a>
+          <a class="card tile" href="/work/qhic/" data-summary="A two-person crew drove from Toronto to cover a 400-person hotel investment conference at the Fairmont in Montreal, entirely in French. About 50 clips went out live, the first recap the next day, then 500 photos and eight interviews." data-video="/media/quebec-full.mp4"><div class="shot"><img src="/img/qhic-3.jpg" alt="Panel at the Quebec Hotel Investment Conference" loading="lazy" style="object-position:center 35%"><span class="cs">CASE STUDY</span></div><span class="date">SEP 2026</span><b>Quebec Hotel Investment Conference</b><span class="tags ph">Conference, Recaps, Photography</span></a>
+          <a class="card tile" href="#" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">JUN 2026</span><b>IAB Canada State of the Nation 2026</b><span class="tags ph">Conference, Recaps</span></a>
+          <a class="card tile" href="#" data-summary="" data-ph="1"><div class="shot"><img src="/img/cycling.jpg" alt="Cyclists celebrating at the Growling Beaver ride" loading="lazy"></div><span class="date">OCT 2025</span><b>Parkinson Canada Growling Beaver</b><span class="tags ph">Special event, Recaps</span></a>
+          <a class="card tile" href="#" data-summary="" data-ph="1"><div class="shot"><img src="/img/design-thinkers.jpg" alt="Attendees celebrating at Design Thinkers 2025" loading="lazy"></div><span class="date">OCT 2025</span><b>Design Thinkers 2025</b><span class="tags ph">Conference, Photography</span></a>
+        </div>
+        <button class="arrow next" type="button" aria-label="Scroll greatest hits right">›</button>
+      </div>
+    <div class="wrap">
+      <div class="ask" style="margin-top:clamp(24px,4vw,40px)">
+        <p>Planning a conference<span class="r">?</span> Let's talk about yours<span class="r">.</span></p>
+        <div class="actions"><a class="btn ghost" href="#all">Browse All Projects</a><a class="btn" href="/#book" data-quote>Request Pricing</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: every project, newest first, three at a time with an ask after each row -->
+  <section id="all" aria-labelledby="all-h" style="padding-top:clamp(64px,9vw,112px)">
+    <div class="wrap">
+      <div class="sec-head"><p class="kicker">ALL WORK:</p><h2 id="all-h">Every project, newest first<span class="r">.</span></h2><p class="count" id="count" aria-live="polite"></p></div>
+      <div class="feed" id="feed"></div>
+      <div class="loader" id="loader"></div>
+      <p class="ph-note">Preview only: project names and dates come from your Google Drive folder names. The tags are my guesses until you send the real ones.</p>
+    </div>
+    <!-- Source list: every project is here in the page for search engines; the script lays them out in rows of three. -->
+    <div id="pool">
+      <a class="card" href="/work/qhic/" data-tags="conference recaps testimonials photography" data-summary="A two-person crew drove from Toronto to cover a 400-person hotel investment conference at the Fairmont in Montreal, entirely in French. About 50 clips went out live, the first recap the next day, then 500 photos and eight interviews." data-video="/media/quebec-full.mp4"><div class="shot"><img src="/img/qhic-3.jpg" alt="Panel at the Quebec Hotel Investment Conference" loading="lazy" style="object-position:center 35%"><span class="cs">CASE STUDY</span></div><span class="date">SEP 2026</span><b>Quebec Hotel Investment Conference</b><span class="tags">Conference, Recaps, Testimonials, Photography</span></a>
+      <a class="card" href="#" data-tags="conference recaps photography" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">JUN 2026</span><b>IAB Canada State of the Nation 2026</b><span class="tags">Conference, Recaps, Photography</span></a>
+      <a class="card" href="#" data-tags="special-event photography" data-summary="" data-ph="1"><div class="shot empty">CHIC</div><span class="date">APR 2026</span><b>CHIC Capital</b><span class="tags">Special event, Photography</span></a>
+      <a class="card" href="#" data-tags="conference photography" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">APR 2026</span><b>IAB Canada Enterprise 2026</b><span class="tags">Conference, Photography</span></a>
+      <a class="card" href="#" data-tags="special-event testimonials" data-summary="" data-ph="1"><div class="shot empty">Parkinson Canada</div><span class="date">MAR 2026</span><b>Parkinson Canada Women's Day</b><span class="tags">Special event, Testimonials</span></a>
+      <a class="card" href="#" data-tags="workshop fireside-chat" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">NOV 2025</span><b>IAB Canada Report on Data 2025</b><span class="tags">Workshop, Fireside chat</span></a>
+      <a class="card" href="#" data-tags="special-event recaps" data-summary="" data-ph="1"><div class="shot"><img src="/img/cycling.jpg" alt="Cyclists celebrating at the Growling Beaver ride" loading="lazy"></div><span class="date">OCT 2025</span><b>Parkinson Canada Growling Beaver</b><span class="tags">Special event, Recaps</span></a>
+      <a class="card" href="#" data-tags="conference photography" data-summary="" data-ph="1"><div class="shot"><img src="/img/design-thinkers.jpg" alt="Attendees celebrating at Design Thinkers 2025" loading="lazy"></div><span class="date">OCT 2025</span><b>Design Thinkers 2025</b><span class="tags">Conference, Photography</span></a>
+      <a class="card" href="#" data-tags="workshop testimonials" data-summary="" data-ph="1"><div class="shot empty">HRPA</div><span class="date">JUN 2025</span><b>HRPA Ignite Wellness</b><span class="tags">Workshop, Testimonials</span></a>
+      <a class="card" href="#" data-tags="conference recaps" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">JUN 2025</span><b>IAB Canada State of the Nation 2025</b><span class="tags">Conference, Recaps</span></a>
+      <a class="card" href="#" data-tags="conference fireside-chat" data-summary="" data-ph="1"><div class="shot empty">HRPA</div><span class="date">MAY 2025</span><b>HRPA Law</b><span class="tags">Conference, Fireside chat</span></a>
+      <a class="card" href="#" data-tags="conference" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">APR 2025</span><b>IAB Canada Enterprise 2025</b><span class="tags">Conference</span></a>
+      <a class="card" href="#" data-tags="conference recaps testimonials photography" data-summary="Full coverage of the HRPA Summit at the Westin Harbour Castle in Toronto: 2,000+ attendees, 50+ vendor booths, and a recap video in the client's hands within hours of the closing session."><div class="shot"><img src="/img/hrpa.jpg" alt="HRPA Summit attendee interviewed on camera" loading="lazy"></div><span class="date">NOV 2024</span><b>HRPA Summit 2024</b><span class="tags">Conference, Recaps, Testimonials, Photography</span></a>
+      <a class="card" href="#" data-tags="conference" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">APR 2024</span><b>IAB Canada Enterprise 2024</b><span class="tags">Conference</span></a>
+      <a class="card" href="#" data-tags="conference photography" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">FEB 2024</span><b>IAB Canada 2024</b><span class="tags">Conference, Photography</span></a>
     </div>
   </section>
 </main>
@@ -186,148 +314,158 @@ footer img{height:30px;width:auto}
   <span>by Papr Mache</span>
 </footer>
 
-<div class="scrim" id="scrim" hidden>
-  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="p-title">
-    <button class="close" id="p-close" type="button" aria-label="Close">×</button>
-    <div class="panel-media" id="p-media"></div>
-    <div class="panel-body">
-      <h2 id="p-title"></h2>
-      <ul class="meta" id="p-meta"></ul>
-      <div class="panel-cols">
-        <div>
-          <p id="p-summary"></p>
-          <h3>WHAT WE DELIVERED:</h3>
-          <ul class="delivered" id="p-delivered"></ul>
-        </div>
-        <ul class="facts" id="p-facts"></ul>
-      </div>
-      <div class="panel-actions" id="p-actions"></div>
+
+<!-- Project preview -->
+<div class="preview" id="pv" hidden role="dialog" aria-modal="true" aria-labelledby="pv-h">
+  <div class="pv">
+    <button class="pv-close" id="pv-close" type="button" aria-label="Close">×</button>
+    <div class="pv-media" id="pv-media"><div class="pv-title"><h2 id="pv-h"></h2></div></div>
+    <div class="pv-body">
+      <div class="pv-actions" id="pv-actions"></div>
+      <p class="pv-meta" id="pv-meta"></p>
+      <p id="pv-sum"></p>
+      <ul class="pv-tags" id="pv-tags"></ul>
     </div>
+  </div>
+</div>
+
+<!-- Request Pricing lightbox -->
+<div class="modal" id="quote" hidden role="dialog" aria-modal="true" aria-labelledby="q-h">
+  <div class="sheet">
+    <button class="x" type="button" id="q-close" aria-label="Close">×</button>
+    <h2 id="q-h">Reserve your shoot day<span class="r">.</span></h2>
+    <p class="sub">We have a busy calendar, but for you, we can make it work.</p>
+    <form class="qf" id="qf" name="request-pricing" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="request-pricing">
+      <p hidden><label>Leave this empty<input name="bot-field"></label></p>
+      <label>Your name<input id="q-name" name="name" type="text" autocomplete="name" required></label>
+      <label>Your email<input id="q-email" name="email" type="email" autocomplete="email" required></label>
+      <label class="full">Event date<input id="q-date" name="event_date" type="date" required></label>
+      <label class="full">Tell us about your event<textarea id="q-about" name="about" rows="4" placeholder="Event name, venue, reason it exists, etc."></textarea></label>
+      <div class="field full">
+        <div class="budget-head"><label for="q-budget">Budget</label><output id="q-budget-out" for="q-budget">$5,000</output></div>
+        <input id="q-budget" name="budget" type="range" min="1500" max="10000" step="250" value="5000" aria-valuetext="$5,000">
+        <div class="budget-scale" aria-hidden="true"><span>$1,500</span><span>$10,000+</span></div>
+      </div>
+      <fieldset class="full svc">
+        <legend>Select services</legend>
+        <label><input type="checkbox" name="services[]" value="Photography"><span>Photography</span></label>
+        <label><input type="checkbox" name="services[]" value="Videography"><span>Videography</span></label>
+        <label><input type="checkbox" name="services[]" value="Editing"><span>Editing</span></label>
+      </fieldset>
+      <button class="btn" type="submit">Request Pricing</button>
+      <p class="sent" id="q-sent" hidden>Preview only: this form doesn't send from the preview. On the live site it goes to your inbox.</p>
+    </form>
   </div>
 </div>
 
 <script>
 (function(){
-  var HOME='/';
-  var PH='Event name, venue, and results to add.';
-  // Real projects carry real facts. Everything marked ph:true is a placeholder.
-  var P={
-    quebec:{t:'Quebec Hotel Investment Conference',img:'quebec.jpg',pos:'center 55%',sub:'Fairmont, Montreal',cs:true,url:'/work/qhic/',video:'/media/quebec-full.mp4',
-      meta:['Big Picture Conferences','Fairmont, Montreal','1 day','French'],
-      summary:'Big Picture Conferences reached out two weeks before the event, after we shot their Canadian Hotel Investors Conference. Our crew of two drove in from Toronto, arrived early to learn the venue, and covered the day entirely in French.',
-      facts:[['400','attendees'],['~50','clips sent live'],['~500','photos'],['8','interviews']],
-      delivered:['About 50 phone clips texted live for LinkedIn','Recap video and stage photos the next day','Full photo gallery the day after','Two more recap videos and eight interviews a week later']},
-    hrpa:{t:'HRPA Summit 2024',img:'hrpa.jpg',sub:'Westin Harbour Castle, Toronto',cs:true,
-      meta:['HRPA','Westin Harbour Castle, Toronto'],
-      summary:'Full coverage of the HRPA Summit, with a recap video in the client\'s hands within hours of the closing session.',
-      facts:[['2,000+','attendees'],['50+','vendor booths'],['Same day','recap video']],
-      delivered:['Same-day recap video','Event, stage, and booth photography','On-floor attendee interviews']},
-    hrff:{t:'HR Future Fest',img:'hrff-stage.jpg',ph:true},
-    design:{t:'Design Thinkers 2025',img:'design-thinkers.jpg',ph:true},
-    mccarthy:{t:'McCarthy Tétrault',img:'mccarthy.jpg',ph:true},
-    bdo:{t:'BDO',img:'bdo.jpg',pos:'center 30%',ph:true},
-    ballroom:{t:'Keynote in the ballroom',img:'ballroom.jpg',ph:true},
-    keynoteroom:{t:'Ballroom keynote',img:'keynote-room.jpg',ph:true},
-    ey:{t:'EY Design Studio',img:'ey-booth.jpg',ph:true},
-    airmiles:{t:'Air Miles',img:'airmiles.jpg',ph:true},
-    haventree:{t:'Haventree Bank',img:'haventree.jpg',ph:true},
-    ic:{t:'IC Savings',img:'icsavings.jpg',ph:true},
-    networking:{t:'Sponsor conversations',img:'networking.jpg',ph:true},
-    stageblue:{t:'Keynote speaker',img:'stage-blue.jpg',ph:true},
-    pink:{t:'Opening keynote',img:'pink-suit.jpg',ph:true},
-    performer:{t:'Evening performance',img:'performer.jpg',ph:true},
-    qa:{t:'Audience Q&A',img:'qa.jpg',ph:true},
-    qa2:{t:'Roundtable Q&A',img:'qa2.jpg',ph:true},
-    panel:{t:'Panel discussion',img:'panel.jpg',ph:true},
-    hrffspk:{t:'HR Future Fest keynote',img:'hrff-speaker.jpg',ph:true},
-    i1:{t:'Attendee testimonial',img:'interview1.jpg',ph:true},
-    i2:{t:'Speaker interview',img:'interview2.jpg',ph:true},
-    i3:{t:'On-floor interview',img:'interview3.jpg',ph:true},
-    i4:{t:'HRPA attendee interview',img:'interview4.jpg',ph:true},
-    i5:{t:'Sponsor interview',img:'interview5.jpg',ph:true},
-    selfie:{t:'Crowd selfie',img:'selfie.jpg',ph:true},
-    group:{t:'Team moment',img:'group.jpg',ph:true},
-    kitchen:{t:'Hospitality suite',img:'kitchen.jpg',ph:true},
-    crowd:{t:'Standing ovation',img:'crowd.jpg',ph:true},
-    audience:{t:'In the audience',img:'audience.jpg',ph:true}
-  };
-  for(var h=0;h<8;h++){P['hs'+h]={t:'Portrait studio',img:'headshot-'+h+'.jpg',ph:true,portrait:true}}
-  var ROWS=[
-    {id:'conferences',t:'Recent conferences',items:['quebec','hrpa','hrff','design','mccarthy','bdo','ballroom','keynoteroom']},
-    {id:'sponsors',t:'Sponsor and booth activations',items:['ey','airmiles','haventree','ic','networking']},
-    {id:'keynotes',t:'Keynotes and panels',items:['stageblue','pink','performer','hrffspk','panel','qa','qa2']},
-    {id:'interviews',t:'Interviews and testimonials',items:['i4','i1','i2','i3','i5']},
-    {id:'portraits',t:'Portrait studio',tall:true,items:['hs0','hs1','hs2','hs3','hs4','hs5','hs6','hs7']},
-    {id:'candid',t:'Candid moments',items:['selfie','crowd','group','audience','kitchen']}
-  ];
-  function el(tag,attrs,html){var e=document.createElement(tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(html!=null)e.innerHTML=html;return e}
-  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-
-  var chips=document.getElementById('chips'),rows=document.getElementById('rows');
-  // Rows are written into the HTML ahead of time (for search engines); build them only if missing.
-  if(!rows.children.length){ROWS.forEach(function(r){
-    chips.appendChild(el('a',{href:'#'+r.id},esc(r.t)));
-    var sec=el('section',{class:'row',id:r.id,'aria-labelledby':r.id+'-h'});
-    sec.appendChild(el('h2',{id:r.id+'-h'},esc(r.t)+'<span class="r">.</span>'));
-    var wrap=el('div',{class:'rail-wrap'}),rail=el('div',{class:'rail'+(r.tall?' tall':'')});
-    r.items.forEach(function(k){
-      var p=P[k],b=p.url?el('a',{class:'card',href:p.url,'data-open':k}):el('button',{class:'card',type:'button','data-open':k,'aria-label':p.t});
-      b.innerHTML=(p.cs?'<span class="tag">CASE STUDY</span>':'')+
-        '<img loading="lazy" src="/img/'+p.img+'" alt="'+esc(p.t)+'"'+(p.pos?' style="object-position:'+p.pos+'"':'')+'>'+
-        '<span class="cap"><b>'+esc(p.t)+'</b>'+(r.tall?'':'<span'+(p.ph?' class="ph"':'')+'>'+esc(p.sub||'Details to add')+'</span>')+'</span>';
-      rail.appendChild(b);
-    });
-    wrap.appendChild(el('button',{class:'arrow prev',type:'button','aria-label':'Scroll '+r.t+' left'},'‹'));
-    wrap.appendChild(rail);
-    wrap.appendChild(el('button',{class:'arrow next',type:'button','aria-label':'Scroll '+r.t+' right'},'›'));
-    sec.appendChild(wrap);rows.appendChild(sec);
-  })}
-  document.querySelectorAll('.rail-wrap').forEach(function(w){
-    var rail=w.querySelector('.rail');
-    w.querySelector('.arrow.prev').onclick=function(){rail.scrollBy({left:-rail.clientWidth*.85,behavior:'smooth'})};
-    w.querySelector('.arrow.next').onclick=function(){rail.scrollBy({left:rail.clientWidth*.85,behavior:'smooth'})};
-  });
-
-  // detail panel
-  var scrim=document.getElementById('scrim'),media=document.getElementById('p-media'),lastFocus=null;
-  function open(k,play){
-    var p=P[k];lastFocus=document.activeElement;
-    media.className='panel-media';
-    if(play&&p.video){media.classList.add('playing');media.innerHTML='<video src="'+p.video+'" controls autoplay playsinline poster="/img/'+p.img+'"></video>'}
-    else media.innerHTML='<img src="/img/'+p.img+'" alt="'+esc(p.t)+'"'+(p.pos?' style="object-position:'+p.pos+'"':'')+'>';
-    document.getElementById('p-title').innerHTML=esc(p.t)+'<span class="r">.</span>';
-    document.getElementById('p-meta').innerHTML=(p.meta||['Client','Venue']).map(function(m){return '<li'+(p.ph?' class="ph"':'')+'>'+esc(m)+'</li>'}).join('');
-    document.getElementById('p-summary').innerHTML=p.ph?'<span class="ph">'+PH+' Two or three sentences on the brief and how the day went.</span>':esc(p.summary);
-    document.getElementById('p-delivered').innerHTML=(p.delivered||['Deliverable','Deliverable','Deliverable']).map(function(d){return '<li'+(p.ph?' class="ph"':'')+'>'+esc(d)+'</li>'}).join('');
-    document.getElementById('p-facts').innerHTML=(p.facts||[['000','attendees'],['00','sponsors']]).map(function(f){return '<li'+(p.ph?' class="ph"':'')+'><b'+(p.ph?' class="ph"':'')+'>'+esc(f[0])+'</b>'+esc(f[1])+'</li>'}).join('');
-    var acts='';
-    if(p.video&&!play)acts+='<button class="btn light" type="button" data-open="'+k+'" data-play="1">▶ Watch Recap</button>';
-    if(p.url)acts+='<a class="btn ghost" href="'+p.url+'">Read Case Study</a>';
-    acts+='<a class="btn" href="'+HOME+'#book">Request Pricing</a>';
-    document.getElementById('p-actions').innerHTML=acts;
-    scrim.hidden=false;document.body.style.overflow='hidden';scrim.scrollTop=0;
-    document.getElementById('p-close').focus();
-  }
-  function close(){
-    var v=media.querySelector('video');if(v)v.pause();
-    media.innerHTML='';scrim.hidden=true;document.body.style.overflow='';
-    if(lastFocus&&lastFocus.focus)lastFocus.focus();
-  }
-  document.addEventListener('click',function(e){
-    var t=e.target.closest('[data-open]');
-    if(t){e.preventDefault();open(t.getAttribute('data-open'),!!t.getAttribute('data-play'));return}
-    if(e.target===scrim)close();
-  });
-  document.getElementById('p-close').onclick=close;
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!scrim.hidden)close()});
-
-  // header turns solid once you scroll off the billboard
   var top=document.getElementById('top');
   function onScroll(){top.classList.toggle('solid',window.scrollY>60)}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-  document.querySelectorAll('.billboard video').forEach(function(v){v.muted=true;var pr=v.play&&v.play();if(pr&&pr.catch)pr.catch(function(){})});
+  document.querySelectorAll('video[autoplay]').forEach(function(v){v.muted=true;var p=v.play&&v.play();if(p&&p.catch)p.catch(function(){})});
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- Section 2: rows of three, an ask after each row, more rows as you scroll
+  var pool=[].slice.call(document.querySelectorAll('#pool .card')),feed=document.getElementById('feed'),
+      count=document.getElementById('count'),loader=document.getElementById('loader');
+  var ASKS=['Like what you see<span class="r">?</span>','Planning a conference<span class="r">?</span> Let’s talk<span class="r">.</span>','Your event could be next<span class="r">.</span>'];
+  var list=pool,shown=0,PER=3,BATCH=3;
+  function ask(i){
+    var d=document.createElement('div');d.className='ask';
+    d.innerHTML='<p>'+ASKS[i%ASKS.length]+'</p><div class="actions"><a class="btn ghost" href="/">Back to Home</a><a class="btn" href="/#book" data-quote>Request Pricing</a></div>';
+    return d;
+  }
+  function more(){
+    for(var b=0;b<BATCH&&shown<list.length;b++){
+      var row=document.createElement('div');row.className='row3';
+      list.slice(shown,shown+PER).forEach(function(c){row.appendChild(c)});
+      feed.appendChild(row);
+      var rowIndex=Math.floor(shown/PER);shown+=PER;
+      feed.appendChild(ask(rowIndex));
+    }
+    if(shown>=list.length){var e=feed.querySelector('.end');if(!e){e=document.createElement('p');e.className='end';e.textContent='That’s everything so far.';feed.appendChild(e)}}
+  }
+  function render(tag){
+    list=tag==='all'?pool:pool.filter(function(c){return c.getAttribute('data-tags').split(' ').indexOf(tag)>-1});
+    feed.innerHTML='';shown=0;
+    count.textContent=list.length+(list.length===1?' project':' projects');
+    if(!list.length){feed.innerHTML='<p class="empty-state">No projects with this tag yet.</p>';return}
+    more();
+  }
+  render('all');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){if(es[0].isIntersecting&&shown<list.length)more()},{rootMargin:'600px 0px'}).observe(loader);
+  }else{while(shown<list.length)more()}
+
+  // ---- Filters: show matching projects and jump to section 2
+  var filters=document.querySelectorAll('.filter');
+  filters.forEach(function(f){f.addEventListener('click',function(){
+    filters.forEach(function(x){x.setAttribute('aria-pressed',x===f?'true':'false')});
+    render(f.getAttribute('data-filter'));
+    document.getElementById('all').scrollIntoView({behavior:reduce?'auto':'smooth'});
+  })});
+
+
+  // ---- Greatest hits arrows
+  document.querySelectorAll('.rail-wrap').forEach(function(w){
+    var rail=w.querySelector('.rail');
+    w.querySelector('.arrow.prev').onclick=function(){rail.scrollBy({left:-rail.clientWidth*.85,behavior:reduce?'auto':'smooth'})};
+    w.querySelector('.arrow.next').onclick=function(){rail.scrollBy({left:rail.clientWidth*.85,behavior:reduce?'auto':'smooth'})};
+  });
+
+  // ---- Project preview: every card opens a quick look first
+  var pv=document.getElementById('pv'),pvMedia=document.getElementById('pv-media'),pvLast=null;
+  function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}
+  function openPv(card,play){
+    pvLast=card;
+    var title=card.querySelector('b').textContent,img=card.querySelector('.shot img'),date=card.querySelector('.date').textContent,
+        tags=(card.querySelector('.tags')||{textContent:''}).textContent.split(',').map(function(t){return t.trim()}).filter(Boolean),
+        href=card.getAttribute('href'),hasPage=href&&href!=='#',video=card.getAttribute('data-video'),ph=card.hasAttribute('data-ph');
+    pvMedia.className='pv-media';
+    var titleHtml='<div class="pv-title"><h2 id="pv-h">'+esc(title)+'<span class="r">.</span></h2></div>';
+    if(play&&video){pvMedia.classList.add('playing');pvMedia.innerHTML='<video src="'+video+'" controls autoplay playsinline></video>'+titleHtml}
+    else if(img){pvMedia.innerHTML='<img src="'+img.getAttribute('src')+'" alt="'+esc(img.alt)+'"'+(img.getAttribute('style')?' style="'+img.getAttribute('style')+'"':'')+'>'+titleHtml}
+    else{pvMedia.innerHTML='<div class="empty">'+esc(card.querySelector('.shot').textContent)+'</div>'+titleHtml}
+    var acts='';
+    if(video&&!play)acts+='<button class="btn light" type="button" data-play>\u25B6 Watch Recap</button>';
+    acts+=hasPage?'<a class="btn ghost" href="'+href+'">View Project</a>':'<span class="btn ghost" aria-disabled="true" style="opacity:.5;cursor:default">Project page coming soon</span>';
+    acts+='<a class="btn" href="/#book" data-quote>Request Pricing</a>';
+    document.getElementById('pv-actions').innerHTML=acts;
+    document.getElementById('pv-meta').innerHTML='<span>'+esc(date)+'</span>'+(hasPage?'<span class="cs">CASE STUDY</span>':'');
+    var sum=card.getAttribute('data-summary');
+    document.getElementById('pv-sum').innerHTML=ph?'<span class="ph">Two or three sentences about this project go here once we have the details.</span>':esc(sum);
+    document.getElementById('pv-tags').innerHTML=tags.map(function(t){return '<li>'+esc(t)+'</li>'}).join('');
+    var playBtn=pv.querySelector('[data-play]');if(playBtn)playBtn.onclick=function(){openPv(card,true)};
+    if(pv.hidden){pv.hidden=false;pv.classList.add('open');document.body.style.overflow='hidden';pv.scrollTop=0}
+    document.getElementById('pv-close').focus();
+  }
+  function closePv(){var v=pvMedia.querySelector('video');if(v)v.pause();pvMedia.innerHTML='';pv.hidden=true;pv.classList.remove('open');document.body.style.overflow='';if(pvLast&&pvLast.focus)pvLast.focus()}
+  document.addEventListener('click',function(e){
+    var c=e.target.closest('a.card');
+    if(c&&!e.metaKey&&!e.ctrlKey){e.preventDefault();openPv(c,false)}
+  });
+  document.getElementById('pv-close').onclick=closePv;
+  pv.addEventListener('click',function(e){if(e.target===pv)closePv()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pv.hidden&&document.getElementById('quote').hidden)closePv()});
+
+  // ---- Request Pricing lightbox
+  var modal=document.getElementById('quote'),last=null;
+  function openQ(){last=document.activeElement;modal.hidden=false;modal.classList.add('open');document.body.style.overflow='hidden';document.getElementById('q-name').focus()}
+  function closeQ(){modal.hidden=true;modal.classList.remove('open');document.body.style.overflow='';if(last&&last.focus)last.focus()}
+  document.addEventListener('click',function(e){var t=e.target.closest('[data-quote]');if(t){e.preventDefault();if(!pv.hidden){var v=pvMedia.querySelector('video');if(v)v.pause();pvMedia.innerHTML='';pv.hidden=true;pv.classList.remove('open')}openQ()}});
+  document.getElementById('q-close').onclick=closeQ;
+  modal.addEventListener('click',function(e){if(e.target===modal)closeQ()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)closeQ()});
+  var r=document.getElementById('q-budget'),o=document.getElementById('q-budget-out');
+  function money(v){return '$'+Number(v).toLocaleString('en-CA')+(Number(v)>=10000?'+':'')}
+  function upd(){var t=money(r.value);o.textContent=t;r.setAttribute('aria-valuetext',t);r.style.setProperty('--fill',((r.value-r.min)/(r.max-r.min)*100)+'%')}
+  r.addEventListener('input',upd);upd();
+  // The form only sends from the live site; anywhere else it says so instead
+  var live=/conferencemedia\.(ca|netlify\.app)$/.test(location.hostname);
+  document.getElementById('qf').addEventListener('submit',function(e){if(!live){e.preventDefault();document.getElementById('q-sent').hidden=false}});
 })();
 </script>
-
 </body>
 </html>

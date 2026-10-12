@@ -10,3 +10,14 @@
   for = "/img/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+# Old review versions of the Work page now point to the live one
+[[redirects]]
+  from = "/work/v2/*"
+  to = "/work/"
+  status = 301
+
+[[redirects]]
+  from = "/work/v3/*"
+  to = "/work/"
+  status = 301
