@@ -18,6 +18,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
  {"@type":"Article","headline":"Parkinson Canada Growling Beaver: event video, photography, and interviews","description":"How Conference Media covered Parkinson Canada's Growling Beaver fundraising ride in Beaver Valley, Ontario.","image":"https://conferencemedia.ca/img/gb-road.jpg","inLanguage":"en","author":{"@type":"Organization","name":"Conference Media","url":"https://conferencemedia.ca/"},"publisher":{"@type":"Organization","name":"Conference Media","logo":{"@type":"ImageObject","url":"https://conferencemedia.ca/img/logo.png"}},"about":{"@type":"Event","name":"The Growling Beaver (Pedaling for Parkinson's)","startDate":"2025-10","location":{"@type":"Place","name":"Beaver Valley","address":{"@type":"PostalAddress","addressLocality":"Collingwood","addressRegion":"ON","addressCountry":"CA"}},"organizer":{"@type":"Organization","name":"Parkinson Canada"}}},
+ {"@type":"VideoObject","name":"Parkinson Canada Growling Beaver: 90-second event recap","description":"Event recap video of Parkinson Canada's Growling Beaver fundraising ride through Beaver Valley, Ontario, by Conference Media.","thumbnailUrl":["https://i.ytimg.com/vi/PaqRQK2OlCM/maxresdefault.jpg","https://conferencemedia.ca/img/gb-domestiques.jpg"],"uploadDate":"2026-10-12","contentUrl":"https://www.youtube.com/watch?v=PaqRQK2OlCM","embedUrl":"https://www.youtube.com/embed/PaqRQK2OlCM"},
  {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://conferencemedia.ca/"},{"@type":"ListItem","position":2,"name":"Our Work","item":"https://conferencemedia.ca/work/"},{"@type":"ListItem","position":3,"name":"Parkinson Canada Growling Beaver","item":"https://conferencemedia.ca/work/growling-beaver/"}]}
 ]}
 </script>
@@ -130,6 +131,13 @@ footer img{height:30px;width:auto}
 /* recap player */
 .scrim{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 24px) 12px 24px}
 .scrim video{max-width:100%;max-height:100%;border-radius:6px;background:#000}
+.scrim .yt{width:min(100%,calc((100vh - 96px)*16/9));aspect-ratio:16/9;border:0;border-radius:6px;background:#000}
+.ytf{position:relative;display:block;width:100%;aspect-ratio:16/9;margin:20px 0 8px;border:0;padding:0;border-radius:6px;overflow:hidden;cursor:pointer;background:#000}
+.ytf img{width:100%;height:100%;object-fit:cover;opacity:.8;transition:opacity .2s}
+.ytf:hover img{opacity:1}
+.ytf .pl{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;padding-left:5px}
+.ytf iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.cap{font-size:14px;color:var(--muted);margin:0 0 8px}
 .close{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);right:12px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(242,239,233,.15);color:var(--paper);font-size:24px;cursor:pointer}
 </style>
 </head>
@@ -154,7 +162,7 @@ footer img{height:30px;width:auto}
       <p class="fr">Pedaling for Parkinson's</p>
       <p class="lede">Riders, a 160 km route through Beaver Valley's fall colours, and a fundraiser that raised over $600,000. We followed the ride by car and had a vertical recap back to Parkinson Canada in 48 hours.</p>
       <div class="actions">
-        <a class="btn light" href="#delivered">See What We Delivered</a>
+        <button class="btn light" type="button" id="play">▶ Watch Recap</button>
         <a class="btn" href="/#book">Request Pricing</a>
       </div>
     </div>
@@ -216,6 +224,8 @@ footer img{height:30px;width:auto}
 
     <h3 style="font-family:var(--serif);font-weight:400;font-size:26px;margin:36px 0 10px">Two recap videos, two jobs</h3>
     <p>The <strong>15-second vertical recap</strong> was built to stop the scroll on phones, with riders in motion against the valley's colours. The <strong>90-second recap</strong> gives the day room to breathe: the riders, the atmosphere, and the wins.</p>
+    <button class="ytf" type="button" data-yt="PaqRQK2OlCM" aria-label="Play the 90-second Growling Beaver recap video"><img src="/img/gb-domestiques.jpg" alt=""><span class="pl" aria-hidden="true">▶</span></button>
+    <p class="cap">The 90-second recap.</p>
 
     <h3 style="font-family:var(--serif);font-weight:400;font-size:26px;margin:36px 0 10px">Real voices</h3>
     <p>We filmed <strong>five testimonial interviews</strong>, plus a bonus, using questions we wrote for the event alongside Parkinson Canada's own. Many of the riders are personally affected by Parkinson's disease. We provided accessibility accommodations so everyone could speak comfortably.</p>
@@ -275,11 +285,25 @@ footer img{height:30px;width:auto}
   <span>by Papr Mache</span>
 </footer>
 
+<div class="scrim" id="player" hidden role="dialog" aria-modal="true" aria-label="Recap video">
+  <button class="close" id="close" type="button" aria-label="Close">×</button>
+  <div id="slot"></div>
+</div>
+
 <script>
 (function(){
   var top=document.getElementById('top');
   function onScroll(){top.classList.toggle('solid',window.scrollY>60)}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  function frame(id){var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1';f.title='Growling Beaver 90-second recap';f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;return f}
+  document.querySelectorAll('.ytf').forEach(function(b){b.addEventListener('click',function(){if(b.querySelector('iframe'))return;b.appendChild(frame(b.dataset.yt))},{once:true})});
+  var player=document.getElementById('player'),slot=document.getElementById('slot'),btn=document.getElementById('play');
+  function open(){var f=frame('PaqRQK2OlCM');f.className='yt';slot.appendChild(f);player.hidden=false;document.body.style.overflow='hidden';document.getElementById('close').focus()}
+  function close(){slot.innerHTML='';player.hidden=true;document.body.style.overflow='';btn.focus()}
+  btn.addEventListener('click',open);
+  document.getElementById('close').addEventListener('click',close);
+  player.addEventListener('click',function(e){if(e.target===player)close()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!player.hidden)close()});
 })();
 </script>
 </body>
