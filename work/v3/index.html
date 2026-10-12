@@ -109,6 +109,52 @@ h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6.4vw,84px);lin
 .ask p{margin:0;font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);line-height:1.15}
 @media (max-width:600px){.ask{flex-direction:column;align-items:stretch;text-align:center}}
 
+
+/* greatest hits rail (Netflix-style row) */
+.rail-wrap{position:relative}
+.rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);padding:6px var(--gutter) 18px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.tile{flex:0 0 clamp(260px,30vw,420px);scroll-snap-align:start;position:relative;display:block;border-radius:6px;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
+.tile .shot{aspect-ratio:16/9;border-radius:6px}
+.tile::after{content:"";position:absolute;inset:0;border-radius:6px;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.88) 100%);pointer-events:none}
+.tile .date,.tile b,.tile .tags{position:absolute;left:14px;right:14px;z-index:1}
+.tile b{bottom:30px;font-size:clamp(19px,1.7vw,24px)}
+.tile .date{bottom:auto;top:12px;left:auto;right:12px;text-align:right;color:#DAD6CE;text-shadow:0 1px 6px rgba(0,0,0,.7)}
+.tile .tags{bottom:10px;font-size:12px;color:#CFCAC2}
+@media (hover:hover){.tile:hover{transform:scale(1.05);z-index:2;box-shadow:0 14px 40px rgba(0,0,0,.6)}.tile:hover .shot img{transform:none}}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
+.arrow{display:none}
+@media (hover:hover) and (min-width:800px){
+  .arrow{display:flex;position:absolute;top:6px;bottom:18px;width:var(--gutter);min-width:44px;align-items:center;justify-content:center;border:0;background:rgba(0,0,0,.6);color:var(--paper);font-size:30px;cursor:pointer;z-index:3;opacity:0;transition:opacity .2s}
+  .arrow.prev{left:0}.arrow.next{right:0}
+  .rail-wrap:hover .arrow{opacity:1}
+}
+
+/* project preview (Netflix-style) */
+.preview{position:fixed;inset:0;z-index:45;background:rgba(0,0,0,.78);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:calc(env(safe-area-inset-top,0px) + 32px) 12px 32px}
+.pv{position:relative;width:min(820px,100%);background:#141414;border-radius:8px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.7)}
+.preview.open .pv{animation:pop .28s ease-out}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.preview.open .pv{animation:none}}
+.pv-media{position:relative;aspect-ratio:16/9;background:#000}
+.pv-media img{width:100%;height:100%;object-fit:cover}
+.pv-media video{width:100%;height:100%;object-fit:contain;background:#000}
+.pv-media .empty{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:40px;color:#333}
+.pv-media::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(180deg,rgba(20,20,20,0),#141414);pointer-events:none}
+.pv-media.playing::after{display:none}
+.pv-title{position:absolute;left:clamp(20px,4vw,36px);right:clamp(20px,4vw,36px);bottom:16px;z-index:1}
+.pv-title h2{font-size:clamp(28px,4vw,46px);text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.pv-media.playing .pv-title{display:none}
+.pv-body{padding:16px clamp(20px,4vw,36px) clamp(24px,4vw,36px)}
+.pv-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+@media (max-width:520px){.pv-actions .btn{flex:1 1 40%;min-width:0;padding:13px 10px}.pv-actions .btn.light{flex-basis:100%}}
+.pv-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:var(--muted);margin:0 0 12px}
+.pv-meta .cs{font-size:11px;font-weight:600;letter-spacing:.04em;background:var(--red);color:#fff;padding:3px 8px;border-radius:3px}
+.pv-body p{margin:0 0 14px;color:var(--body);max-width:40em}
+.pv-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.pv-tags li{font-size:13px;padding:5px 11px;border-radius:999px;border:1px solid var(--line);color:var(--paper)}
+.pv-close{position:absolute;top:12px;right:12px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:rgba(0,0,0,.7);color:var(--paper);font-size:22px;cursor:pointer}
+
 /* section 2: all work */
 .feed{display:grid;gap:clamp(28px,4vw,40px)}
 .row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 14px}
@@ -204,16 +250,20 @@ footer img{height:30px;width:auto}
 
   <!-- Section 1: greatest hits -->
   <section id="hits" aria-labelledby="hits-h" style="padding-top:clamp(56px,8vw,96px)">
-    <div class="wrap">
-      <div class="sec-head"><p class="kicker">GREATEST HITS:</p><h2 id="hits-h">Where to start<span class="r">.</span></h2></div>
-      <div class="hits">
-        <a class="card" href="#"><div class="shot"><img src="/img/hrpa.jpg" alt="HRPA Summit attendee interviewed on camera" loading="lazy"></div><span class="date">NOV 2024</span><b>HRPA Summit 2024</b><span class="tags ph">Conference, Recaps, Testimonials</span></a>
-        <a class="card" href="/work/qhic/"><div class="shot"><img src="/img/qhic-3.jpg" alt="Panel at the Quebec Hotel Investment Conference" loading="lazy" style="object-position:center 35%"><span class="cs">CASE STUDY</span></div><span class="date">SEP 2026</span><b>Quebec Hotel Investment Conference</b><span class="tags ph">Conference, Recaps, Photography</span></a>
-        <a class="card" href="#"><div class="shot empty">IAB</div><span class="date">JUN 2026</span><b>IAB Canada State of the Nation 2026</b><span class="tags ph">Conference, Recaps</span></a>
-        <a class="card" href="#"><div class="shot"><img src="/img/cycling.jpg" alt="Cyclists celebrating at the Growling Beaver ride" loading="lazy"></div><span class="date">OCT 2025</span><b>Parkinson Canada Growling Beaver</b><span class="tags ph">Special event, Recaps</span></a>
-        <a class="card" href="#"><div class="shot"><img src="/img/design-thinkers.jpg" alt="Attendees celebrating at Design Thinkers 2025" loading="lazy"></div><span class="date">OCT 2025</span><b>Design Thinkers 2025</b><span class="tags ph">Conference, Photography</span></a>
+    <div class="wrap"><div class="sec-head"><p class="kicker">GREATEST HITS:</p><h2 id="hits-h">Where to start<span class="r">.</span></h2></div></div>
+      <div class="rail-wrap">
+        <button class="arrow prev" type="button" aria-label="Scroll greatest hits left">‹</button>
+        <div class="rail" id="hits-rail">
+          <a class="card tile" href="#" data-summary="Full coverage of the HRPA Summit at the Westin Harbour Castle in Toronto: 2,000+ attendees, 50+ vendor booths, and a recap video in the client's hands within hours of the closing session."><div class="shot"><img src="/img/hrpa.jpg" alt="HRPA Summit attendee interviewed on camera" loading="lazy"></div><span class="date">NOV 2024</span><b>HRPA Summit 2024</b><span class="tags ph">Conference, Recaps, Testimonials</span></a>
+          <a class="card tile" href="/work/qhic/" data-summary="A two-person crew drove from Toronto to cover a 400-person hotel investment conference at the Fairmont in Montreal, entirely in French. About 50 clips went out live, the first recap the next day, then 500 photos and eight interviews." data-video="/media/quebec-full.mp4"><div class="shot"><img src="/img/qhic-3.jpg" alt="Panel at the Quebec Hotel Investment Conference" loading="lazy" style="object-position:center 35%"><span class="cs">CASE STUDY</span></div><span class="date">SEP 2026</span><b>Quebec Hotel Investment Conference</b><span class="tags ph">Conference, Recaps, Photography</span></a>
+          <a class="card tile" href="#" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">JUN 2026</span><b>IAB Canada State of the Nation 2026</b><span class="tags ph">Conference, Recaps</span></a>
+          <a class="card tile" href="#" data-summary="" data-ph="1"><div class="shot"><img src="/img/cycling.jpg" alt="Cyclists celebrating at the Growling Beaver ride" loading="lazy"></div><span class="date">OCT 2025</span><b>Parkinson Canada Growling Beaver</b><span class="tags ph">Special event, Recaps</span></a>
+          <a class="card tile" href="#" data-summary="" data-ph="1"><div class="shot"><img src="/img/design-thinkers.jpg" alt="Attendees celebrating at Design Thinkers 2025" loading="lazy"></div><span class="date">OCT 2025</span><b>Design Thinkers 2025</b><span class="tags ph">Conference, Photography</span></a>
+        </div>
+        <button class="arrow next" type="button" aria-label="Scroll greatest hits right">›</button>
       </div>
-      <div class="ask" style="margin-top:clamp(32px,5vw,48px)">
+    <div class="wrap">
+      <div class="ask" style="margin-top:clamp(24px,4vw,40px)">
         <p>Planning a conference<span class="r">?</span> Let's talk about yours<span class="r">.</span></p>
         <div class="actions"><a class="btn ghost" href="#all">Browse All Projects</a><a class="btn" href="/#book" data-quote>Request Pricing</a></div>
       </div>
@@ -230,21 +280,21 @@ footer img{height:30px;width:auto}
     </div>
     <!-- Source list: every project is here in the page for search engines; the script lays them out in rows of three. -->
     <div id="pool">
-      <a class="card" href="/work/qhic/" data-tags="conference recaps testimonials photography"><div class="shot"><img src="/img/qhic-3.jpg" alt="Panel at the Quebec Hotel Investment Conference" loading="lazy" style="object-position:center 35%"><span class="cs">CASE STUDY</span></div><span class="date">SEP 2026</span><b>Quebec Hotel Investment Conference</b><span class="tags">Conference, Recaps, Testimonials, Photography</span></a>
-      <a class="card" href="#" data-tags="conference recaps photography"><div class="shot empty">IAB</div><span class="date">JUN 2026</span><b>IAB Canada State of the Nation 2026</b><span class="tags">Conference, Recaps, Photography</span></a>
-      <a class="card" href="#" data-tags="special-event photography"><div class="shot empty">CHIC</div><span class="date">APR 2026</span><b>CHIC Capital</b><span class="tags">Special event, Photography</span></a>
-      <a class="card" href="#" data-tags="conference photography"><div class="shot empty">IAB</div><span class="date">APR 2026</span><b>IAB Canada Enterprise 2026</b><span class="tags">Conference, Photography</span></a>
-      <a class="card" href="#" data-tags="special-event testimonials"><div class="shot empty">Parkinson Canada</div><span class="date">MAR 2026</span><b>Parkinson Canada Women's Day</b><span class="tags">Special event, Testimonials</span></a>
-      <a class="card" href="#" data-tags="workshop fireside-chat"><div class="shot empty">IAB</div><span class="date">NOV 2025</span><b>IAB Canada Report on Data 2025</b><span class="tags">Workshop, Fireside chat</span></a>
-      <a class="card" href="#" data-tags="special-event recaps"><div class="shot"><img src="/img/cycling.jpg" alt="Cyclists celebrating at the Growling Beaver ride" loading="lazy"></div><span class="date">OCT 2025</span><b>Parkinson Canada Growling Beaver</b><span class="tags">Special event, Recaps</span></a>
-      <a class="card" href="#" data-tags="conference photography"><div class="shot"><img src="/img/design-thinkers.jpg" alt="Attendees celebrating at Design Thinkers 2025" loading="lazy"></div><span class="date">OCT 2025</span><b>Design Thinkers 2025</b><span class="tags">Conference, Photography</span></a>
-      <a class="card" href="#" data-tags="workshop testimonials"><div class="shot empty">HRPA</div><span class="date">JUN 2025</span><b>HRPA Ignite Wellness</b><span class="tags">Workshop, Testimonials</span></a>
-      <a class="card" href="#" data-tags="conference recaps"><div class="shot empty">IAB</div><span class="date">JUN 2025</span><b>IAB Canada State of the Nation 2025</b><span class="tags">Conference, Recaps</span></a>
-      <a class="card" href="#" data-tags="conference fireside-chat"><div class="shot empty">HRPA</div><span class="date">MAY 2025</span><b>HRPA Law</b><span class="tags">Conference, Fireside chat</span></a>
-      <a class="card" href="#" data-tags="conference"><div class="shot empty">IAB</div><span class="date">APR 2025</span><b>IAB Canada Enterprise 2025</b><span class="tags">Conference</span></a>
-      <a class="card" href="#" data-tags="conference recaps testimonials photography"><div class="shot"><img src="/img/hrpa.jpg" alt="HRPA Summit attendee interviewed on camera" loading="lazy"></div><span class="date">NOV 2024</span><b>HRPA Summit 2024</b><span class="tags">Conference, Recaps, Testimonials, Photography</span></a>
-      <a class="card" href="#" data-tags="conference"><div class="shot empty">IAB</div><span class="date">APR 2024</span><b>IAB Canada Enterprise 2024</b><span class="tags">Conference</span></a>
-      <a class="card" href="#" data-tags="conference photography"><div class="shot empty">IAB</div><span class="date">FEB 2024</span><b>IAB Canada 2024</b><span class="tags">Conference, Photography</span></a>
+      <a class="card" href="/work/qhic/" data-tags="conference recaps testimonials photography" data-summary="A two-person crew drove from Toronto to cover a 400-person hotel investment conference at the Fairmont in Montreal, entirely in French. About 50 clips went out live, the first recap the next day, then 500 photos and eight interviews." data-video="/media/quebec-full.mp4"><div class="shot"><img src="/img/qhic-3.jpg" alt="Panel at the Quebec Hotel Investment Conference" loading="lazy" style="object-position:center 35%"><span class="cs">CASE STUDY</span></div><span class="date">SEP 2026</span><b>Quebec Hotel Investment Conference</b><span class="tags">Conference, Recaps, Testimonials, Photography</span></a>
+      <a class="card" href="#" data-tags="conference recaps photography" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">JUN 2026</span><b>IAB Canada State of the Nation 2026</b><span class="tags">Conference, Recaps, Photography</span></a>
+      <a class="card" href="#" data-tags="special-event photography" data-summary="" data-ph="1"><div class="shot empty">CHIC</div><span class="date">APR 2026</span><b>CHIC Capital</b><span class="tags">Special event, Photography</span></a>
+      <a class="card" href="#" data-tags="conference photography" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">APR 2026</span><b>IAB Canada Enterprise 2026</b><span class="tags">Conference, Photography</span></a>
+      <a class="card" href="#" data-tags="special-event testimonials" data-summary="" data-ph="1"><div class="shot empty">Parkinson Canada</div><span class="date">MAR 2026</span><b>Parkinson Canada Women's Day</b><span class="tags">Special event, Testimonials</span></a>
+      <a class="card" href="#" data-tags="workshop fireside-chat" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">NOV 2025</span><b>IAB Canada Report on Data 2025</b><span class="tags">Workshop, Fireside chat</span></a>
+      <a class="card" href="#" data-tags="special-event recaps" data-summary="" data-ph="1"><div class="shot"><img src="/img/cycling.jpg" alt="Cyclists celebrating at the Growling Beaver ride" loading="lazy"></div><span class="date">OCT 2025</span><b>Parkinson Canada Growling Beaver</b><span class="tags">Special event, Recaps</span></a>
+      <a class="card" href="#" data-tags="conference photography" data-summary="" data-ph="1"><div class="shot"><img src="/img/design-thinkers.jpg" alt="Attendees celebrating at Design Thinkers 2025" loading="lazy"></div><span class="date">OCT 2025</span><b>Design Thinkers 2025</b><span class="tags">Conference, Photography</span></a>
+      <a class="card" href="#" data-tags="workshop testimonials" data-summary="" data-ph="1"><div class="shot empty">HRPA</div><span class="date">JUN 2025</span><b>HRPA Ignite Wellness</b><span class="tags">Workshop, Testimonials</span></a>
+      <a class="card" href="#" data-tags="conference recaps" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">JUN 2025</span><b>IAB Canada State of the Nation 2025</b><span class="tags">Conference, Recaps</span></a>
+      <a class="card" href="#" data-tags="conference fireside-chat" data-summary="" data-ph="1"><div class="shot empty">HRPA</div><span class="date">MAY 2025</span><b>HRPA Law</b><span class="tags">Conference, Fireside chat</span></a>
+      <a class="card" href="#" data-tags="conference" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">APR 2025</span><b>IAB Canada Enterprise 2025</b><span class="tags">Conference</span></a>
+      <a class="card" href="#" data-tags="conference recaps testimonials photography" data-summary="Full coverage of the HRPA Summit at the Westin Harbour Castle in Toronto: 2,000+ attendees, 50+ vendor booths, and a recap video in the client's hands within hours of the closing session."><div class="shot"><img src="/img/hrpa.jpg" alt="HRPA Summit attendee interviewed on camera" loading="lazy"></div><span class="date">NOV 2024</span><b>HRPA Summit 2024</b><span class="tags">Conference, Recaps, Testimonials, Photography</span></a>
+      <a class="card" href="#" data-tags="conference" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">APR 2024</span><b>IAB Canada Enterprise 2024</b><span class="tags">Conference</span></a>
+      <a class="card" href="#" data-tags="conference photography" data-summary="" data-ph="1"><div class="shot empty">IAB</div><span class="date">FEB 2024</span><b>IAB Canada 2024</b><span class="tags">Conference, Photography</span></a>
     </div>
   </section>
 </main>
@@ -254,6 +304,21 @@ footer img{height:30px;width:auto}
   <span>Toronto, ON.<br>Serving the GTA and travelling across Canada.</span>
   <span>by Papr Mache</span>
 </footer>
+
+
+<!-- Project preview -->
+<div class="preview" id="pv" hidden role="dialog" aria-modal="true" aria-labelledby="pv-h">
+  <div class="pv">
+    <button class="pv-close" id="pv-close" type="button" aria-label="Close">×</button>
+    <div class="pv-media" id="pv-media"><div class="pv-title"><h2 id="pv-h"></h2></div></div>
+    <div class="pv-body">
+      <div class="pv-actions" id="pv-actions"></div>
+      <p class="pv-meta" id="pv-meta"></p>
+      <p id="pv-sum"></p>
+      <ul class="pv-tags" id="pv-tags"></ul>
+    </div>
+  </div>
+</div>
 
 <!-- Request Pricing lightbox -->
 <div class="modal" id="quote" hidden role="dialog" aria-modal="true" aria-labelledby="q-h">
@@ -333,11 +398,54 @@ footer img{height:30px;width:auto}
     document.getElementById('all').scrollIntoView({behavior:reduce?'auto':'smooth'});
   })});
 
+
+  // ---- Greatest hits arrows
+  document.querySelectorAll('.rail-wrap').forEach(function(w){
+    var rail=w.querySelector('.rail');
+    w.querySelector('.arrow.prev').onclick=function(){rail.scrollBy({left:-rail.clientWidth*.85,behavior:reduce?'auto':'smooth'})};
+    w.querySelector('.arrow.next').onclick=function(){rail.scrollBy({left:rail.clientWidth*.85,behavior:reduce?'auto':'smooth'})};
+  });
+
+  // ---- Project preview: every card opens a quick look first
+  var pv=document.getElementById('pv'),pvMedia=document.getElementById('pv-media'),pvLast=null;
+  function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}
+  function openPv(card,play){
+    pvLast=card;
+    var title=card.querySelector('b').textContent,img=card.querySelector('.shot img'),date=card.querySelector('.date').textContent,
+        tags=(card.querySelector('.tags')||{textContent:''}).textContent.split(',').map(function(t){return t.trim()}).filter(Boolean),
+        href=card.getAttribute('href'),hasPage=href&&href!=='#',video=card.getAttribute('data-video'),ph=card.hasAttribute('data-ph');
+    pvMedia.className='pv-media';
+    var titleHtml='<div class="pv-title"><h2 id="pv-h">'+esc(title)+'<span class="r">.</span></h2></div>';
+    if(play&&video){pvMedia.classList.add('playing');pvMedia.innerHTML='<video src="'+video+'" controls autoplay playsinline></video>'+titleHtml}
+    else if(img){pvMedia.innerHTML='<img src="'+img.getAttribute('src')+'" alt="'+esc(img.alt)+'"'+(img.getAttribute('style')?' style="'+img.getAttribute('style')+'"':'')+'>'+titleHtml}
+    else{pvMedia.innerHTML='<div class="empty">'+esc(card.querySelector('.shot').textContent)+'</div>'+titleHtml}
+    var acts='';
+    if(video&&!play)acts+='<button class="btn light" type="button" data-play>\u25B6 Watch Recap</button>';
+    acts+=hasPage?'<a class="btn ghost" href="'+href+'">View Project</a>':'<span class="btn ghost" aria-disabled="true" style="opacity:.5;cursor:default">Project page coming soon</span>';
+    acts+='<a class="btn" href="/#book" data-quote>Request Pricing</a>';
+    document.getElementById('pv-actions').innerHTML=acts;
+    document.getElementById('pv-meta').innerHTML='<span>'+esc(date)+'</span>'+(hasPage?'<span class="cs">CASE STUDY</span>':'');
+    var sum=card.getAttribute('data-summary');
+    document.getElementById('pv-sum').innerHTML=ph?'<span class="ph">Two or three sentences about this project go here once we have the details.</span>':esc(sum);
+    document.getElementById('pv-tags').innerHTML=tags.map(function(t){return '<li>'+esc(t)+'</li>'}).join('');
+    var playBtn=pv.querySelector('[data-play]');if(playBtn)playBtn.onclick=function(){openPv(card,true)};
+    if(pv.hidden){pv.hidden=false;pv.classList.add('open');document.body.style.overflow='hidden';pv.scrollTop=0}
+    document.getElementById('pv-close').focus();
+  }
+  function closePv(){var v=pvMedia.querySelector('video');if(v)v.pause();pvMedia.innerHTML='';pv.hidden=true;pv.classList.remove('open');document.body.style.overflow='';if(pvLast&&pvLast.focus)pvLast.focus()}
+  document.addEventListener('click',function(e){
+    var c=e.target.closest('a.card');
+    if(c&&!e.metaKey&&!e.ctrlKey){e.preventDefault();openPv(c,false)}
+  });
+  document.getElementById('pv-close').onclick=closePv;
+  pv.addEventListener('click',function(e){if(e.target===pv)closePv()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pv.hidden&&document.getElementById('quote').hidden)closePv()});
+
   // ---- Request Pricing lightbox
   var modal=document.getElementById('quote'),last=null;
   function openQ(){last=document.activeElement;modal.hidden=false;modal.classList.add('open');document.body.style.overflow='hidden';document.getElementById('q-name').focus()}
   function closeQ(){modal.hidden=true;modal.classList.remove('open');document.body.style.overflow='';if(last&&last.focus)last.focus()}
-  document.addEventListener('click',function(e){var t=e.target.closest('[data-quote]');if(t){e.preventDefault();openQ()}});
+  document.addEventListener('click',function(e){var t=e.target.closest('[data-quote]');if(t){e.preventDefault();if(!pv.hidden){var v=pvMedia.querySelector('video');if(v)v.pause();pvMedia.innerHTML='';pv.hidden=true;pv.classList.remove('open')}openQ()}});
   document.getElementById('q-close').onclick=closeQ;
   modal.addEventListener('click',function(e){if(e.target===modal)closeQ()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)closeQ()});
