@@ -1,0 +1,14 @@
+/* Site menu (same look as the homepage menu), used on the Work and project pages */
+.menu-btn{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--paper);border:1.5px solid var(--paper);border-radius:999px;padding:9px 16px;font:600 14px var(--sans);cursor:pointer;white-space:nowrap}
+.menu-btn:hover{background:rgba(242,239,233,.1)}
+.burger,.burger::before{display:block;width:16px;height:1.5px;background:currentColor;position:relative}
+.burger{margin-top:-5px}
+.burger::before{content:"";position:absolute;top:6px}
+.menu{position:fixed;inset:0;z-index:30;background:var(--black);padding:calc(env(safe-area-inset-top,0px) + 14px) var(--gutter) calc(env(safe-area-inset-bottom,0px) + 32px);display:flex;flex-direction:column;gap:32px;overflow-y:auto}
+.menu[hidden]{display:none}
+.menu-head{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1280px;width:100%;margin-inline:auto}
+.menu-head .logo img{height:32px}
+.menu nav{display:flex;flex-direction:column;gap:6px;max-width:1280px;width:100%;margin-inline:auto}
+.menu nav a{font-family:var(--serif);font-size:clamp(40px,7vw,72px);line-height:1.1;text-decoration:none;color:var(--paper)}
+.menu nav a:hover{color:var(--red)}
+.menu > .btn{align-self:flex-start}

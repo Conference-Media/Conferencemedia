@@ -56,7 +56,7 @@ img{display:block;max-width:100%}
 .top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:20px}
 .logo{flex:0 1 auto;min-width:0}
 .logo img{height:44px;width:auto}
-@media (max-width:520px){.logo img{height:30px}.top .btn{padding:10px 14px;font-size:13px}}
+@media (max-width:520px){.logo img{height:30px}}
 
 .bar{position:fixed;left:0;right:0;top:0;z-index:20;padding-top:env(safe-area-inset-top,0px);background:rgba(0,0,0,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transform:translateY(-100%);opacity:0;transition:transform .35s ease,opacity .35s ease;pointer-events:none}
 .bar.on{transform:none;opacity:1;pointer-events:auto}
@@ -300,7 +300,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
 <div class="wrap">
   <header class="top">
     <a class="logo" href="#top" aria-label="Conference Media home"><img src="/img/logo.png" alt="Conference Media"></a>
-    <a class="btn" href="#book">Request Pricing</a>
+    <button class="menu-btn" id="menu-open-top" type="button" aria-controls="menu" aria-expanded="false"><span class="burger" aria-hidden="true"></span>Menu</button>
   </header>
 
   <div class="bar" id="bar" aria-hidden="true">
@@ -359,7 +359,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
       <div class="stats">
         <div><b>100+</b><span>conferences filmed</span></div>
         <div><b>350+</b><span>keynote speakers captured</span></div>
-        <div><b>50,000+</b><span>photos delivered</span></div>
+        <div><b>50k+</b><span>photos delivered</span></div>
       </div>
       <div class="logos">
         <img src="/img/client-7.png" alt="Intact Insurance">
@@ -564,7 +564,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
   window.addEventListener('scroll',check,{passive:true});check();
   function openMenu(){menu.hidden=false;openBtn.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';closeBtn.focus()}
   function closeMenu(){menu.hidden=true;openBtn.setAttribute('aria-expanded','false');document.body.style.overflow=''}
-  openBtn.addEventListener('click',openMenu);closeBtn.addEventListener('click',closeMenu);
+  openBtn.addEventListener('click',openMenu);document.getElementById('menu-open-top').addEventListener('click',openMenu);closeBtn.addEventListener('click',closeMenu);
   menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMenu)});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!menu.hidden)closeMenu()});
   var r=document.getElementById('f-budget'),o=document.getElementById('f-budget-out');
