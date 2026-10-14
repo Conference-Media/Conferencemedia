@@ -34,16 +34,19 @@ details.anim{overflow:hidden}
   -webkit-mask:var(--front) center/contain no-repeat;mask:var(--front) center/contain no-repeat;mix-blend-mode:screen;opacity:.75}
 #cm-veil .coin.e .sheen{-webkit-mask-image:var(--back);mask-image:var(--back)}
 
-/* Arriving on a page: the wordmark card, which then fades away to reveal the page */
-html.cm-in::before,html.cm-in::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;transition:opacity .5s ease .1s}
-html.cm-in::before{background:#000}
-html.cm-in::after{background:url("/img/logo.png") center/min(300px,64vw) auto no-repeat}
-html.cm-in.cm-out::before,html.cm-in.cm-out::after{opacity:0}
+/* The emblem's spin: constant speed, edge to edge, repeating until the next page is ready.
+   --sd lets the next page pick up the spin at the same point. */
+#cm-veil{--spd:1100ms}
+#cm-veil.spin .coin.e{animation:cm-spin var(--spd) linear var(--sd,0ms) infinite}
+#cm-veil.spin .coin.e .top{animation:cm-lit var(--spd) linear var(--sd,0ms) infinite}
+#cm-veil.spin .coin.e .sheen{animation:cm-sheen var(--spd) linear var(--sd,0ms) infinite}
+@keyframes cm-spin{from{transform:rotateY(-90deg)}to{transform:rotateY(90deg)}}
+@keyframes cm-lit{0%{filter:brightness(.5)}50%{filter:brightness(1.2)}100%{filter:brightness(.5)}}
+@keyframes cm-sheen{from{background-position:85% 0}to{background-position:15% 0}}
+#cm-veil.leave{transition:opacity .45s ease}
 
 /* Light mode visitors: the card is off-white with the dark logo versions */
 @media (prefers-color-scheme: light){
   #cm-veil{--bg:#F2EFE9;--front:url("/img/logo-ink.png");--back:url("/img/emblem-ink.png");--edge:3.2}
   #cm-veil .sheen{mix-blend-mode:normal;opacity:.55}
-  html.cm-in::before{background:#F2EFE9}
-  html.cm-in::after{background-image:url("/img/logo-ink.png")}
 }

@@ -6,11 +6,36 @@
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var on=html.classList.contains('mo');
 
-  /* ---------- Arrival: fade the logo card away ---------- */
-  function arrive(){
-    if(!html.classList.contains('cm-in'))return;
-    requestAnimationFrame(function(){html.classList.add('cm-out')});
-    setTimeout(function(){html.classList.remove('cm-in','cm-out')},800);
+  /* ---------- Arrival ----------
+     The head script put the spinning emblem up before the page drew. Once this page has fully
+     loaded, wait for the emblem to reach edge-on, turn it back into the wordmark, then fade away. */
+  var SPIN=1100; // ms for the emblem to turn from one edge to the other (keep in step with motion.css)
+  function arrive(after){
+    var v=document.getElementById('cm-veil');
+    if(!v||!v.classList.contains('spin')||!v.dataset.t){html.classList.remove('cm-in');after();return}
+    v.dataset.done='1';
+    var finished=false;
+    function finish(){
+      if(finished)return;finished=true;
+      var rem=SPIN-((Date.now()-(+v.dataset.t))%SPIN);
+      setTimeout(function(){
+        var w=v.querySelector('.coin.w'),e=v.querySelector('.coin.e');
+        v.classList.remove('spin');e.hidden=true;w.hidden=false;
+        settle(w,function(){
+          v.classList.add('leave');v.classList.remove('on');
+          setTimeout(function(){v.remove();html.classList.remove('cm-in');},460);
+          after();
+        });
+      },rem);
+    }
+    if(document.readyState==='complete')finish();else{window.addEventListener('load',finish,{once:true});setTimeout(finish,6000)}
+  }
+  // Wordmark turns in from edge-on and settles facing you, catching the light
+  function settle(w,done){
+    var ease='cubic-bezier(.1,.6,.3,1)',ms=620;
+    w.animate([{transform:'rotateY(-90deg)'},{transform:'rotateY(6deg)',offset:.8},{transform:'rotateY(0deg)'}],{duration:ms,easing:ease,fill:'forwards'}).onfinish=function(){setTimeout(done,120)};
+    w.querySelector('.top').animate([{filter:'brightness(.5)'},{filter:'brightness(1.12)'},{filter:'brightness(1)'}],{duration:ms,easing:ease,fill:'forwards'});
+    w.querySelector('.sheen').animate([{backgroundPosition:'15% 0'},{backgroundPosition:'-30% 0'}],{duration:ms,easing:ease,fill:'forwards'});
   }
 
   /* ---------- Reveal rules ----------
@@ -149,42 +174,33 @@
     a.onfinish=function(){d._anim=null;d.classList.remove('anim');if(!open){d.open=false;delete d.dataset.closing}};
   }
 
-  /* ---------- Page transitions ---------- */
-  // The transition card: the wordmark turns on its Y axis like a solid object, light sweeping
-  // across it, and at the 90-degree mark it becomes the CE emblem, which turns back to face you.
+  /* ---------- Page transitions ----------
+     Leaving: the wordmark turns to edge-on, becomes the CE emblem, and the emblem keeps spinning
+     while the next page loads. That page picks up the spin where it left off (see arrive). */
   var LAYERS=7;
   function veil(){
     var v=document.getElementById('cm-veil');
     if(!v){
       v=document.createElement('div');v.id='cm-veil';v.setAttribute('aria-hidden','true');
-      function coin(cls){var ly='';for(var i=LAYERS;i>=1;i--)ly+='<i class="ly" style="--z:'+i+'"></i>';return '<div class="coin '+cls+'">'+ly+'<i class="top"></i><i class="sheen"></i></div>'}
+      function coin(cls){var ly='';for(var i=LAYERS;i>=1;i--)ly+='<i class="ly" style="--z:'+i+'"></i>';return '<div class="coin '+cls+'"'+(cls==='e'?' hidden':'')+'>'+ly+'<i class="top"></i><i class="sheen"></i></div>'}
       v.innerHTML='<div class="stage">'+coin('w')+coin('e')+'</div>';
       document.body.appendChild(v);
     }
     return v;
   }
-  // One continuous spin: wordmark turns to 90 degrees, becomes the emblem, the emblem turns
-  // all the way across to 90 degrees, then becomes the wordmark again and settles facing you.
-  function flip(v,quick,done){
+  function leave(v,go){
     var w=v.querySelector('.coin.w'),e=v.querySelector('.coin.e');
-    [w,e].forEach(function(c){c.getAnimations({subtree:true}).forEach(function(x){x.cancel()})});
-    var k=quick?.6:1;
-    var segs=[
-      {el:w,from:0,to:90,ms:380*k,ease:'cubic-bezier(.45,0,.9,.6)',lit:[1,.5],sh:['130%','85%']},
-      {el:e,from:-90,to:90,ms:560*k,ease:'cubic-bezier(.3,.15,.7,.85)',lit:[.5,1.2,.5],sh:['85%','15%']},
-      {el:w,from:-90,to:0,ms:520*k,ease:'cubic-bezier(.1,.6,.3,1)',lit:[.5,1.12,1],sh:['15%','-30%'],settle:true}
-    ];
-    (function run(i){
-      if(i>=segs.length){setTimeout(done,110);return}
-      var s=segs[i];w.hidden=s.el!==w;e.hidden=s.el!==e;
-      s.el.getAnimations({subtree:true}).forEach(function(x){x.cancel()});
-      var frames=s.settle?[{transform:'rotateY('+s.from+'deg)'},{transform:'rotateY(6deg)',offset:.8},{transform:'rotateY(0deg)'}]
-                         :[{transform:'rotateY('+s.from+'deg)'},{transform:'rotateY('+s.to+'deg)'}];
-      var an=s.el.animate(frames,{duration:s.ms,easing:s.ease,fill:'forwards'});
-      s.el.querySelector('.top').animate(s.lit.map(function(x){return {filter:'brightness('+x+')'}}),{duration:s.ms,easing:s.ease,fill:'forwards'});
-      s.el.querySelector('.sheen').animate([{backgroundPosition:s.sh[0]+' 0'},{backgroundPosition:s.sh[1]+' 0'}],{duration:s.ms,easing:s.ease,fill:'forwards'});
-      an.onfinish=function(){run(i+1)};
-    })(0);
+    v.getAnimations({subtree:true}).forEach(function(x){x.cancel()});
+    v.classList.remove('spin','leave');w.hidden=false;e.hidden=true;
+    var ease='cubic-bezier(.45,0,.9,.6)',ms=380;
+    w.animate([{transform:'rotateY(0deg)'},{transform:'rotateY(90deg)'}],{duration:ms,easing:ease,fill:'forwards'}).onfinish=function(){
+      w.hidden=true;e.hidden=false;
+      v.style.setProperty('--sd','0ms');v.classList.add('spin');
+      try{sessionStorage.setItem('cm-t',String(Date.now()))}catch(x){}
+      go();
+    };
+    w.querySelector('.top').animate([{filter:'brightness(1)'},{filter:'brightness(.5)'}],{duration:ms,easing:ease,fill:'forwards'});
+    w.querySelector('.sheen').animate([{backgroundPosition:'130% 0'},{backgroundPosition:'85% 0'}],{duration:ms,easing:ease,fill:'forwards'});
   }
 
   function internal(a,e){
@@ -201,13 +217,10 @@
     document.addEventListener('click',function(e){
       var a=e.target.closest&&e.target.closest('a[href]');var u=internal(a,e);if(!u)return;
       e.preventDefault();
-      try{sessionStorage.setItem('cm-t','1')}catch(x){}
-      // Full turn the first two times; a quicker one after that so browsing doesn't drag
-      var n=0;try{n=+sessionStorage.getItem('cm-n')||0;sessionStorage.setItem('cm-n',n+1)}catch(x){}
       var v=veil();void v.offsetWidth;v.classList.add('on');
       var gone=false;function go(){if(!gone){gone=true;location.href=u.href}}
-      flip(v,n>=2,go);
-      setTimeout(go,2500); // safety net if the animation is interrupted
+      leave(v,go);
+      setTimeout(go,1500); // safety net if the animation is interrupted
     });
     // Warm up the next page while the pointer is on its link
     var done={};
@@ -216,22 +229,26 @@
       var l=document.createElement('link');l.rel='prefetch';l.href=u.pathname;document.head.appendChild(l)}
     document.addEventListener('mouseover',warm,{passive:true});document.addEventListener('touchstart',warm,{passive:true});
     // Coming back with the Back button: don't leave the veil up
-    window.addEventListener('pageshow',function(e){var v=document.getElementById('cm-veil');if(v){v.classList.remove('on');v.querySelectorAll('*').forEach(function(el){el.getAnimations&&el.getAnimations().forEach(function(a){a.cancel()})});}if(e.persisted)html.classList.remove('cm-in','cm-out')});
+    window.addEventListener('pageshow',function(e){if(!e.persisted)return;var v=document.getElementById('cm-veil');if(v)v.remove();html.classList.remove('cm-in')});
   }
 
   function init(){
-    arrive();
     faq();
-    if(!on)return;
-    scan();
-    // Work page builds its rows as you scroll and filter: reveal those too
-    if('MutationObserver' in window){
-      var feed=document.getElementById('feed')||document.querySelector('#all');
-      if(feed)new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType!==1)return;if(n.classList.contains('row3'))n.querySelectorAll('.card').forEach(reset);scan(n)})})}).observe(feed,{childList:true,subtree:true});
-    }
+    if(!on){arrive(function(){});return}
     transitions();
-    setTimeout(veil,1200);
-    window.CMpreview=function(q){var v=veil();v.classList.add('on');flip(v,!!q,function(){})}; // preview the turn without leaving the page
+    // Start the scroll reveals once the logo card is out of the way
+    arrive(function(){
+      scan();
+      // Work page builds its rows as you scroll and filter: reveal those too
+      if('MutationObserver' in window){
+        var feed=document.getElementById('feed');
+        if(feed)new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType!==1)return;if(n.classList.contains('row3'))n.querySelectorAll('.card').forEach(reset);scan(n)})})}).observe(feed,{childList:true,subtree:true});
+      }
+      setTimeout(function(){if(!document.getElementById('cm-veil'))veil()},1200);
+    });
+    // Preview the spin without leaving the page: CMpreview() in the browser console
+    window.CMpreview=function(){var v=veil();v.classList.add('on');leave(v,function(){
+      v.dataset.t=String(Date.now());setTimeout(function(){var rem=SPIN-((Date.now()-(+v.dataset.t))%SPIN);setTimeout(function(){v.classList.remove('spin');v.querySelector('.coin.e').hidden=true;var w=v.querySelector('.coin.w');w.hidden=false;settle(w,function(){v.classList.remove('on')})},rem)},SPIN*1.5)})};
     // At the very bottom, show anything still waiting (the last lines can't scroll far enough to trigger)
     window.addEventListener('scroll',function(){
       if(innerHeight+scrollY<document.documentElement.scrollHeight-8)return;
