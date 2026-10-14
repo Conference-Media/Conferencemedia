@@ -221,6 +221,14 @@ form .btn{grid-column:1/-1;justify-self:center;margin-top:6px;padding:15px 32px;
 footer .foot-links{color:var(--paper);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
 footer .foot-links:hover{border-color:var(--red)}
 footer .foot-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px}
+
+/* form: centred labels, headings and placeholder text */
+form label,.services legend{text-align:center;align-items:center}
+form input:not([type=range]):not([type=checkbox]),form textarea{text-align:center}
+input[type="date"]{justify-content:center}
+input[type="date"]::-webkit-date-and-time-value{text-align:center}
+.budget-head{justify-content:center;gap:14px}
+.services{justify-content:center}
 </style>
 <link rel="stylesheet" href="/css/menu.css">
 <link rel="stylesheet" href="/css/motion.css">
@@ -449,7 +457,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
         <label>Your name<input id="f-name" name="name" type="text" autocomplete="name" required></label>
         <label>Your email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
         <label class="full">Event date<input id="f-date" name="event_date" type="date" required></label>
-        <label class="full">Tell us about your event<textarea id="f-about" name="about" rows="4" placeholder="Event name, venue, reason it exists, etc."></textarea></label>
+        <label class="full">Tell us about your event<textarea id="f-about" name="about" rows="4" placeholder="Event name, venue, duration, reason it exists, etc."></textarea></label>
         <div class="field full">
           <div class="budget-head"><label for="f-budget">Budget</label><output id="f-budget-out" for="f-budget">$5,000</output></div>
           <input id="f-budget" name="budget" type="range" min="1500" max="10000" step="250" value="5000" aria-valuetext="$5,000">
