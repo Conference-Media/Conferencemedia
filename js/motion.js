@@ -20,9 +20,7 @@
     ['.stats > div','rv',160,'.stats'],
     ['.logos img','row',0,'.logos'],
     ['.intro > *','rv',120,'.intro'],
-    ['#organizers','rv rv-l',0],
-    ['#sponsors','rv rv-r',0],
-    ['#speakers','rv rv-l',0],
+    ['#organizers, #sponsors, #speakers','rv',0],
     ['.sameday > *','rv',120,'.sameday'],
     ['.recent-head > *','rv',100,'.recent-head'],
     ['.cards .card','rv',150,'.cards'],
@@ -108,13 +106,13 @@
     if(b.dataset.counted)return;b.dataset.counted='1';
     var txt=b.textContent,m=txt.match(/^(\D*?)(\d[\d,]*(?:\.\d+)?)(.*)$/);if(!m)return;
     var pre=m[1],raw=m[2],post=m[3],commas=raw.indexOf(',')>-1,dec=(raw.split('.')[1]||'').length;
-    var end=parseFloat(raw.replace(/,/g,'')),dur=Math.min(2200,900+end/60);
+    var end=parseFloat(raw.replace(/,/g,'')),dur=2400;
     b.setAttribute('aria-label',txt);
     function fmt(v){var s=v.toFixed(dec);if(commas)s=Number(s).toLocaleString('en-CA',{minimumFractionDigits:dec,maximumFractionDigits:dec});return pre+s+post}
     b.textContent=fmt(0);
     setTimeout(function(){
       var t0=performance.now();
-      (function step(t){var p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);b.textContent=p<1?fmt(end*e):txt;if(p<1)requestAnimationFrame(step)})(t0);
+      (function step(t){var p=Math.min(1,(t-t0)/dur),e=p===1?1:1-Math.pow(2,-10*p); /* ease-out expo: fast start, long slow finish */b.textContent=p<1?fmt(end*e):txt;if(p<1)requestAnimationFrame(step)})(t0);
     },delay);
   }
 
