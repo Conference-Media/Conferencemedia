@@ -149,11 +149,36 @@
   }
 
   /* ---------- Page transitions ---------- */
+  // The transition card: the wordmark turns on its Y axis like a solid object, light sweeping
+  // across it, and at the 90-degree mark it becomes the CE emblem, which turns back to face you.
+  var LAYERS=7;
   function veil(){
     var v=document.getElementById('cm-veil');
-    if(!v){v=document.createElement('div');v.id='cm-veil';v.setAttribute('aria-hidden','true');v.innerHTML='<img src="/img/logo.png" alt="">';document.body.appendChild(v)}
+    if(!v){
+      v=document.createElement('div');v.id='cm-veil';v.setAttribute('aria-hidden','true');
+      function coin(cls){var ly='';for(var i=LAYERS;i>=1;i--)ly+='<i class="ly" style="--z:'+i+'"></i>';return '<div class="coin '+cls+'">'+ly+'<i class="top"></i><i class="sheen"></i></div>'}
+      v.innerHTML='<div class="stage">'+coin('w')+coin('e')+'</div>';
+      document.body.appendChild(v);
+    }
     return v;
   }
+  function flip(v,quick,done){
+    var w=v.querySelector('.coin.w'),e=v.querySelector('.coin.e');
+    var a=quick?260:470,b=quick?380:640;
+    [w,e].forEach(function(c){c.querySelectorAll('*').forEach(function(el){el.getAnimations().forEach(function(x){x.cancel()})});c.getAnimations().forEach(function(x){x.cancel()})});
+    w.hidden=false;e.hidden=true;
+    var first=w.animate([{transform:'rotateY(0deg)'},{transform:'rotateY(90deg)'}],{duration:a,easing:'cubic-bezier(.5,0,.85,.45)',fill:'forwards'});
+    w.querySelector('.top').animate([{filter:'brightness(1)'},{filter:'brightness(.5)'}],{duration:a,easing:'ease-in',fill:'forwards'});
+    w.querySelector('.sheen').animate([{backgroundPosition:'130% 0'},{backgroundPosition:'50% 0'}],{duration:a,easing:'linear',fill:'forwards'});
+    first.onfinish=function(){
+      w.hidden=true;e.hidden=false; // edge-on: swap to the emblem
+      var second=e.animate([{transform:'rotateY(-90deg)'},{transform:'rotateY(7deg)',offset:.78},{transform:'rotateY(0deg)'}],{duration:b,easing:'cubic-bezier(.15,.75,.3,1)',fill:'forwards'});
+      e.querySelector('.top').animate([{filter:'brightness(.5)'},{filter:'brightness(1.18)',offset:.55},{filter:'brightness(1)'}],{duration:b,easing:'ease-out',fill:'forwards'});
+      e.querySelector('.sheen').animate([{backgroundPosition:'50% 0'},{backgroundPosition:'-30% 0'}],{duration:b,easing:'cubic-bezier(.2,.6,.3,1)',fill:'forwards'});
+      second.onfinish=function(){setTimeout(done,110)};
+    };
+  }
+
   function internal(a,e){
     if(!a||e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return false;
     if(a.target&&a.target!=='_self')return false;
@@ -169,8 +194,12 @@
       var a=e.target.closest&&e.target.closest('a[href]');var u=internal(a,e);if(!u)return;
       e.preventDefault();
       try{sessionStorage.setItem('cm-t','1')}catch(x){}
+      // Full turn the first two times; a quicker one after that so browsing doesn't drag
+      var n=0;try{n=+sessionStorage.getItem('cm-n')||0;sessionStorage.setItem('cm-n',n+1)}catch(x){}
       var v=veil();void v.offsetWidth;v.classList.add('on');
-      setTimeout(function(){location.href=u.href},720);
+      var gone=false;function go(){if(!gone){gone=true;location.href=u.href}}
+      flip(v,n>=2,go);
+      setTimeout(go,2500); // safety net if the animation is interrupted
     });
     // Warm up the next page while the pointer is on its link
     var done={};
@@ -179,7 +208,7 @@
       var l=document.createElement('link');l.rel='prefetch';l.href=u.pathname;document.head.appendChild(l)}
     document.addEventListener('mouseover',warm,{passive:true});document.addEventListener('touchstart',warm,{passive:true});
     // Coming back with the Back button: don't leave the veil up
-    window.addEventListener('pageshow',function(e){var v=document.getElementById('cm-veil');if(v)v.classList.remove('on');if(e.persisted)html.classList.remove('cm-in','cm-out')});
+    window.addEventListener('pageshow',function(e){var v=document.getElementById('cm-veil');if(v){v.classList.remove('on');v.querySelectorAll('*').forEach(function(el){el.getAnimations&&el.getAnimations().forEach(function(a){a.cancel()})});}if(e.persisted)html.classList.remove('cm-in','cm-out')});
   }
 
   function init(){
@@ -193,6 +222,8 @@
       if(feed)new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType!==1)return;if(n.classList.contains('row3'))n.querySelectorAll('.card').forEach(reset);scan(n)})})}).observe(feed,{childList:true,subtree:true});
     }
     transitions();
+    setTimeout(veil,1200);
+    window.CMpreview=function(q){var v=veil();v.classList.add('on');flip(v,!!q,function(){})}; // preview the turn without leaving the page
     // At the very bottom, show anything still waiting (the last lines can't scroll far enough to trigger)
     window.addEventListener('scroll',function(){
       if(innerHeight+scrollY<document.documentElement.scrollHeight-8)return;

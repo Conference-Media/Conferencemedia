@@ -15,14 +15,35 @@ html.mo .rv.in{opacity:1;transform:none}
 /* FAQ: the JS animates height; this keeps the content from spilling while it moves */
 details.anim{overflow:hidden}
 
-/* Page transition veil (leaving a page) */
-#cm-veil{position:fixed;inset:0;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .28s ease}
+/* Page transition: a 3D logo turn. Wordmark on the way out, CE emblem on the way in. */
+#cm-veil{--bg:#000;--front:url("/img/logo.png");--back:url("/img/emblem.png");--edge:.32;
+  position:fixed;inset:0;z-index:9999;background:var(--bg);opacity:0;pointer-events:none;transition:opacity .18s ease}
 #cm-veil.on{opacity:1;pointer-events:auto}
-#cm-veil img{width:min(280px,62vw);height:auto;clip-path:inset(0 100% 0 0);transition:clip-path .5s cubic-bezier(.65,0,.35,1) .08s}
-#cm-veil.on img{clip-path:inset(0 0 0 0)}
+#cm-veil .stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;perspective:900px}
+#cm-veil .coin{position:absolute;width:min(300px,64vw);aspect-ratio:799/184;transform-style:preserve-3d}
+#cm-veil .coin[hidden]{display:none}
+#cm-veil .coin.e{width:min(190px,42vw);aspect-ratio:2867/1444}
+#cm-veil .coin i{position:absolute;inset:0}
+#cm-veil .coin i:not(.sheen){background:var(--front) center/contain no-repeat}
+#cm-veil .coin.e i:not(.sheen){background-image:var(--back)}
+/* the solid edge: copies stacked behind the face, shaded darker */
+#cm-veil .ly{transform:translateZ(calc(var(--z) * -1.6px));filter:brightness(var(--edge))}
+#cm-veil .top{transform:translateZ(0)}
+/* the light: a bright band clipped to the logo's own shape, moving as it turns */
+#cm-veil .sheen{transform:translateZ(.5px);background:linear-gradient(100deg,transparent 38%,rgba(255,255,255,.85) 50%,transparent 62%) 130% 0/300% 100% no-repeat;
+  -webkit-mask:var(--front) center/contain no-repeat;mask:var(--front) center/contain no-repeat;mix-blend-mode:screen;opacity:.75}
+#cm-veil .coin.e .sheen{-webkit-mask-image:var(--back);mask-image:var(--back)}
 
-/* Arriving on a page: the same logo card, which then fades away to reveal the page */
-html.cm-in::before,html.cm-in::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;transition:opacity .5s ease .15s}
+/* Arriving on a page: the emblem card, which then fades away to reveal the page */
+html.cm-in::before,html.cm-in::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;transition:opacity .5s ease .1s}
 html.cm-in::before{background:#000}
-html.cm-in::after{background:url("/img/logo.png") center/min(280px,62vw) auto no-repeat}
+html.cm-in::after{background:url("/img/emblem.png") center/min(190px,42vw) auto no-repeat}
 html.cm-in.cm-out::before,html.cm-in.cm-out::after{opacity:0}
+
+/* Light mode visitors: the card is off-white with the dark logo versions */
+@media (prefers-color-scheme: light){
+  #cm-veil{--bg:#F2EFE9;--front:url("/img/logo-ink.png");--back:url("/img/emblem-ink.png");--edge:3.2}
+  #cm-veil .sheen{mix-blend-mode:normal;opacity:.55}
+  html.cm-in::before{background:#F2EFE9}
+  html.cm-in::after{background-image:url("/img/emblem-ink.png")}
+}
