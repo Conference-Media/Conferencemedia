@@ -123,31 +123,31 @@ footer img{height:30px;width:auto}
 .scrim video{max-width:100%;max-height:100%;border-radius:6px;background:#000}
 .close{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);right:12px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(242,239,233,.15);color:var(--paper);font-size:24px;cursor:pointer}
 
-/* service page additions */
-.kicker{font-size:13px;letter-spacing:.14em;color:var(--muted);margin:0 0 12px}
-.answer{max-width:720px;margin:clamp(40px,6vw,64px) auto 0;padding:22px 24px;border:1px solid var(--line);border-left:3px solid var(--red);border-radius:4px;background:var(--stage)}
-.answer p{margin:0;color:var(--body)}
-.answer strong{color:var(--paper)}
-
-.what{list-style:none;margin:8px 0 24px;padding:0;display:grid;gap:18px}
-.what li{padding-left:22px;position:relative;color:var(--body)}
-.what li::before{content:"";position:absolute;left:0;top:.68em;width:8px;height:8px;border-radius:50%;background:var(--red)}
-.what li strong{color:var(--paper)}
-.speeds{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0 24px}
-.speeds > div{border:1px solid var(--line);border-radius:6px;padding:20px}
+/* service page: centred sections in the homepage style */
+.kicker{font-size:14px;letter-spacing:.06em;color:var(--muted);margin:0 0 10px}
+.sv{max-width:1000px;margin:0 auto;padding:clamp(56px,8vw,104px) var(--gutter) 0;text-align:center}
+.sv h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.6vw,46px);line-height:1.08;margin:0 0 16px;text-wrap:balance}
+.sv > p{color:var(--body);max-width:40em;margin:0 auto 16px}
+.sv > p.after{color:var(--muted);margin-top:32px}
+.sv .actions{justify-content:center;margin-top:24px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 32px;margin-top:36px}
+.grid3 h3{font-family:var(--serif);font-weight:400;font-size:clamp(22px,2vw,26px);line-height:1.15;margin:0 0 8px}
+.grid3 p{color:var(--muted);margin:0;font-size:16px}
+@media (max-width:820px){.grid3{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.grid3{grid-template-columns:1fr;gap:28px}}
+.speeds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:28px auto 0;max-width:820px;text-align:left}
+.speeds>div{border:1px solid var(--line);border-radius:6px;padding:clamp(20px,3vw,28px)}
 .speeds .fast{border-color:var(--red)}
-.speeds h3{font-family:var(--serif);font-weight:400;font-size:24px;margin:0}
-.speeds .note{font-size:14px;color:var(--muted);margin:2px 0 12px}
-.speeds ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.speeds li{color:var(--body);font-size:15px}
-.speeds li b{display:block;color:var(--paper);font-weight:600}
+.speeds h3{font-family:var(--serif);font-weight:400;font-size:clamp(26px,2.6vw,32px);margin:0}
+.speeds .note{font-size:14px;color:var(--muted);margin:2px 0 16px}
+.speeds ul{list-style:none;margin:0;padding:0;display:grid}
+.speeds li{display:flex;justify-content:space-between;gap:16px;padding-block:12px;border-top:1px solid var(--line);font-size:16px;flex-direction:row-reverse}
+.speeds li b{font-weight:600;text-align:right}
+.speeds .fast li b{color:var(--red)}
 @media (max-width:560px){.speeds{grid-template-columns:1fr}}
-.steps{margin:8px 0 24px;padding-left:1.3em;color:var(--body)}
-.steps li{margin-bottom:12px;padding-left:6px}
-.steps li::marker{color:var(--red);font-family:var(--serif)}
-.steps strong{color:var(--paper)}
-.venues{list-style:none;margin:8px 0 24px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.venues li{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px;color:var(--body)}
+.venue-list{list-style:none;margin:32px auto 0;padding:0;max-width:860px;columns:3;column-gap:32px;text-align:center}
+.venue-list li{font-family:var(--serif);font-size:clamp(18px,1.8vw,21px);line-height:1.3;padding:7px 0;break-inside:avoid}
+@media (max-width:700px){.venue-list{columns:2;column-gap:20px}.venue-list li{font-size:16px}}
 .sec{max-width:1100px;margin:0 auto;padding:clamp(56px,8vw,96px) var(--gutter) 0;text-align:center}
 .sec h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.6vw,44px);line-height:1.08;margin:0 0 12px;text-wrap:balance}
 .sec > p{color:var(--muted);max-width:36em;margin:0 auto 32px}
@@ -217,6 +217,8 @@ form .btn{grid-column:1/-1;justify-self:center;margin-top:6px;padding:15px 32px;
 .card h3{font-family:var(--serif);font-weight:400;font-size:clamp(22px,2vw,26px);line-height:1.15;margin:4px 0 0}
 .card p{margin:0;color:var(--muted);font-size:15px}
 @media (max-width:820px){.cards{grid-template-columns:1fr;max-width:560px}}
+footer .foot-links{color:var(--paper);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+footer .foot-links:hover{border-color:var(--red)}
 </style>
 <link rel="stylesheet" href="/css/menu.css">
 <link rel="stylesheet" href="/css/motion.css">
@@ -279,24 +281,29 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
     <div><b>Same day</b><span>recap videos available</span></div>
   </section>
 
-  <div class="answer" id="quick-answer">
-    <p><strong>In short:</strong> Conference Media is a Toronto conference videography team. We record keynotes and panels, film attendee and speaker interviews, cover sponsors, and edit recap videos, with same-day delivery available. We've filmed 100+ conferences in English and French, at venues from the Metro Toronto Convention Centre to Hotel X. Full-day conference video starts at about $3,500.</p>
-  </div>
+  <section class="sv" aria-labelledby="in-h">
+    <p class="kicker">CONFERENCE VIDEOGRAPHERS, TORONTO:</p>
+    <h2 id="in-h">Video that keeps working after the event<span class="r">.</span></h2>
+    <p>Conference Media is a Toronto conference videography team. We record keynotes and panels, film interviews with attendees and speakers, cover your sponsors, and edit recap videos, with same-day delivery available. We've filmed 100+ conferences in English and French, at venues from the Metro Toronto Convention Centre to Hotel X.</p>
+  </section>
 
-  <article>
-    <h2>What we film at your conference<span class="r">.</span></h2>
-    <p>A conference is more than a stage. We plan coverage around everyone the event has to impress: the organizers, the sponsors and the speakers.</p>
-    <ul class="what">
-      <li><strong>Keynotes and panels.</strong> Full-length recordings of every session you need, with clean audio from the venue's AV, ready for on-demand viewing.</li>
-      <li><strong>Recap videos.</strong> A highlight video of the day, cut for LinkedIn, your website and next year's promotion. Available the same day.</li>
-      <li><strong>Interviews and testimonials.</strong> Attendees, speakers and sponsors on camera, explaining why the event matters to them. This is the content that sells next year's tickets.</li>
-      <li><strong>Speaker clips.</strong> Short cuts of the strongest moments from each talk, made for speakers to share.</li>
-      <li><strong>Sponsor and booth coverage.</strong> Footage and photos of every activation, sorted by sponsor, so each partner can see what they paid for.</li>
-      <li><strong>Real-time social clips.</strong> Short clips sent to your team during the event, ready to post while it's happening. At one conference we sent about 50.</li>
-      <li><strong>Photography alongside.</strong> Stage, networking and headshots from the same crew, so you only brief one team.</li>
-    </ul>
+  <section class="sv" aria-labelledby="film-h">
+    <p class="kicker">WHAT WE FILM:</p>
+    <h2 id="film-h">Everything you need to sell the next one<span class="r">.</span></h2>
+    <div class="grid3">
+      <div><h3>Keynotes and panels<span class="r">.</span></h3><p>Full sessions with clean stage audio, ready for on-demand viewing.</p></div>
+      <div><h3>Recap videos<span class="r">.</span></h3><p>The day in a highlight video for LinkedIn, your website and next year's promo.</p></div>
+      <div><h3>Interviews<span class="r">.</span></h3><p>Attendees, speakers and sponsors on camera, saying why the event matters.</p></div>
+      <div><h3>Speaker clips<span class="r">.</span></h3><p>The strongest moments from each talk, cut short for speakers to share.</p></div>
+      <div><h3>Sponsor coverage<span class="r">.</span></h3><p>Every booth and activation, sorted by sponsor so each partner sees their return.</p></div>
+      <div><h3>Live social clips<span class="r">.</span></h3><p>Short clips sent during the event, ready to post while people are still in the room.</p></div>
+    </div>
+    <p class="after">Need photos too? The same crew covers stage, networking and headshots.</p>
+  </section>
 
-    <h2>When you get it<span class="r">.</span></h2>
+  <section class="sv" aria-labelledby="when-h">
+    <p class="kicker">TURNAROUND:</p>
+    <h2 id="when-h">Your video, delivered the same day<span class="r">.</span></h2>
     <p>Most crews deliver weeks later. Choose our standard timeline, or add same-day delivery for everything.</p>
     <div class="speeds">
       <div>
@@ -312,83 +319,84 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
         <h3>Same day<span class="r">.</span></h3>
         <p class="note">Add-on</p>
         <ul>
-          <li><b>Right after the keynote</b>Stage photos</li>
+          <li><b>After the keynote</b>Stage photos</li>
           <li><b>Same day</b>Every photo</li>
           <li><b>Same day</b>Every video</li>
         </ul>
       </div>
     </div>
+  </section>
 
-    <h2>How it works<span class="r">.</span></h2>
-    <ol class="steps">
-      <li><strong>Planning call.</strong> We learn what the content is for (tickets, sponsors, speakers) and build a shot list, interview plan and delivery schedule with you.</li>
-      <li><strong>Venue and AV prep.</strong> We coordinate with your venue and AV provider ahead of time, so audio is clean and we know where to set up.</li>
-      <li><strong>Event day.</strong> Our crew arrives early, works from the shot list, and gives you one point of contact on the day. You focus on the event; we focus on the content.</li>
-      <li><strong>Delivery.</strong> Galleries and videos arrive on schedule, organized by session, sponsor and speaker, so nothing sits unused in a folder.</li>
-    </ol>
+  <section class="sv" aria-labelledby="why-h">
+    <p class="kicker">ONE EVENT, THREE AUDIENCES:</p>
+    <h2 id="why-h">What the video does after the event<span class="r">.</span></h2>
+    <div class="grid3">
+      <div><h3>Sells next year's tickets<span class="r">.</span></h3><p>A full room, energy on stage and attendees saying why they came does more for registrations than any brochure.</p></div>
+      <div><h3>Renews your sponsors<span class="r">.</span></h3><p>Booth footage and sponsor interviews give your partnerships team proof to send before renewal.</p></div>
+      <div><h3>Brings back speakers<span class="r">.</span></h3><p>A clean keynote recording and a clip they can post is part of the pitch for next year.</p></div>
+    </div>
+  </section>
 
-    <h2>Our camera setup<span class="r">.</span></h2>
-    <p>Our typical setup is <strong>one videographer running two cameras</strong>: a 24–70mm lens for wide shots of the room, networking and booths, and a 70–200mm lens locked on the stage for tight shots of every speaker. You get both the atmosphere and clean, close keynote footage from a single operator.</p>
-    <p>Multi-room and multi-day conferences get more videographers, so every stage is covered at the same time. We'll recommend the right setup on the planning call.</p>
+  <section class="sv" aria-labelledby="how-h">
+    <p class="kicker">HOW WE WORK:</p>
+    <h2 id="how-h">You focus on the event, we focus on the content<span class="r">.</span></h2>
+    <p>It starts with one planning call, where we learn what the content is for and build the shot list and interview plan with you. Before the day, we coordinate with your venue and AV provider so the audio is clean.</p>
+    <p>On the day, our crew arrives early and you get one point of contact. Afterwards, everything arrives organized by session, sponsor and speaker, so nothing sits unused in a folder.</p>
+  </section>
 
-    <h2>Conferences in French<span class="r">.</span></h2>
-    <p>Our founder speaks French and conducts and edits French-language interviews himself. Bilingual conferences don't need a second crew, and nothing gets lost in translation.</p>
+  <section class="sv" aria-labelledby="cam-h">
+    <p class="kicker">OUR SETUP:</p>
+    <h2 id="cam-h">One videographer, two cameras<span class="r">.</span></h2>
+    <p>Our typical setup is one videographer running two cameras: a 24–70mm lens for wide shots of the room, networking and booths, and a 70–200mm lens locked on the stage for tight shots of every speaker. Multi-room and multi-day conferences get more videographers, so every stage is covered at once.</p>
+    <p>Running in French? Our founder speaks French and conducts and edits French-language interviews himself, so bilingual events don't need a second crew.</p>
+  </section>
 
-    <h2>Toronto venues we know<span class="r">.</span></h2>
-    <p>We've filmed across the city's conference venues, so loading in, finding power and working with in-house AV is routine. Venues we've worked include:</p>
-    <ul class="venues">
-      <li>Metro Toronto Convention Centre</li>
-      <li>Beanfield Centre</li>
-      <li>The Carlu</li>
-      <li>The Ritz-Carlton, Toronto</li>
-      <li>Hotel X Toronto</li>
-      <li>Hyatt Regency Toronto</li>
-      <li>Hilton Toronto</li>
-      <li>Sheraton Centre Toronto</li>
-      <li>The International Centre</li>
-      <li>Meridian Hall</li>
-      <li>Meridian Arts Centre</li>
-      <li>St. Lawrence Centre for the Arts</li>
-      <li>CBC Broadcast Centre</li>
-      <li>Design Exchange</li>
-      <li>MaRS Waterfront</li>
-      <li>OneEleven</li>
-      <li>Great Canadian Casino Resort Toronto</li>
-      <li>Globe and Mail Centre</li>
-      <li>Daniels Spectrum</li>
-      <li>University of Toronto</li>
-      <li>The Great Hall</li>
-      <li>Grand Bizarre</li>
+  <section class="sv" aria-labelledby="ven-h">
+    <p class="kicker">VENUES:</p>
+    <h2 id="ven-h">Toronto venues we know<span class="r">.</span></h2>
+    <p>Loading in, finding power and working with in-house AV is routine for us at these venues, and we travel for events across Canada.</p>
+    <ul class="venue-list">
+        <li>Metro Toronto Convention Centre</li>
+        <li>Beanfield Centre</li>
+        <li>The Carlu</li>
+        <li>The Ritz-Carlton, Toronto</li>
+        <li>Hotel X Toronto</li>
+        <li>Hyatt Regency Toronto</li>
+        <li>Hilton Toronto</li>
+        <li>Sheraton Centre Toronto</li>
+        <li>The International Centre</li>
+        <li>Meridian Hall</li>
+        <li>Meridian Arts Centre</li>
+        <li>St. Lawrence Centre for the Arts</li>
+        <li>CBC Broadcast Centre</li>
+        <li>Design Exchange</li>
+        <li>MaRS Waterfront</li>
+        <li>OneEleven</li>
+        <li>Great Canadian Casino Resort Toronto</li>
+        <li>Globe and Mail Centre</li>
+        <li>Daniels Spectrum</li>
+        <li>University of Toronto</li>
+        <li>The Great Hall</li>
+        <li>Grand Bizarre</li>
     </ul>
-    <p>We also travel for events across Canada.</p>
+  </section>
 
-    <h2>What the video does after the event<span class="r">.</span></h2>
-    <p>Good conference video keeps working long after the room empties. We shoot with three jobs in mind:</p>
-    <p><strong>Selling next year's tickets.</strong> A recap that shows a full room, energy on stage and attendees saying why they came does more for registrations than any brochure.</p>
-    <p><strong>Renewing sponsors.</strong> Sponsors want proof their investment was seen. Booth footage, activation clips and sponsor interviews give your partnerships team something concrete to send before renewal.</p>
-    <p><strong>Attracting speakers.</strong> Speakers say yes to events that make them look good. A clean keynote recording and a short clip they can post on LinkedIn are part of the pitch for next year.</p>
+  <section class="sv" aria-labelledby="price-h">
+    <p class="kicker">PRICING:</p>
+    <h2 id="price-h">Full-day video starts at about $3,500<span class="r">.</span></h2>
+    <p>The price goes up with interview lighting and audio, recorded stage audio, same-day delivery, and the type and number of edited videos you need. Photography-only coverage starts at $1,750.</p>
+    <div class="actions"><a class="btn" href="#book">Request Pricing</a></div>
+  </section>
 
-    <h2>Choosing a conference videographer<span class="r">.</span></h2>
-    <p>Whoever you hire, these questions separate a conference specialist from a general video crew:</p>
-    <ul class="what">
-      <li><strong>Can I see full conference work?</strong> Ask for recaps and keynote recordings from real conferences, not weddings or brand ads.</li>
-      <li><strong>When will I get each deliverable?</strong> Get the turnaround for photos, the recap and full sessions in writing.</li>
-      <li><strong>How will you capture stage audio?</strong> The answer should involve the venue's AV team, not a camera microphone at the back of the room.</li>
-      <li><strong>Who covers the sponsors?</strong> Sponsor footage is easy to forget on a busy day and hard to recreate later.</li>
-      <li><strong>How will the files be organized?</strong> Galleries sorted by session, sponsor and speaker get used. A folder of 3,000 unsorted files doesn't.</li>
-    </ul>
-
-    <h2>Pricing<span class="r">.</span></h2>
-    <p>Full-day conference video starts at about <strong>$3,500</strong>. The price goes up with what you add:</p>
-    <ul class="what">
-      <li><strong>Lighting for interviews,</strong> for polished, well-lit testimonials.</li>
-      <li><strong>Audio for interviews,</strong> with dedicated microphones for each speaker.</li>
-      <li><strong>Recorded stage audio,</strong> captured from the venue's sound system for full-session recordings.</li>
-      <li><strong>Your edits:</strong> the type of videos (recaps, full sessions, speaker clips, testimonials) and how many you need.</li>
-      <li><strong>Same-day delivery,</strong> if you want everything before the day ends.</li>
-    </ul>
-    <p>Photography-only coverage starts at $1,750. Share your date and budget below and we'll send a quote.</p>
-  </article>
+  <section class="sv" aria-labelledby="ask-h">
+    <p class="kicker">HIRING ADVICE:</p>
+    <h2 id="ask-h">What to ask any conference videographer<span class="r">.</span></h2>
+    <div class="grid3">
+      <div><h3>Can I see conference work<span class="r">?</span></h3><p>Recaps and keynote recordings from real conferences, not weddings or brand ads.</p></div>
+      <div><h3>When do I get each video<span class="r">?</span></h3><p>Get the turnaround for photos, the recap and full sessions in writing.</p></div>
+      <div><h3>How will you record the stage<span class="r">?</span></h3><p>The answer should involve the venue's AV team, not a mic at the back of the room.</p></div>
+    </div>
+  </section>
 
   <section class="sec" aria-labelledby="cs-h">
     <h2 id="cs-h">Recent conference work<span class="r">.</span></h2>
@@ -460,6 +468,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
 <footer>
   <img src="/img/logo.png" alt="Conference Media">
   <span>Toronto, ON.<br>Serving the GTA and travelling across Canada.</span>
+  <a class="foot-links" href="/conference-videography-toronto/">Conference videography Toronto</a>
   <span>by Papr Mache</span>
 </footer>
 

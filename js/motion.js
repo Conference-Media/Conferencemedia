@@ -63,6 +63,10 @@
     ['.cta > *','rv',120,'.cta'],
     // Everywhere
     ['main > .actions, section > .actions, .outcome-actions','rv',0],
+    ['.sv > *:not(.grid3):not(.speeds):not(.venue-list)','rv',100,'.sv'],
+    ['.grid3 > div','rv',110,'.grid3'],
+    ['.venue-list','rv',0],
+    ['.sv .speeds > div','rv',140,'.speeds'],
     ['footer > *','rv',120,'footer']
   ];
   // Count up to the number on these when they appear
