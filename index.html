@@ -182,6 +182,9 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.6vw,62px);lin
 .recent{padding-block:clamp(56px,8vw,104px)}
 .recent-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px}
 .recent-head h2{margin:0}
+.recent-head{justify-content:center;align-items:center;text-align:center}
+.stats span{white-space:nowrap}
+@media (max-width:380px){.stats span{font-size:12px}}
 .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 .card{text-decoration:none;display:grid;gap:10px;align-content:start}
 .card .shot{aspect-ratio:4/3;border-radius:4px;overflow:hidden;background:var(--stage)}
@@ -357,9 +360,9 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
     <!-- 2. Trust: numbers and names -->
     <section class="proof" aria-label="Track record">
       <div class="stats">
-        <div><b>100+</b><span>conferences filmed</span></div>
-        <div><b>350+</b><span>keynote speakers captured</span></div>
-        <div><b>50k+</b><span>photos delivered</span></div>
+        <div><b>100+</b><span>Conferences<br>Filmed</span></div>
+        <div><b>350+</b><span>Keynote speakers<br>Captured</span></div>
+        <div><b>50k+</b><span>Photos<br>Delivered</span></div>
       </div>
       <div class="logos">
         <img src="/img/client-7.png" alt="Intact Insurance">
@@ -443,7 +446,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
 
     <!-- 4. Speed: the differentiator, in one line -->
     <section class="sameday" aria-labelledby="day-h">
-      <h2 id="day-h">Your assets, delivered the same day<span class="r">.</span></h2>
+      <h2 id="day-h">Your assets<span class="r">,</span><br>delivered the same day<span class="r">.</span></h2>
       <p>Most crews will deliver weeks later. You can have your photos while people are still talking about your event… or as soon as you’re ready.</p>
 </section>
 
@@ -451,7 +454,6 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
     <section class="recent" id="work" aria-labelledby="w-h">
       <div class="recent-head">
         <h2 id="w-h">Recent work<span class="r">.</span></h2>
-        <a class="link" href="/work/">View All Work</a>
       </div>
       <div class="cards">
         <a class="card" href="#">
@@ -521,7 +523,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
     <section class="book" id="book" aria-labelledby="r-h">
       <div>
         <h2 id="r-h">Reserve your shoot day<span class="r">.</span></h2>
-        <p class="sub">We have a busy calendar, but for you, we can make it work.</p>
+        <p class="sub">We have a busy calendar,<br>but for you, we can make it work.</p>
       </div>
       <form id="reserve" name="request-pricing" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="request-pricing">
