@@ -108,6 +108,8 @@ h1{font-family:var(--sans);font-size:clamp(14px,1.3vw,17px);font-weight:500;lett
 .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;text-align:center;margin-bottom:clamp(40px,6vw,64px)}
 .stats b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,76px);line-height:1}
 .stats span{display:block;color:var(--muted);font-size:clamp(13px,1.2vw,16px);margin-top:8px}
+.stats b{color:var(--paper);white-space:nowrap}
+@media (max-width:520px){.stats{gap:10px}.stats b{font-size:clamp(26px,8vw,40px)}}
 .logos{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:24px;align-items:center;justify-items:center}
 .logos img{max-height:46px;width:auto;max-width:100%;object-fit:contain;opacity:.85}
 @media (max-width:900px){.logos{grid-template-columns:repeat(5,minmax(0,1fr))}}
@@ -355,9 +357,9 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
     <!-- 2. Trust: numbers and names -->
     <section class="proof" aria-label="Track record">
       <div class="stats">
-        <div><b class="ph">150+</b><span>conferences covered</span></div>
-        <div><b class="ph">90,000</b><span>attendees on camera</span></div>
-        <div><b class="ph">6 hrs</b><span>average recap turnaround</span></div>
+        <div><b>100+</b><span>conferences filmed</span></div>
+        <div><b>350+</b><span>keynote speakers captured</span></div>
+        <div><b>50,000+</b><span>photos delivered</span></div>
       </div>
       <div class="logos">
         <img src="/img/client-7.png" alt="Intact Insurance">
@@ -371,7 +373,6 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
         <img src="/img/client-5.png" alt="CILAR">
         <img src="/img/client-9.png" alt="American Marketing Association">
       </div>
-      <p class="ph-note">Preview only: figures in yellow are placeholders until we have the real numbers.</p>
     </section>
 
     <!-- 3. Outcome: one section per buyer -->
