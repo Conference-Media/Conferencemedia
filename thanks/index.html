@@ -27,7 +27,7 @@ a{display:inline-block;text-decoration:none;font-weight:600;padding:13px 24px;bo
 var t=+sessionStorage.getItem('cm-t');if(!t)return;sessionStorage.removeItem('cm-t');if(Date.now()-t>15000)return;
 function c(k){var s='<div class="coin '+k+'"'+(k=='w'?' hidden':'')+'>';for(var i=7;i>0;i--)s+='<i class="ly" style="--z:'+i+'"></i>';return s+'<i class="top"></i><i class="sheen"></i></div>'}
 var v=document.createElement('div');v.id='cm-veil';v.className='on spin';v.setAttribute('aria-hidden','true');v.dataset.t=t;
-v.style.setProperty('--sd',-(Date.now()-t)+'ms');v.innerHTML='<div class="stage">'+c('w')+c('e')+'</div>';
+v.style.setProperty('--sd',-Math.max(0,Date.now()-t)+'ms');v.innerHTML='<div class="stage">'+c('w')+c('e')+'</div>';
 d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.done&&v.parentNode)v.remove()},9000)}catch(e){}})(document.documentElement)</script>
 <script src="/js/motion.js" defer></script>
 </head>

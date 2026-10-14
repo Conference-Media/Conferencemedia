@@ -7,8 +7,8 @@
   var on=html.classList.contains('mo');
 
   /* ---------- Arrival ----------
-     The head script put the spinning emblem up before the page drew. Once this page has fully
-     loaded, wait for the emblem to reach edge-on, turn it back into the wordmark, then fade away. */
+     The head script put the spinning emblem up before the page drew. As soon as this page has
+     loaded, the card fades away mid-spin; no waiting for the logo to finish a turn. */
   var SPIN=1100; // ms for the emblem to turn from one edge to the other (keep in step with motion.css)
   function arrive(after){
     var v=document.getElementById('cm-veil');
@@ -17,18 +17,11 @@
     var finished=false;
     function finish(){
       if(finished)return;finished=true;
-      var rem=SPIN-((Date.now()-(+v.dataset.t))%SPIN);
-      setTimeout(function(){
-        var w=v.querySelector('.coin.w'),e=v.querySelector('.coin.e');
-        v.classList.remove('spin');e.hidden=true;w.hidden=false;
-        settle(w,function(){
-          v.classList.add('leave');v.classList.remove('on');
-          setTimeout(function(){v.remove();html.classList.remove('cm-in');},460);
-          after();
-        });
-      },rem);
+      v.classList.add('leave');v.classList.remove('on');
+      setTimeout(function(){v.remove();html.classList.remove('cm-in')},460);
+      after();
     }
-    if(document.readyState==='complete')finish();else{window.addEventListener('load',finish,{once:true});setTimeout(finish,6000)}
+    if(document.readyState==='complete')finish();else{window.addEventListener('load',finish,{once:true});setTimeout(finish,3000)}
   }
   // Wordmark turns in from edge-on and settles facing you, catching the light
   function settle(w,done){
@@ -196,7 +189,6 @@
     w.animate([{transform:'rotateY(0deg)'},{transform:'rotateY(90deg)'}],{duration:ms,easing:ease,fill:'forwards'}).onfinish=function(){
       w.hidden=true;e.hidden=false;
       v.style.setProperty('--sd','0ms');v.classList.add('spin');
-      try{sessionStorage.setItem('cm-t',String(Date.now()))}catch(x){}
       go();
     };
     w.querySelector('.top').animate([{filter:'brightness(1)'},{filter:'brightness(.5)'}],{duration:ms,easing:ease,fill:'forwards'});
@@ -219,8 +211,11 @@
       e.preventDefault();
       var v=veil();void v.offsetWidth;v.classList.add('on');
       var gone=false;function go(){if(!gone){gone=true;location.href=u.href}}
-      leave(v,go);
-      setTimeout(go,1500); // safety net if the animation is interrupted
+      // Start loading the next page right away; the logo turns while it loads.
+      // cm-t is when the emblem's spin begins, so the next page can pick it up in step.
+      try{sessionStorage.setItem('cm-t',String(Date.now()+380))}catch(x){}
+      leave(v,function(){});
+      setTimeout(go,60);
     });
     // Warm up the next page while the pointer is on its link
     var done={};
