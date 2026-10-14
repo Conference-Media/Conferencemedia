@@ -162,21 +162,28 @@
     }
     return v;
   }
+  // One continuous spin: wordmark turns to 90 degrees, becomes the emblem, the emblem turns
+  // all the way across to 90 degrees, then becomes the wordmark again and settles facing you.
   function flip(v,quick,done){
     var w=v.querySelector('.coin.w'),e=v.querySelector('.coin.e');
-    var a=quick?260:470,b=quick?380:640;
-    [w,e].forEach(function(c){c.querySelectorAll('*').forEach(function(el){el.getAnimations().forEach(function(x){x.cancel()})});c.getAnimations().forEach(function(x){x.cancel()})});
-    w.hidden=false;e.hidden=true;
-    var first=w.animate([{transform:'rotateY(0deg)'},{transform:'rotateY(90deg)'}],{duration:a,easing:'cubic-bezier(.5,0,.85,.45)',fill:'forwards'});
-    w.querySelector('.top').animate([{filter:'brightness(1)'},{filter:'brightness(.5)'}],{duration:a,easing:'ease-in',fill:'forwards'});
-    w.querySelector('.sheen').animate([{backgroundPosition:'130% 0'},{backgroundPosition:'50% 0'}],{duration:a,easing:'linear',fill:'forwards'});
-    first.onfinish=function(){
-      w.hidden=true;e.hidden=false; // edge-on: swap to the emblem
-      var second=e.animate([{transform:'rotateY(-90deg)'},{transform:'rotateY(7deg)',offset:.78},{transform:'rotateY(0deg)'}],{duration:b,easing:'cubic-bezier(.15,.75,.3,1)',fill:'forwards'});
-      e.querySelector('.top').animate([{filter:'brightness(.5)'},{filter:'brightness(1.18)',offset:.55},{filter:'brightness(1)'}],{duration:b,easing:'ease-out',fill:'forwards'});
-      e.querySelector('.sheen').animate([{backgroundPosition:'50% 0'},{backgroundPosition:'-30% 0'}],{duration:b,easing:'cubic-bezier(.2,.6,.3,1)',fill:'forwards'});
-      second.onfinish=function(){setTimeout(done,110)};
-    };
+    [w,e].forEach(function(c){c.getAnimations({subtree:true}).forEach(function(x){x.cancel()})});
+    var k=quick?.6:1;
+    var segs=[
+      {el:w,from:0,to:90,ms:380*k,ease:'cubic-bezier(.45,0,.9,.6)',lit:[1,.5],sh:['130%','85%']},
+      {el:e,from:-90,to:90,ms:560*k,ease:'cubic-bezier(.3,.15,.7,.85)',lit:[.5,1.2,.5],sh:['85%','15%']},
+      {el:w,from:-90,to:0,ms:520*k,ease:'cubic-bezier(.1,.6,.3,1)',lit:[.5,1.12,1],sh:['15%','-30%'],settle:true}
+    ];
+    (function run(i){
+      if(i>=segs.length){setTimeout(done,110);return}
+      var s=segs[i];w.hidden=s.el!==w;e.hidden=s.el!==e;
+      s.el.getAnimations({subtree:true}).forEach(function(x){x.cancel()});
+      var frames=s.settle?[{transform:'rotateY('+s.from+'deg)'},{transform:'rotateY(6deg)',offset:.8},{transform:'rotateY(0deg)'}]
+                         :[{transform:'rotateY('+s.from+'deg)'},{transform:'rotateY('+s.to+'deg)'}];
+      var an=s.el.animate(frames,{duration:s.ms,easing:s.ease,fill:'forwards'});
+      s.el.querySelector('.top').animate(s.lit.map(function(x){return {filter:'brightness('+x+')'}}),{duration:s.ms,easing:s.ease,fill:'forwards'});
+      s.el.querySelector('.sheen').animate([{backgroundPosition:s.sh[0]+' 0'},{backgroundPosition:s.sh[1]+' 0'}],{duration:s.ms,easing:s.ease,fill:'forwards'});
+      an.onfinish=function(){run(i+1)};
+    })(0);
   }
 
   function internal(a,e){

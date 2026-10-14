@@ -15,7 +15,7 @@ html.mo .rv.in{opacity:1;transform:none}
 /* FAQ: the JS animates height; this keeps the content from spilling while it moves */
 details.anim{overflow:hidden}
 
-/* Page transition: a 3D logo turn. Wordmark on the way out, CE emblem on the way in. */
+/* Page transition: a 3D logo spin. Wordmark, then the CE emblem, then the wordmark again. */
 #cm-veil{--bg:#000;--front:url("/img/logo.png");--back:url("/img/emblem.png");--edge:.32;
   position:fixed;inset:0;z-index:9999;background:var(--bg);opacity:0;pointer-events:none;transition:opacity .18s ease}
 #cm-veil.on{opacity:1;pointer-events:auto}
@@ -34,10 +34,10 @@ details.anim{overflow:hidden}
   -webkit-mask:var(--front) center/contain no-repeat;mask:var(--front) center/contain no-repeat;mix-blend-mode:screen;opacity:.75}
 #cm-veil .coin.e .sheen{-webkit-mask-image:var(--back);mask-image:var(--back)}
 
-/* Arriving on a page: the emblem card, which then fades away to reveal the page */
+/* Arriving on a page: the wordmark card, which then fades away to reveal the page */
 html.cm-in::before,html.cm-in::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;transition:opacity .5s ease .1s}
 html.cm-in::before{background:#000}
-html.cm-in::after{background:url("/img/emblem.png") center/min(190px,42vw) auto no-repeat}
+html.cm-in::after{background:url("/img/logo.png") center/min(300px,64vw) auto no-repeat}
 html.cm-in.cm-out::before,html.cm-in.cm-out::after{opacity:0}
 
 /* Light mode visitors: the card is off-white with the dark logo versions */
@@ -45,5 +45,5 @@ html.cm-in.cm-out::before,html.cm-in.cm-out::after{opacity:0}
   #cm-veil{--bg:#F2EFE9;--front:url("/img/logo-ink.png");--back:url("/img/emblem-ink.png");--edge:3.2}
   #cm-veil .sheen{mix-blend-mode:normal;opacity:.55}
   html.cm-in::before{background:#F2EFE9}
-  html.cm-in::after{background-image:url("/img/emblem-ink.png")}
+  html.cm-in::after{background-image:url("/img/logo-ink.png")}
 }
