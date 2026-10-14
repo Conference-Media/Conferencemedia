@@ -1,0 +1,28 @@
+/* Motion: scroll reveals, count-ups, FAQ slides and the page-to-page logo transition.
+   Everything here is gated by html.mo, which is only set when JS runs and the visitor
+   hasn't asked for reduced motion. Without it, the page renders fully as before. */
+
+main{overflow-x:clip}
+
+/* Scroll reveals */
+html.mo .rv{opacity:0;transform:translate3d(0,28px,0);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0ms);will-change:opacity,transform}
+html.mo .rv.rv-l{transform:translate3d(-72px,0,0)}
+html.mo .rv.rv-r{transform:translate3d(72px,0,0)}
+html.mo .rv.rv-f{transform:none}
+html.mo .rv.in{opacity:1;transform:none}
+@media (max-width:640px){html.mo .rv.rv-l{transform:translate3d(-36px,0,0)}html.mo .rv.rv-r{transform:translate3d(36px,0,0)}}
+
+/* FAQ: the JS animates height; this keeps the content from spilling while it moves */
+details.anim{overflow:hidden}
+
+/* Page transition veil (leaving a page) */
+#cm-veil{position:fixed;inset:0;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .28s ease}
+#cm-veil.on{opacity:1;pointer-events:auto}
+#cm-veil img{width:min(280px,62vw);height:auto;clip-path:inset(0 100% 0 0);transition:clip-path .5s cubic-bezier(.65,0,.35,1) .08s}
+#cm-veil.on img{clip-path:inset(0 0 0 0)}
+
+/* Arriving on a page: the same logo card, which then fades away to reveal the page */
+html.cm-in::before,html.cm-in::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;transition:opacity .5s ease .15s}
+html.cm-in::before{background:#000}
+html.cm-in::after{background:url("/img/logo.png") center/min(280px,62vw) auto no-repeat}
+html.cm-in.cm-out::before,html.cm-in.cm-out::after{opacity:0}
