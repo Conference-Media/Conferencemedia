@@ -18,6 +18,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
  {"@type":"Article","headline":"CHIC 30: official media sponsor for the 30th Canadian Hotel Investment Conference","description":"How Conference Media covered CHIC 30 at the Hilton Toronto for Big Picture Conferences.","image":"https://conferencemedia.ca/img/chic-room.jpg","inLanguage":"en","author":{"@type":"Organization","name":"Conference Media","url":"https://conferencemedia.ca/"},"publisher":{"@type":"Organization","name":"Conference Media","logo":{"@type":"ImageObject","url":"https://conferencemedia.ca/img/logo.png"}},"about":{"@type":"Event","name":"CHIC 30: Canadian Hotel Investment Conference","startDate":"2026-04-27","endDate":"2026-04-28","location":{"@type":"Place","name":"Hilton Toronto","address":{"@type":"PostalAddress","streetAddress":"145 Richmond Street West","addressLocality":"Toronto","addressRegion":"ON","addressCountry":"CA"}},"organizer":{"@type":"Organization","name":"Big Picture Conferences"}}},
+ {"@type":"VideoObject","name":"CHIC 30: Why Canada's Hotel Industry Keeps Coming Back","description":"Testimonial recap from CHIC 30, the 30th Canadian Hotel Investment Conference at the Hilton Toronto, by Conference Media, official media sponsor.","thumbnailUrl":["https://i.ytimg.com/vi/iy46uXpbMBs/hqdefault.jpg","https://conferencemedia.ca/img/chic-stage.jpg"],"uploadDate":"2026-10-16","contentUrl":"https://www.youtube.com/watch?v=iy46uXpbMBs","embedUrl":"https://www.youtube.com/embed/iy46uXpbMBs"},
  {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://conferencemedia.ca/"},{"@type":"ListItem","position":2,"name":"Our Work","item":"https://conferencemedia.ca/work/"},{"@type":"ListItem","position":3,"name":"CHIC 30","item":"https://conferencemedia.ca/work/chic-30/"}]}
 ]}
 </script>
@@ -201,7 +202,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
       <p class="fr">The 30th Canadian Hotel Investment Conference</p>
       <p class="lede">Canada's hotel owners, investors, and brands, together at the Hilton Toronto for the conference's 30th year. We were the official media sponsor, working alongside the organizer's own crew, and our photos and video went out first.</p>
       <div class="actions">
-        <a class="btn light" href="https://www.linkedin.com/posts/chic2026-chic30-hotelinvestment-ugcPost-7460349435609399297-X1ei/" target="_blank" rel="noopener">▶ Watch Recap</a><button type="button" id="play" hidden></button>
+        <button class="btn light" type="button" id="play" hidden>▶ Watch Recap</button>
         <a class="btn" href="/#book">Request Pricing</a>
       </div>
     </div>
@@ -221,9 +222,9 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
     <li><b>Role</b>Official media sponsor</li>
   </ul>
 
-  <figure class="feature">
-    <a class="ytf" href="https://www.linkedin.com/posts/chic2026-chic30-hotelinvestment-ugcPost-7460349435609399297-X1ei/" target="_blank" rel="noopener" aria-label="Watch the CHIC 30 testimonial recap on LinkedIn (opens in a new tab)"><img src="/img/chic-stage.jpg" alt=""><span class="pl" aria-hidden="true">▶</span></a>
-    <figcaption class="cap">The CHIC 30 testimonial recap, as posted on CHIC's LinkedIn. Opens in LinkedIn.</figcaption>
+  <figure class="feature" data-slot="recap" hidden>
+    <button class="ytf" type="button" data-auto aria-label="Play the CHIC 30 testimonial recap"><img src="/img/chic-stage.jpg" alt=""><span class="pl" aria-hidden="true">▶</span></button>
+    <figcaption class="cap">The CHIC 30 testimonial recap.</figcaption>
   </figure>
 
   <article>
@@ -255,7 +256,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
     <blockquote>“I like that you interviewed the exhibitors, so their brand is on a video. Having this content out there, bringing their brand out again for this industry audience, I think this is bringing value to the sponsor.”<cite>Maggie Wong, Big Picture Conferences</cite></blockquote>
 
     <h2>A 30th-anniversary recap<span class="r">.</span></h2>
-    <p>From those interviews, we cut a testimonial recap built around one question: why do people keep coming back to CHIC? It covers who's in the room, all the major brands, and why it's worth the trip, with each person's name and title on screen so CHIC could tag them when it posted the video on LinkedIn. <a href="https://www.linkedin.com/posts/chic2026-chic30-hotelinvestment-ugcPost-7460349435609399297-X1ei/" target="_blank" rel="noopener">Watch it on LinkedIn</a>. We also delivered a longer testimonial video with the full set of interviews.</p>
+    <p>From those interviews, we cut a testimonial recap built around one question: why do people keep coming back to CHIC? It covers who's in the room, all the major brands, and why it's worth the trip, with each person's name and title on screen so CHIC could tag them when it posted the video on LinkedIn. <a href="https://www.linkedin.com/posts/chic2026-chic30-hotelinvestment-ugcPost-7460349435609399297-X1ei/" target="_blank" rel="noopener">See the original post</a>. We also delivered a longer testimonial video with the full set of interviews.</p>
   </article>
   <article id="delivered">
     <h2>What we delivered<span class="r">.</span></h2>
@@ -303,7 +304,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
 <script>
 (function(){
   /* YouTube IDs. A video's section stays hidden until its ID is filled in. */
-  var VIDS={recap:'',slides:''};
+  var VIDS={recap:'iy46uXpbMBs',slides:''};
   var TITLES={recap:'CHIC 30 testimonial recap',slides:'CHIC 30 photo slideshow'};
   var top=document.getElementById('top');
   function onScroll(){top.classList.toggle('solid',window.scrollY>60)}
