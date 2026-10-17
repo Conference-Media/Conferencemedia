@@ -414,11 +414,11 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
   document.querySelectorAll('video[autoplay]').forEach(function(v){v.muted=true;var p=v.play&&v.play();if(p&&p.catch)p.catch(function(){})});
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ---- Section 2: rows of three, an ask after each row, more rows as you scroll
+  // ---- Section 2: rows of three; an ask after every 9 projects on desktop, every 3 on smaller screens; more as you scroll
   var pool=[].slice.call(document.querySelectorAll('#pool .card')),feed=document.getElementById('feed'),
       count=document.getElementById('count'),loader=document.getElementById('loader');
   var ASKS=['Like what you see<span class="r">?</span>','Planning a conference<span class="r">?</span> Let’s talk<span class="r">.</span>','Your event could be next<span class="r">.</span>'];
-  var list=pool,shown=0,PER=3,BATCH=3;
+  var list=pool,shown=0,PER=matchMedia('(min-width:861px)').matches?9:3,BATCH=3; // desktop: an ask after every 9 projects; phones and tablets: after every 3
   function ask(i){
     var d=document.createElement('div');d.className='ask';
     d.innerHTML='<p>'+ASKS[i%ASKS.length]+'</p><div class="actions"><a class="btn ghost" href="/">Back to Home</a><a class="btn" href="/#book" data-quote>Request Pricing</a></div>';
