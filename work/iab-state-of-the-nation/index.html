@@ -148,6 +148,14 @@ footer img{height:30px;width:auto}
 footer .foot-links{color:var(--paper);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
 footer .foot-links:hover{border-color:var(--red)}
 footer .foot-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px}
+.ivs{display:grid;align-items:start;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 14px;margin:20px 0 8px}
+@media (min-width:640px){.ivs{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.ivs button{all:unset;cursor:pointer;display:block;min-width:0}
+.ivs button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.ivs img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:4px;opacity:.85;transition:opacity .2s;background:#111}
+.ivs button:hover img{opacity:1}
+.ivs b{display:block;font-family:var(--serif);font-weight:400;font-size:19px;margin-top:8px;color:var(--paper)}
+.ivs span{display:block;font-size:13px;color:var(--muted);line-height:1.4}
 article figure{margin:24px 0 8px}
 /* pull quotes: centred, no side rule */
 blockquote{border:0;padding:0;text-align:center;margin:44px 0}
@@ -251,11 +259,25 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
   </div>
   <article>
     <h2>A recap with an eye for detail<span class="r">.</span></h2>
-    <p>The recap video was delivered four business days after the event. Beyond the panels and the crowd, we added sound design for the small moments, like pens on paper and notebooks closing, which became the IAB team's favourite part.</p>
-    <p>The cuts were fast. Some of the team loved the pace, and some wanted it slower. That kind of honest feedback goes straight into the next event's edit, which is the advantage of working with the same crew all season.</p>
+    <p>IAB Canada picked the soundtrack before we started cutting, so the edit was built around it from the first frame instead of being re-cut later. We edited over the weekend and delivered the recap four business days after the event, in time for IAB's post-event emails, socials, and paid ads.</p>
+    <p>Beyond the panels and the crowd, we recorded and added sound design for the small moments, like pens on paper, notebooks closing, and a sip of coffee. The IAB team noticed.</p>
+    <blockquote>“Absolutely love the energy. Goosebumps. That was my first word that came to my mind. And even if it's fast-paced, I can clearly understand what is happening.”<cite>Eva Fuleki, IAB Canada</cite></blockquote>
+    <p>Another member of the IAB team called it her favourite recap we've made for them.</p>
 
-    <h2>Interviews for the archive<span class="r">.</span></h2>
-    <p>Between sessions, we filmed interviews with four industry leaders on the state of Canadian digital advertising, then cut them into full interviews and short talking-point clips IAB Canada could share through the summer.</p>
+    <h2>Six interviews, one day<span class="r">.</span></h2>
+    <p>The season plan called for interviews spread across three events. At State of the Nation, we got all six in one day: about 30 minutes of footage with leaders on AI, measurement, and the future of Canadian digital media.</p>
+    <p>IAB Canada published them on its State of the Nation resource centre. Tap a name to watch.</p>
+    <div class="ivs">
+      <button type="button" data-yt="o3psse4LY1Y"><img src="https://i.ytimg.com/vi/o3psse4LY1Y/hqdefault.jpg" alt="" loading="lazy"><b>Ajay Agrawal</b><span>Founder, Creative Destruction Lab</span></button>
+      <button type="button" data-yt="Dlm4DTys7fU"><img src="https://i.ytimg.com/vi/Dlm4DTys7fU/hqdefault.jpg" alt="" loading="lazy"><b>David Phillips</b><span>Chief Media &amp; Activation Officer, Environics Analytics</span></button>
+      <button type="button" data-yt="fwkcqQyV1aQ"><img src="https://i.ytimg.com/vi/fwkcqQyV1aQ/hqdefault.jpg" alt="" loading="lazy"><b>Erin Kelly</b><span>Co-Founder and CEO, Askpolly</span></button>
+      <button type="button" data-yt="6HopxKH4_HY"><img src="https://i.ytimg.com/vi/6HopxKH4_HY/hqdefault.jpg" alt="" loading="lazy"><b>Jayanthi Rajan</b><span>Chief Strategy Officer, 20245 Collective</span></button>
+      <button type="button" data-yt="3nck2TPPaZs"><img src="https://i.ytimg.com/vi/3nck2TPPaZs/hqdefault.jpg" alt="" loading="lazy"><b>Julie Thorne</b><span>Group Account Director, Media Experts</span></button>
+    </div>
+
+    <h2>A plan for the content, not just the files<span class="r">.</span></h2>
+    <p>At the debrief, we brought a content inventory: every interview, what each person covered, and the 16 strongest moments that could become short clips. Spread at one or two a week, it was enough to keep IAB Canada posting from June until their next event in the fall.</p>
+    <blockquote>“I'm in love with that. I've never come across anything like this before. I like your professional approach.”<cite>Eva Fuleki, IAB Canada, on the content inventory</cite></blockquote>
   </article>
   <div class="strip" aria-label="The trade floor and networking">
     <img src="/img/iab-network.jpg" alt="Attendees talking over drinks on the trade floor" loading="lazy">
@@ -268,12 +290,14 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
     <ul class="when">
       <li><b>Next day</b><span>Full event photo album</span></li>
       <li><b>4 business days</b><span>Event recap video</span></li>
-      <li><b>About a month</b><span>Four interviews, as full edits and short talking-point clips</span></li>
+      <li><b>Debrief</b><span>Content inventory: every interview, its topics, and 16 ready-to-cut clips</span></li>
+      <li><b>About a month</b><span>Interview edits, published on IAB Canada's resource centre</span></li>
     </ul>
 
     <h2>The results<span class="r">.</span></h2>
-    <p>At our debrief, IAB Canada's team said what they value most is that the quality is reliable, event after event. They also called out how we work on the floor: taking initiative, approaching people, and getting them to smile for the camera.</p>
-    <p>Their one request was more photos of the IAB team together and on their own, alongside the group shots. We took that straight into our plan for their next events.</p>
+    <p>IAB Canada rated the project above expectations. What they value most is consistency, and the people in the photos.</p>
+    <blockquote>“I love the way you work, and the quality is always reliable. We can always tell who took the picture, because yours are signature pictures. You really make people laugh.”<cite>Eva Fuleki, IAB Canada</cite></blockquote>
+    <p>The recap now leads IAB Canada's State of the Nation resource centre, alongside the interviews. We're covering their last event of the 2026 season next, and they've asked to keep working together in 2027.</p>
   </article>
 
   <div class="strip wide" aria-label="The room at State of the Nation">
@@ -307,7 +331,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
 <script>
 (function(){
   /* YouTube IDs. A video's section stays hidden until its ID is filled in. */
-  var VIDS={recap:''};
+  var VIDS={recap:'BwXNO1Qjesk'};
   var TITLES={recap:'IAB Canada State of the Nation 2026 recap'};
   var top=document.getElementById('top');
   function onScroll(){top.classList.toggle('solid',window.scrollY>60)}
@@ -321,10 +345,11 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
     if(io&&b.hasAttribute('data-auto'))io.observe(b);
   });
   var player=document.getElementById('player'),slot=document.getElementById('slot'),btn=document.getElementById('play');
-  var main=VIDS.recap;if(!main)return;btn.hidden=false;
-  function open(){var f=frame(main,'IAB Canada State of the Nation 2026 recap');f.className='yt';slot.appendChild(f);player.hidden=false;document.body.style.overflow='hidden';document.getElementById('close').focus()}
-  function close(){slot.innerHTML='';player.hidden=true;document.body.style.overflow='';btn.focus()}
+  var last=null,main=VIDS.recap;if(!main)return;btn.hidden=false;
+  function open(){var f=frame(main,'IAB Canada State of the Nation 2026 recap');f.className='yt';slot.appendChild(f);player.hidden=false;document.body.style.overflow='hidden';last=btn;document.getElementById('close').focus()}
+  function close(){slot.innerHTML='';player.hidden=true;document.body.style.overflow='';(last||btn).focus()}
   btn.addEventListener('click',open);
+  document.querySelectorAll('.ivs button').forEach(function(b){b.addEventListener('click',function(){var f=frame(b.dataset.yt,b.querySelector('b').textContent+' interview, IAB Canada State of the Nation 2026');f.className='yt';slot.appendChild(f);player.hidden=false;document.body.style.overflow='hidden';document.getElementById('close').focus();last=b})});
   document.getElementById('close').addEventListener('click',close);
   player.addEventListener('click',function(e){if(e.target===player)close()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!player.hidden)close()});
