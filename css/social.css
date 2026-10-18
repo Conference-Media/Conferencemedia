@@ -1,0 +1,9 @@
+/* Social and email buttons: footer, menu and Contact page */
+.social{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:0;padding:0;list-style:none}
+.social a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(242,239,233,.45);color:var(--paper,#F2EFE9);transition:border-color .25s,color .25s,background-color .25s}
+.social a:hover,.social a:focus-visible{border-color:var(--red,#E8392F);color:var(--red,#E8392F)}
+.social svg{width:19px;height:19px;display:block;fill:currentColor}
+.menu .social{justify-content:flex-start;max-width:1280px;width:100%;margin-inline:auto}
+.menu:not([hidden]) .social{animation:menu-slide .5s cubic-bezier(.2,.7,.2,1) .33s both}
+.menu.closing .social{animation:menu-slide-out .3s cubic-bezier(.5,0,.75,0) .14s both}
+@media (prefers-reduced-motion:reduce){.menu:not([hidden]) .social,.menu.closing .social{animation:none}}
