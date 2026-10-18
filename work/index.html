@@ -84,8 +84,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4vw,52px);line-
 }
 .billboard::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,0) 80%),linear-gradient(180deg,rgba(0,0,0,0) 55%,#000 100%)}
 .bb-copy{position:relative;z-index:1;padding:0 var(--gutter) clamp(36px,6vw,72px);max-width:720px}
-.badge{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.04em;margin-bottom:12px}
-.badge::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:1px}
+.bb-copy .pre{font:400 clamp(20px,2.4vw,30px)/1.2 var(--serif);color:var(--paper);margin:0 0 6px}
 h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6.4vw,84px);line-height:1;margin:0 0 14px;text-wrap:balance}
 .bb-copy p{margin:0 0 24px;color:var(--body);max-width:36em}
 
@@ -284,7 +283,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
     <video class="fill" autoplay muted loop playsinline poster="/img/qhic-3.jpg" aria-hidden="true"><source src="/media/reel.mp4" type="video/mp4"><source src="/media/reel.webm" type="video/webm"></video>
     <video class="main" autoplay muted loop playsinline poster="/img/qhic-3.jpg" aria-hidden="true"><source src="/media/reel.mp4" type="video/mp4"><source src="/media/reel.webm" type="video/webm"></video>
     <div class="bb-copy">
-      <span class="badge">FEATURED PROJECT</span>
+      <p class="pre">Up Next:</p>
       <h1 id="bb-h">Quebec Hotel Investment Conference<span class="r">.</span></h1>
       <p>A two-person crew, a new city, and an event run entirely in French.</p>
       <div class="actions">
