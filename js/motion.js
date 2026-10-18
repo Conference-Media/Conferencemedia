@@ -209,17 +209,32 @@
     if(u.pathname===location.pathname&&u.search===location.search)return false; // same page, maybe a #section
     return u;
   }
+  /* Leaving the page: the page fades to black first, then the wordmark turns into the spinning
+     emblem. The next page starts loading as the logo appears and picks up the spin (see arrive). */
+  var FADE=340,leaving=false;
+  function depart(go){
+    if(leaving)return;leaving=true;
+    var v=veil();v.classList.add('slow','pre');void v.offsetWidth;v.classList.add('on');
+    setTimeout(function(){
+      v.classList.remove('pre');
+      try{sessionStorage.setItem('cm-t',String(Date.now()+380))}catch(x){}
+      leave(v,function(){});
+      setTimeout(go,60);
+    },FADE);
+  }
   function transitions(){
     document.addEventListener('click',function(e){
       var a=e.target.closest&&e.target.closest('a[href]');var u=internal(a,e);if(!u)return;
       e.preventDefault();
-      var v=veil();void v.offsetWidth;v.classList.add('on');
-      var gone=false;function go(){if(!gone){gone=true;location.href=u.href}}
-      // Start loading the next page right away; the logo turns while it loads.
-      // cm-t is when the emblem's spin begins, so the next page can pick it up in step.
-      try{sessionStorage.setItem('cm-t',String(Date.now()+380))}catch(x){}
-      leave(v,function(){});
-      setTimeout(go,60);
+      depart(function(){location.href=u.href});
+    });
+    // Forms that send you to another page (quote and contact forms): same exit, then send
+    document.addEventListener('submit',function(e){
+      var f=e.target;if(e.defaultPrevented||!f||f.tagName!=='FORM'||(f.method||'').toLowerCase()!=='post')return;
+      var u;try{u=new URL(f.getAttribute('action')||location.href,location.href)}catch(x){return}
+      if(u.origin!==location.origin)return;
+      e.preventDefault();
+      depart(function(){HTMLFormElement.prototype.submit.call(f)});
     });
     // Warm up the next page while the pointer is on its link
     var done={};
@@ -228,7 +243,7 @@
       var l=document.createElement('link');l.rel='prefetch';l.href=u.pathname;document.head.appendChild(l)}
     document.addEventListener('mouseover',warm,{passive:true});document.addEventListener('touchstart',warm,{passive:true});
     // Coming back with the Back button: don't leave the veil up
-    window.addEventListener('pageshow',function(e){if(!e.persisted)return;var v=document.getElementById('cm-veil');if(v)v.remove();html.classList.remove('cm-in')});
+    window.addEventListener('pageshow',function(e){if(!e.persisted)return;leaving=false;var v=document.getElementById('cm-veil');if(v)v.remove();html.classList.remove('cm-in')});
   }
 
   function init(){

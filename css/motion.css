@@ -19,6 +19,10 @@ details.anim{overflow:hidden}
 #cm-veil{--bg:#000;--front:url("/img/logo.png");--back:url("/img/emblem.png");--edge:.32;
   position:fixed;inset:0;z-index:9999;background:var(--bg);opacity:0;pointer-events:none;transition:opacity .18s ease}
 #cm-veil.on{opacity:1;pointer-events:auto}
+/* leaving: the page fades out to the card, then the logo appears and turns */
+#cm-veil.slow{transition:opacity .34s ease-in}
+#cm-veil .stage{transition:opacity .16s ease-out}
+#cm-veil.pre .stage{opacity:0}
 #cm-veil .stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;perspective:900px}
 #cm-veil .coin{position:absolute;width:min(300px,64vw);aspect-ratio:799/184;transform-style:preserve-3d}
 #cm-veil .coin[hidden]{display:none}
