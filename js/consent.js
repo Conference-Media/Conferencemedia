@@ -21,6 +21,34 @@
   }
   if(ls.get(KEY)==='yes')load();
 
+  /* Lead source: remember how this visit arrived (first page of the visit) and add it to the quote form,
+     so every quote email says where the client came from. Works whether or not cookies are accepted. */
+  var SRC='cm-src';
+  function ss(k,v){try{if(v===undefined)return sessionStorage.getItem(k);sessionStorage.setItem(k,v)}catch(e){return null}}
+  if(!ss(SRC)){
+    var p=new URLSearchParams(location.search),ref='',src;
+    try{ref=document.referrer?new URL(document.referrer).hostname.replace(/^www\./,''):''}catch(e){}
+    if(ref===location.hostname.replace(/^www\./,''))ref='';
+    if(p.get('utm_source'))src=[p.get('utm_source'),p.get('utm_medium'),p.get('utm_campaign')].filter(Boolean).join(' / ');
+    else if(p.get('gclid'))src='Google Ads';
+    else if(/(^|\.)google\./.test(ref))src='Google search';
+    else if(/bing\.com$/.test(ref))src='Bing search';
+    else if(/duckduckgo|yahoo|ecosia|brave/.test(ref))src='Search ('+ref+')';
+    else if(/linkedin\.com$|lnkd\.in$/.test(ref))src='LinkedIn';
+    else if(/instagram\.com$/.test(ref))src='Instagram';
+    else if(/facebook\.com$|fb\.me$/.test(ref))src='Facebook';
+    else if(/youtube\.com$/.test(ref))src='YouTube';
+    else if(/chatgpt\.com$|openai\.com$/.test(ref))src='ChatGPT';
+    else if(/perplexity\.ai$/.test(ref))src='Perplexity';
+    else if(/claude\.ai$/.test(ref))src='Claude';
+    else if(/copilot\.microsoft\.com$/.test(ref))src='Copilot';
+    else if(ref)src='Website: '+ref;
+    else src='Direct (typed in, bookmark, app or email link)';
+    ss(SRC,src+' | first page: '+location.pathname);
+  }
+  function fillSrc(){document.querySelectorAll('input[name="found-us-via"]').forEach(function(i){i.value=ss(SRC)||''})}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fillSrc);else fillSrc();
+
   /* Conversion signals: Request Pricing clicks, quote form submits, email and phone clicks */
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a,button');if(!a)return;
@@ -29,7 +57,19 @@
     if(a.hasAttribute('data-quote'))gtag('event','request_pricing_click',{link_text:(a.textContent||'').trim().slice(0,60)});
     else if(h.indexOf('mailto:')===0)gtag('event','email_click');
     else if(h.indexOf('tel:')===0)gtag('event','phone_click');
+    /* Work page interest: which projects get opened, which filters get used, which project pages get visited */
+    if(a.matches('a.card')){var t=a.querySelector('b');gtag('event','project_open',{project:t?t.textContent.trim():h})}
+    else if(a.matches('.filter[data-filter]'))gtag('event','project_filter',{filter:a.getAttribute('data-filter')});
+    else if(a.closest('#pv-actions')&&h&&h!=='#')gtag('event','project_page_click',{project:h});
+    /* Video plays on YouTube embeds (case studies): a tap on a video tile or the Watch Recap button */
+    else if(a.matches('.ytf,#play'))gtag('event','video_play',{video_title:(a.getAttribute('aria-label')||a.getAttribute('data-t')||'Watch Recap: '+document.title).replace(/^Play the /,'').slice(0,90)});
   },true);
+  /* Video plays and how far people watch, for videos with controls (Work page previews) */
+  var seen=new WeakMap();
+  document.addEventListener('play',function(e){var v=e.target;if(!v.controls||seen.has(v))return;seen.set(v,{});gtag('event','video_play',{video_title:videoName(v)})},true);
+  document.addEventListener('timeupdate',function(e){var v=e.target,m=seen.get(v);if(!m||!v.duration)return;
+    [25,50,75,100].forEach(function(p){if(!m[p]&&v.currentTime/v.duration*100>=(p===100?97:p)){m[p]=1;gtag('event','video_progress',{video_title:videoName(v),percent:p})}})},true);
+  function videoName(v){var h=document.getElementById('pv-h');return (h&&h.textContent.replace(/\.$/,''))||(v.currentSrc||'').split('/').pop()}
   document.addEventListener('submit',function(e){
     var f=e.target;if(f&&f.getAttribute('name')==='request-pricing')gtag('event','quote_form_submit',{form_location:location.pathname});
   },true);
