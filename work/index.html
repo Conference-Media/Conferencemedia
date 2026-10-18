@@ -118,9 +118,12 @@ h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6.4vw,84px);lin
 @media (max-width:520px){.hits{grid-template-columns:1fr}.hits .card,.hits .card:nth-child(1){grid-column:span 1}}
 
 /* asks */
-.ask{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;border:1px solid var(--line);border-radius:6px;padding:clamp(20px,3vw,30px);background:var(--stage)}
-.ask p{margin:0;font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);line-height:1.15}
-@media (max-width:600px){.ask{flex-direction:column;align-items:stretch;text-align:center}}
+/* asks: two centred lines like the homepage, buttons underneath */
+.ask{display:flex;flex-direction:column;align-items:center;text-align:center;gap:24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(40px,6vw,72px) 0}
+.ask p{margin:0;font-family:var(--serif);font-size:min(clamp(30px,3.6vw,48px),6.6vw);line-height:1.1}
+.ask .ln{display:block;white-space:nowrap}
+.ask .actions{justify-content:center;flex-wrap:nowrap}
+@media (max-width:520px){.ask .actions{width:100%}.ask .actions .btn{flex:1 1 0;min-width:0;padding:13px 10px}}
 
 
 /* greatest hits rail (Netflix-style row) */
@@ -322,7 +325,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
       </div>
     <div class="wrap">
       <div class="ask" style="margin-top:clamp(24px,4vw,40px)">
-        <p>Planning a conference<span class="r">?</span> Let's talk about yours<span class="r">.</span></p>
+        <p><span class="ln">Planning a conference<span class="r">?</span></span> <span class="ln">Let’s talk about yours<span class="r">.</span></span></p>
         <div class="actions"><a class="btn ghost" href="#all">Browse All Projects</a><a class="btn" href="/#book" data-quote>Plan My Shoot</a></div>
       </div>
     </div>
@@ -432,7 +435,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
   // ---- Section 2: rows of three; an ask after every 9 projects on desktop, every 3 on smaller screens; more as you scroll
   var pool=[].slice.call(document.querySelectorAll('#pool .card')),feed=document.getElementById('feed'),
       count=document.getElementById('count'),loader=document.getElementById('loader');
-  var ASKS=['Like what you see<span class="r">?</span>','Planning a conference<span class="r">?</span> Let’s talk<span class="r">.</span>','Your event could be next<span class="r">.</span>'];
+  var ASKS=['<span class="ln">Like what you see<span class="r">?</span></span> <span class="ln">Your event could be next<span class="r">.</span></span>','<span class="ln">Planning a conference<span class="r">?</span></span> <span class="ln">Let’s talk<span class="r">.</span></span>','<span class="ln">Sponsors, speakers, organizers<span class="r">,</span></span> <span class="ln">we capture every angle<span class="r">.</span></span>'];
   var list=pool,shown=0,PER=matchMedia('(min-width:861px)').matches?9:3,BATCH=3; // desktop: an ask after every 9 projects; phones and tablets: after every 3
   function ask(i){
     var d=document.createElement('div');d.className='ask';
