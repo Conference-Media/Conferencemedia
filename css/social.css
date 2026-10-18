@@ -7,3 +7,24 @@
 .menu:not([hidden]) .social{animation:menu-slide .5s cubic-bezier(.2,.7,.2,1) .33s both}
 .menu.closing .social{animation:menu-slide-out .3s cubic-bezier(.5,0,.75,0) .14s both}
 @media (prefers-reduced-motion:reduce){.menu:not([hidden]) .social,.menu.closing .social{animation:none}}
+
+/* Footer: "Let's talk." on the left; logo, social buttons and links on the right */
+footer.f3{display:block;text-align:left;padding:clamp(56px,7vw,96px) var(--gutter,24px) 28px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+.f3-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px 64px;align-items:end}
+.f3 .big{font:400 clamp(40px,5vw,64px)/1.02 var(--serif);color:var(--paper);margin:0 0 18px}
+.f3 .em{font:400 clamp(20px,2vw,26px)/1.2 var(--serif);color:var(--paper);text-decoration:none;border-bottom:1px solid var(--line);transition:border-color .25s}
+.f3 .em:hover{border-color:var(--red)}
+.f3 .ct{margin:14px 0 0}.f3 .ct a{color:inherit;text-decoration:none}.f3 .ct a:hover{color:var(--paper)}
+.f3 .fl .tag{margin:12px 0 0;max-width:30em}
+.f3 .fr{display:flex;flex-direction:column;align-items:flex-end;gap:18px;text-align:right}
+.f3 .fr img{height:30px;width:auto}
+.f3 .social{justify-content:flex-end}
+.f3 ul.links{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px 20px}
+.f3 ul.links li{margin:0;padding:0;font:400 14px/1.5 var(--sans)}
+.f3 ul.links li::before{display:none}
+.f3 ul.links a{font:inherit;color:var(--paper);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+.f3 ul.links a:hover{border-color:var(--red)}
+.f3 .base{grid-column:1/-1;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 20px;border-top:1px solid var(--line);padding-top:20px;font-size:13px}
+.f3 .base a{color:var(--muted);text-underline-offset:3px}.f3 .base a:hover{color:var(--paper)}
+.f3 .base .pl{display:flex;gap:16px}
+@media (max-width:720px){.f3-in{grid-template-columns:1fr;align-items:start}.f3 .fr{align-items:flex-start;text-align:left}.f3 .social,.f3 ul.links{justify-content:flex-start}}
