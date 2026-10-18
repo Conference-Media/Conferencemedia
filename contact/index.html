@@ -76,7 +76,6 @@ img{display:block;max-width:100%}
 }
 .billboard::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,0) 80%),linear-gradient(180deg,rgba(0,0,0,0) 55%,#000 100%)}
 .bb-copy{position:relative;z-index:1;padding:0 var(--gutter) clamp(48px,8vw,96px);max-width:760px}
-.crumbs{font-size:14px;color:var(--muted);margin:0 0 14px}
 .crumbs a{text-decoration:none}
 .crumbs a:hover{color:var(--paper)}
 h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6.4vw,84px);line-height:1;margin:0 0 10px;text-wrap:balance}
@@ -232,14 +231,8 @@ input[type="date"]::-webkit-date-and-time-value{text-align:center}
 </style>
 <style>
 /* contact page */
-.hero{position:relative;min-height:clamp(380px,56vh,560px);display:flex;align-items:flex-end;overflow:hidden;background:#000 url("/img/qhic-cover.jpg") center 45%/cover}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.8) 0%,rgba(0,0,0,.35) 60%,rgba(0,0,0,.1) 100%),linear-gradient(180deg,rgba(0,0,0,0) 45%,#000 100%)}
-.hero-copy{position:relative;z-index:1;max-width:1100px;width:100%;margin:0 auto;padding:120px var(--gutter) clamp(32px,5vw,56px)}
-.crumbs{font-size:14px;color:var(--muted);margin:0 0 10px}.crumbs a{color:var(--muted);text-decoration:none}
-.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(44px,7vw,88px);line-height:1;margin:0 0 14px}
-.hero .lede{max-width:34em;color:var(--body);margin:0}
-.ways{max-width:1100px;margin:clamp(40px,6vw,64px) auto 0;padding:clamp(40px,6vw,72px) var(--gutter);text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.ways .k{font:400 clamp(20px,2vw,26px)/1.2 var(--serif);color:var(--muted);margin:0 0 8px}
+.ways{max-width:1100px;margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + clamp(130px,16vw,190px)) var(--gutter) clamp(48px,7vw,88px);text-align:center;border-bottom:1px solid var(--line)}
+.ways .k{font:400 clamp(22px,2.2vw,30px)/1.2 var(--serif);color:var(--muted);margin:0 0 10px}
 .ways .v{display:inline-block;font:400 clamp(26px,5vw,60px)/1.1 var(--serif);color:var(--paper);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:6px;white-space:nowrap;transition:border-color .3s}
 .ways .v:hover{border-color:var(--red)}
 .ways .sub{color:var(--muted);margin:22px auto 0;max-width:40em}
@@ -286,31 +279,23 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
 </div>
 
 <main>
-  <section class="hero" aria-labelledby="h">
-    <div class="hero-copy">
-      <p class="crumbs"><a href="/">Home</a> / Contact</p>
-      <h1 id="h">Let’s talk<span class="r">.</span></h1>
-      <p class="lede">A question, a collaboration, or a conference on the horizon? Drop us a message and a real person on our team will get back to you.</p>
-    </div>
-  </section>
-
-  <section class="ways" aria-label="Other ways to reach us">
-    <p class="k">Prefer email<span class="r">?</span></p>
+  <section class="ways" aria-labelledby="h">
+    <h1 class="k" id="h">Let’s talk<span class="r">.</span></h1>
     <a class="v" href="mailto:javon@conferencemedia.ca">javon@conferencemedia.ca</a>
-    <p class="sub">Based in Toronto, ON. Serving the GTA and travelling across Canada.<br>Planning an event? <a href="/#book">Plan my shoot</a>.</p>
   </section>
 
   <div class="book-wrap">
     <section class="book" id="message" aria-labelledby="m-h">
       <h2 id="m-h">Send us a message<span class="r">.</span></h2>
-      <p class="sub">Questions, partnerships, press or anything else.</p>
+      <p class="sub">Questions, Press, Partnerships… <span style="white-space:nowrap">Love Letters? ;)</span></p>
       <form id="contact" name="contact" method="POST" action="/contact/thanks/" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact">
         <input type="hidden" name="found-us-via">
         <p hidden><label>Leave this empty<input name="bot-field"></label></p>
-        <label>Your name<input name="name" type="text" autocomplete="name" required></label>
-        <label>Your email<input name="email" type="email" autocomplete="email" required></label>
-        <label class="full">Company or organization (optional)<input name="company" type="text" autocomplete="organization"></label>
+        <label>First name<input name="first_name" type="text" autocomplete="given-name" required></label>
+        <label>Last name<input name="last_name" type="text" autocomplete="family-name" required></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required></label>
+        <label>Company<input name="company" type="text" autocomplete="organization"></label>
         <label class="full">Message<textarea name="message" rows="6" required placeholder="How can we help?"></textarea></label>
         <button class="btn" type="submit">Send Message</button>
       </form>
