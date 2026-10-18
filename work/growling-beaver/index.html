@@ -322,6 +322,19 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
       <a class="btn" href="/#book">Plan My Shoot</a>
     </div>
   </section>
+  <nav class="pn" aria-label="More projects">
+    <a class="pv" href="/work/design-thinkers/"><span class="k"><b>←</b> Previous project</span><span class="t">RGD DesignThinkers 2025</span></a>
+    <a class="nx" href="/work/chic-30/"><span class="k">Next project <b>→</b></span><span class="t">CHIC 30</span></a>
+  </nav>
+<style>
+.pn{max-width:1100px;margin:clamp(56px,8vw,96px) auto 0;padding:28px var(--gutter) 0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-bottom:clamp(40px,6vw,72px)}
+.pn a{text-decoration:none;display:flex;flex-direction:column;gap:6px;padding:8px 0;min-width:0}
+.pn .nx{text-align:right;align-items:flex-end;grid-column:2}
+.pn .k{font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+.pn .k b{color:var(--red);font-weight:600}
+.pn .t{font-family:var(--serif);font-size:clamp(20px,2.6vw,32px);line-height:1.15}
+.pn a:hover .t{text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:6px;text-decoration-thickness:1px}
+</style>
 </main>
 
 <footer>
