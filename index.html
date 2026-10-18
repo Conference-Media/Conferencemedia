@@ -16,7 +16,9 @@
 <meta property="og:image" content="https://conferencemedia.ca/img/reel-poster.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#000000">
-<link rel="icon" type="image/png" href="/img/logo.png">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"Conference Media","alternateName":"Papr Mache","url":"https://conferencemedia.ca/","logo":"https://conferencemedia.ca/img/logo.png","image":"https://conferencemedia.ca/img/reel-poster.jpg","description":"Toronto conference photographers, videographers and editors. Photo and video for conferences, keynotes, and trade shows, with same-day delivery available.","address":{"@type":"PostalAddress","addressLocality":"Toronto","addressRegion":"ON","addressCountry":"CA"},"areaServed":[{"@type":"City","name":"Toronto"},{"@type":"AdministrativeArea","name":"Greater Toronto Area"},{"@type":"Country","name":"Canada"}],"knowsLanguage":["en","fr"],"priceRange":"$$","makesOffer":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Conference videography"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Event photography"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Sponsor and booth photography"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Keynote recording"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Speaker headshots"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Same-day event recap videos"}}]}
 </script><link rel="preconnect" href="https://fonts.googleapis.com">
@@ -172,7 +174,7 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.6vw,62px);lin
 @media (max-width:640px){.speeds{grid-template-columns:1fr}}
 
 .sameday{text-align:center;padding-block:clamp(64px,9vw,120px);margin-top:clamp(48px,7vw,88px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.sameday h2{font-size:clamp(38px,5.6vw,76px);max-width:16em;margin-inline:auto}
+.sameday h2{font-size:min(clamp(38px,5.6vw,76px),7.8vw);max-width:none;margin-inline:auto}
 .sameday p{color:var(--muted);max-width:34em;margin:0 auto}
 .booking .price{margin-top:0}
 
@@ -221,7 +223,9 @@ blockquote{margin:0 0 24px;font-family:var(--serif);font-size:clamp(24px,2.6vw,3
 
 /* tagline */
 .tagline{text-align:center;padding-block:clamp(72px,11vw,150px);border-top:1px solid var(--line)}
-.tagline h2{font-size:clamp(34px,5.2vw,72px);line-height:1.08;max-width:15em;margin:0 auto 36px}
+.tagline h2{font-size:min(clamp(34px,5.2vw,72px),5.8vw);line-height:1.08;max-width:none;margin:0 auto 36px}
+/* headlines that always read as two lines, split after the comma */
+h2 .ln{display:block;white-space:nowrap}
 .tagline .actions{justify-content:center;flex-wrap:nowrap}
 @media (max-width:520px){.tagline .actions .btn{flex:1 1 0;min-width:0;text-align:center;padding:14px 10px}}
 /* faq (centered, one column) */
@@ -363,7 +367,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
           <a class="btn ghost" href="/work/">View Work</a>
           <a class="btn" href="#book">Plan My Shoot</a>
         </div>
-        <h1>Toronto conference photographers, videographers and editors</h1>
+        <h1>Toronto conference photographers, videographers and editors<span class="r">.</span></h1>
       </div>
     </div>
 
@@ -455,7 +459,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
 
     <!-- 4. Speed: the differentiator, in one line -->
     <section class="sameday" aria-labelledby="day-h">
-      <h2 id="day-h">Your assets<span class="r">,</span><br>delivered the same day<span class="r">.</span></h2>
+      <h2 id="day-h"><span class="ln">Your assets<span class="r">,</span></span> <span class="ln">delivered the same day<span class="r">.</span></span></h2>
       <p>Most crews will deliver weeks later. You can have your photos while people are still talking about your event… or as soon as you’re ready.</p>
 </section>
 
@@ -485,7 +489,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
 
     <!-- 6. Tagline and the next step -->
     <section class="tagline" aria-labelledby="t-h">
-      <h2 id="t-h">Your event only happens once<span class="r">,</span> make sure you don’t miss the shot<span class="r">.</span></h2>
+      <h2 id="t-h"><span class="ln">Your event only happens once<span class="r">,</span></span> <span class="ln">make sure you don’t miss the shot<span class="r">.</span></span></h2>
       <div class="actions">
         <a class="btn ghost" href="/work/">View Work</a>
         <a class="btn" href="#book">Plan My Shoot</a>
