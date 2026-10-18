@@ -3,29 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<!-- Google tag (gtag.js) -->
-<script>
-  /* Visit any page once with ?notrack to stop counting your own visits on that browser (?track turns it back on). */
-  (function(){try{var q=location.search;if(/[?&]notrack\b/.test(q))localStorage.setItem('cm-notrack','1');if(/[?&]track\b/.test(q))localStorage.removeItem('cm-notrack');if(localStorage.getItem('cm-notrack'))window['ga-disable-G-JBB51LKLJR']=true;}catch(e){}})();
-</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JBB51LKLJR"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-JBB51LKLJR');
-  /* Conversion signals: Request Pricing clicks, quote form submits, email and phone clicks */
-  document.addEventListener('click', function(e){
-    var a=e.target.closest && e.target.closest('a,button'); if(!a) return;
-    var h=a.getAttribute('href')||'';
-    if(a.hasAttribute('data-quote')) gtag('event','request_pricing_click',{link_text:(a.textContent||'').trim().slice(0,60)});
-    else if(h.indexOf('mailto:')===0) gtag('event','email_click');
-    else if(h.indexOf('tel:')===0) gtag('event','phone_click');
-  }, true);
-  document.addEventListener('submit', function(e){
-    var f=e.target; if(f && f.getAttribute('name')==='request-pricing') gtag('event','quote_form_submit',{form_location:location.pathname});
-  }, true);
-</script>
+<script src="/js/consent.js"></script>
 <title>Our Work | Conference Media</title>
 <meta name="description" content="Browse conference photo and video projects by Conference Media: recap videos, keynote recordings, testimonials, sponsor and event photography for conferences, special events, workshops and fireside chats.">
 <link rel="canonical" href="https://conferencemedia.ca/work/">
@@ -390,7 +368,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
 <footer>
   <img src="/img/logo.png" alt="Conference Media">
   <span>Toronto, ON.<br>Serving the GTA and travelling across Canada.</span>
-  <span class="foot-row"><a class="foot-links" href="/conference-videography-toronto/">Conference videography Toronto</a><a class="foot-links" href="/conference-photography-toronto/">Conference photography Toronto</a></span>
+  <span class="foot-row"><a class="foot-links" href="/conference-videography-toronto/">Conference videography Toronto</a><a class="foot-links" href="/conference-photography-toronto/">Conference photography Toronto</a></span><span class="foot-row"><a class="foot-links" href="/privacy/">Privacy policy</a><a class="foot-links" href="#" data-cookie-settings>Cookie settings</a></span>
   <span>by Papr Mache</span>
 </footer>
 
