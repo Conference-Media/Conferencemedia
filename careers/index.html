@@ -253,16 +253,25 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
 <script src="/js/motion.js" defer></script>
 <link rel="stylesheet" href="/css/social.css">
 <style>
-/* careers */
-.cr-intro{border-bottom:0}
-.cr-intro .big{display:block;border:0;white-space:normal;padding:0}
-.cr-intro .lead{max-width:34em;margin:18px auto 0;color:var(--body)}
-.roles{max-width:1100px;margin:0 auto;padding:clamp(36px,5vw,56px) var(--gutter);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.role h2{font:400 clamp(26px,2.6vw,34px)/1.1 var(--serif);margin:0 0 14px}
-.role ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
-.role li{position:relative;padding-left:20px;color:var(--body);font-size:16px;line-height:1.5}
-.role li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--red)}
-@media (max-width:820px){.roles{grid-template-columns:1fr;gap:28px;text-align:left}}
+/* careers: built from the homepage's audience sections */
+.roles-wrap{max-width:1180px;margin:0 auto;padding:clamp(24px,4vw,48px) var(--gutter) 0}
+.kicker{font-size:14px;letter-spacing:.06em;color:var(--muted);margin:0 0 10px}
+.outcome{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center;padding-block:clamp(32px,5vw,56px)}
+.outcome.flip .pics{order:2}
+.pics{display:grid;grid-template-columns:2fr 1fr;gap:10px}
+.pics{align-items:stretch;height:clamp(280px,32vw,440px)}
+.pics img{width:100%;height:100%;min-height:0;object-fit:cover;border-radius:4px;aspect-ratio:3/4}
+.pics img:first-child{aspect-ratio:auto;height:100%}
+.outcome > div:not(.pics){text-align:center}
+.outcome h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.6vw,48px);line-height:1.06;margin:0 0 18px;text-wrap:balance}
+.outcome ul{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.perks strong{display:block;color:var(--paper);font-weight:600;font-size:17px;margin-bottom:2px}
+.perks li{color:var(--body)}
+@media (max-width:820px){.outcome{grid-template-columns:1fr}.outcome.flip .pics{order:0}}
+.cr-ask{text-align:center;padding:clamp(56px,8vw,104px) var(--gutter) 0;border-top:1px solid var(--line);margin-top:clamp(32px,5vw,56px)}
+.cr-ask h2{font-family:var(--serif);font-weight:400;font-size:min(clamp(34px,5.2vw,72px),6.2vw);line-height:1.08;margin:0}
+.cr-ask .ln{display:block;white-space:nowrap}
+.cr-ask + .book-wrap{margin-top:clamp(36px,5vw,56px)}
 input.file{height:auto;padding:12px 14px;cursor:pointer}
 input.file::file-selector-button{font:600 14px var(--sans);color:var(--paper);background:#222;border:1.5px solid #3A3A3A;border-radius:999px;padding:8px 14px;margin-right:12px;cursor:pointer}
 label small{font-weight:400;color:var(--muted);font-size:13px}
@@ -298,43 +307,73 @@ label small{font-weight:400;color:var(--muted);font-size:13px}
 </div>
 
 <main>
-  <section class="ways cr-intro" aria-labelledby="h">
-    <h1 class="k" id="h">Careers<span class="r">.</span></h1>
-    <p class="v big">Let’s create together<span class="r">.</span></p>
-    <p class="lead">We’re always looking for talented freelancers to join our crew at conferences across Toronto and Canada.</p>
+  <section class="billboard" aria-labelledby="h" style="background-image:url('/img/hrpa-setup2.jpg');background-position:center 45%">
+    <div class="bb-copy">
+      <p class="crumbs"><a href="/">Home</a> / Careers</p>
+      <h1 id="h">Let’s create together<span class="r">.</span></h1>
+      <p class="lede">We’re always looking for talented freelancers to join our crew at conferences across Toronto and Canada.</p>
+      <div class="actions"><a class="btn" href="#apply">Send Us Your Work</a></div>
+    </div>
   </section>
 
-  <section class="roles" aria-label="Who we work with">
-    <div class="role">
-      <h2>Photographers<span class="r">.</span></h2>
-      <ul>
-        <li>Cover keynotes, panels, networking and sponsor booths</li>
-        <li>Shoot fast in low, mixed venue light</li>
-        <li>Deliver a first album the same day</li>
-      </ul>
-    </div>
-    <div class="role">
-      <h2>Videographers<span class="r">.</span></h2>
-      <ul>
-        <li>Capture stage sessions, interviews and b-roll</li>
-        <li>Run a two-camera setup with clean audio</li>
-        <li>Stay calm and quick on a busy event floor</li>
-      </ul>
-    </div>
-    <div class="role">
-      <h2>Editors<span class="r">.</span></h2>
-      <ul>
-        <li>Cut same-day recaps, highlight reels and social clips</li>
-        <li>Cull and colour large photo galleries consistently</li>
-        <li>Work remotely on tight turnarounds</li>
-      </ul>
-    </div>
+  <div class="roles-wrap">
+  <section class="outcome" aria-labelledby="p-h">
+      <div class="pics">
+        <img src="/img/hrff-speaker.jpg" alt="Speaker mid-keynote at HR Future Fest" loading="lazy">
+        <img src="/img/dt-cheer.jpg" alt="Attendees celebrating at DesignThinkers" loading="lazy">
+      </div>
+      <div>
+        <p class="kicker">FOR PHOTOGRAPHERS:</p>
+        <h2 id="p-h">Every stage, every handshake, every sponsor booth<span class="r">.</span></h2>
+        <ul class="perks">
+          <li><strong>Fast in any room.</strong> Low, mixed venue light and panels that move quickly.</li>
+          <li><strong>Same-day minded.</strong> A first album out before attendees get home.</li>
+          <li><strong>Easy to be around.</strong> Guests enjoy being photographed by you.</li>
+        </ul>
+      </div>
+    </section>
+
+  <section class="outcome flip" aria-labelledby="v-h">
+      <div class="pics">
+        <img src="/img/hrpa-setup.jpg" alt="Two-camera interview setup in a hotel ballroom" loading="lazy">
+        <img src="/img/hrpa-interview.jpg" alt="Attendee interviewed on camera" loading="lazy">
+      </div>
+      <div>
+        <p class="kicker">FOR VIDEOGRAPHERS:</p>
+        <h2 id="v-h">Stage sessions, interviews, and the energy in between<span class="r">.</span></h2>
+        <ul class="perks">
+          <li><strong>Two cameras, clean audio.</strong> Wide and tight on stage, sound you can use.</li>
+          <li><strong>Interviews that feel natural.</strong> You put people at ease on camera.</li>
+          <li><strong>Calm on a busy floor.</strong> Quick to adapt when the run of show changes.</li>
+        </ul>
+      </div>
+    </section>
+
+  <section class="outcome" aria-labelledby="e-h">
+      <div class="pics">
+        <img src="/img/dt-crowd.jpg" alt="Packed theatre audience applauding" loading="lazy">
+        <img src="/img/chic-laugh.jpg" alt="Panelists laughing on stage at CHIC Capital" style="object-position:68% center" loading="lazy">
+      </div>
+      <div>
+        <p class="kicker">FOR EDITORS:</p>
+        <h2 id="e-h">Recaps out while the buzz is still live<span class="r">.</span></h2>
+        <ul class="perks">
+          <li><strong>Same-day recaps and reels.</strong> Highlights and social clips cut on deadline.</li>
+          <li><strong>Big galleries, consistent colour.</strong> Fast culling across thousands of photos.</li>
+          <li><strong>Remote and reliable.</strong> Turnarounds you can count on.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <section class="tagline cr-ask" aria-labelledby="t-h">
+    <h2 id="t-h"><span class="ln">Think you’d be a fit<span class="r">?</span></span> <span class="ln">Show us what you’ve made<span class="r">.</span></span></h2>
   </section>
 
   <div class="book-wrap">
     <section class="book" id="apply" aria-labelledby="m-h">
       <h2 id="m-h">Send us your work<span class="r">.</span></h2>
-      <p class="sub">Tell us a little about yourself and show us what you’ve made. We’ll reach out when there’s a fit.</p>
+      <p class="sub">We’ll look through your work and reach out when there’s a fit.</p>
       <form id="careers" name="careers" method="POST" action="/careers/thanks/" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="careers">
         <input type="hidden" name="found-us-via">
