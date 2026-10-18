@@ -72,6 +72,7 @@
   function videoName(v){var h=document.getElementById('pv-h');return (h&&h.textContent.replace(/\.$/,''))||(v.currentSrc||'').split('/').pop()}
   document.addEventListener('submit',function(e){
     var f=e.target;if(f&&f.getAttribute('name')==='request-pricing')gtag('event','quote_form_submit',{form_location:location.pathname});
+    else if(f&&f.getAttribute('name')==='contact')gtag('event','contact_form_submit');
   },true);
 
   function banner(){
