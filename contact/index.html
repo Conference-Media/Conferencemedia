@@ -238,13 +238,12 @@ input[type="date"]::-webkit-date-and-time-value{text-align:center}
 .crumbs{font-size:14px;color:var(--muted);margin:0 0 10px}.crumbs a{color:var(--muted);text-decoration:none}
 .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(44px,7vw,88px);line-height:1;margin:0 0 14px}
 .hero .lede{max-width:34em;color:var(--body);margin:0}
-.ways{max-width:1100px;margin:clamp(40px,6vw,64px) auto 0;padding:0 var(--gutter);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.way{border:1px solid var(--line);border-radius:6px;padding:22px 22px 24px;background:var(--stage)}
-.way .k{font-size:12px;letter-spacing:.12em;color:var(--muted);margin:0 0 8px}
-.way p{margin:0 0 14px;color:var(--body);font-size:15px}
-.way a.v{font-family:var(--serif);font-size:clamp(20px,2vw,24px);text-decoration:none;border-bottom:1px solid var(--line);word-break:break-word}
-.way a.v:hover{border-color:var(--red)}
-@media (max-width:820px){.ways{grid-template-columns:1fr}}
+.ways{max-width:1100px;margin:clamp(40px,6vw,64px) auto 0;padding:clamp(40px,6vw,72px) var(--gutter);text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ways .k{font:400 clamp(20px,2vw,26px)/1.2 var(--serif);color:var(--muted);margin:0 0 8px}
+.ways .v{display:inline-block;font:400 clamp(26px,5vw,60px)/1.1 var(--serif);color:var(--paper);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:6px;white-space:nowrap;transition:border-color .3s}
+.ways .v:hover{border-color:var(--red)}
+.ways .sub{color:var(--muted);margin:22px auto 0;max-width:40em}
+.ways .sub a{color:var(--paper);text-decoration-color:var(--red);text-underline-offset:4px}
 </style>
 <link rel="stylesheet" href="/css/menu.css">
 <link rel="stylesheet" href="/css/motion.css">
@@ -296,21 +295,9 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
   </section>
 
   <section class="ways" aria-label="Other ways to reach us">
-    <div class="way">
-      <p class="k">EMAIL</p>
-      <p>Prefer your own inbox? Write to us directly.</p>
-      <a class="v" href="mailto:javon@conferencemedia.ca">javon@conferencemedia.ca</a>
-    </div>
-    <div class="way">
-      <p class="k">PLANNING AN EVENT</p>
-      <p>Share your date, venue and budget and we’ll send a quote.</p>
-      <a class="v" href="/#book">Request pricing →</a>
-    </div>
-    <div class="way">
-      <p class="k">BASED IN</p>
-      <p>Serving the GTA and travelling across Canada.</p>
-      <span class="v" style="font-family:var(--serif);font-size:clamp(20px,2vw,24px)">Toronto, ON</span>
-    </div>
+    <p class="k">Prefer email<span class="r">?</span></p>
+    <a class="v" href="mailto:javon@conferencemedia.ca">javon@conferencemedia.ca</a>
+    <p class="sub">Based in Toronto, ON. Serving the GTA and travelling across Canada.<br>Planning an event? <a href="/#book">Plan my shoot</a>.</p>
   </section>
 
   <div class="book-wrap">
