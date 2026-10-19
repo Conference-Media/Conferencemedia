@@ -28,3 +28,6 @@ footer.f3{display:block;text-align:left;padding:clamp(56px,7vw,96px) var(--gutte
 .f3 .base a{color:var(--muted);text-underline-offset:3px}.f3 .base a:hover{color:var(--paper)}
 .f3 .base .pl{display:flex;gap:16px}
 @media (max-width:720px){.f3-in{grid-template-columns:1fr;align-items:start}.f3 .fr{align-items:flex-start;text-align:left}.f3 .social,.f3 ul.links{justify-content:flex-start}}
+
+/* Social profiles without a link yet stay hidden until the real URLs are added */
+.social li:has(> a[data-ph]){display:none}
