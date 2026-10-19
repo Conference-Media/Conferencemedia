@@ -132,11 +132,15 @@ h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6.4vw,84px);lin
 .rail::-webkit-scrollbar{display:none}
 .tile{flex:0 0 clamp(260px,30vw,420px);scroll-snap-align:start;position:relative;display:block;border-radius:6px;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
 .tile .shot{aspect-ratio:16/9;border-radius:6px}
-.tile::after{content:"";position:absolute;inset:0;border-radius:6px;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.88) 100%);pointer-events:none}
-.tile .date,.tile b,.tile .tags{position:absolute;left:14px;right:14px;z-index:1}
-.tile b{bottom:30px;font-size:clamp(19px,1.7vw,24px)}
-.tile .date{bottom:auto;top:12px;left:auto;right:12px;text-align:right;color:#DAD6CE;text-shadow:0 1px 6px rgba(0,0,0,.7)}
-.tile .tags{bottom:10px;font-size:12px;color:#CFCAC2}
+.tile::after{content:"";position:absolute;inset:0;border-radius:6px;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.92) 100%);pointer-events:none}
+@media (max-width:600px){.tile{flex-basis:80vw}}
+/* title and tags stack at the bottom of the photo, so a two-line title pushes the tags down instead of overlapping */
+.tile{display:grid;grid-template-rows:1fr auto auto}
+.tile .shot{grid-row:1/4;grid-column:1}
+.tile b,.tile .tags{grid-column:1;position:relative;z-index:1;margin:0 14px}
+.tile b{grid-row:2;align-self:end;font-size:clamp(19px,1.7vw,24px);line-height:1.12;margin-bottom:4px}
+.tile .tags{grid-row:3;font-size:12px;line-height:1.35;color:#CFCAC2;margin-bottom:12px}
+.tile .date{position:absolute;z-index:1;top:12px;right:12px;text-align:right;color:#DAD6CE;text-shadow:0 1px 6px rgba(0,0,0,.7)}
 @media (hover:hover){.tile:hover{transform:scale(1.05);z-index:2;box-shadow:0 14px 40px rgba(0,0,0,.6)}.tile:hover .shot img{transform:none}}
 @media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
 .arrow{display:none}
