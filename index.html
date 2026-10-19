@@ -89,6 +89,7 @@ img{display:block;max-width:100%}
 .menu:not([hidden]) nav a:nth-child(2){animation-delay:.1s}
 .menu:not([hidden]) nav a:nth-child(3){animation-delay:.15s}
 .menu:not([hidden]) nav a:nth-child(4){animation-delay:.2s}
+.menu:not([hidden]) nav a:nth-child(5){animation-delay:.25s}
 .menu:not([hidden]) > .btn{animation-delay:.27s}
 
 /* menu closing: links slide on to the right and the overlay fades away */
@@ -96,7 +97,7 @@ img{display:block;max-width:100%}
 @keyframes menu-slide-out{from{opacity:1;transform:none}to{opacity:0;transform:translateX(48px)}}
 .menu.closing{animation:menu-fade-out .32s ease-in .08s both;pointer-events:none}
 .menu.closing nav a,.menu.closing > .btn{animation:menu-slide-out .3s cubic-bezier(.5,0,.75,0) both}
-.menu.closing nav a:nth-child(2){animation-delay:.03s}.menu.closing nav a:nth-child(3){animation-delay:.06s}.menu.closing nav a:nth-child(4){animation-delay:.09s}.menu.closing > .btn{animation-delay:.12s}
+.menu.closing nav a:nth-child(2){animation-delay:.03s}.menu.closing nav a:nth-child(3){animation-delay:.06s}.menu.closing nav a:nth-child(4){animation-delay:.09s}.menu.closing nav a:nth-child(5){animation-delay:.12s}.menu.closing > .btn{animation-delay:.12s}
 @media (prefers-reduced-motion:reduce){.menu:not([hidden]),.menu:not([hidden]) nav a,.menu:not([hidden]) > .btn,.menu.closing,.menu.closing nav a,.menu.closing > .btn{animation:none}}
 @media (prefers-reduced-motion:reduce){.bar,.bar .logo img{transition:none}}
 
@@ -362,6 +363,7 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
       <a href="/work/">Our work<span class="r">.</span></a>
       <a href="#faq">FAQ<span class="r">.</span></a>
       <a href="/contact/">Contact<span class="r">.</span></a>
+      <a href="/careers/">Careers<span class="r">.</span></a>
     </nav>
     <a class="btn" href="#book">Plan My Shoot</a>
     <ul class="social" aria-label="Follow Conference Media"><li><a href="#instagram" data-ph aria-label="Instagram" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.2.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/></svg></a></li><li><a href="#youtube" data-ph aria-label="YouTube" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a></li><li><a href="#linkedin" data-ph aria-label="LinkedIn" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.5V9h3.6v11.5zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/></svg></a></li><li><a href="/contact/" aria-label="Contact us"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.4l10 6.3 10-6.3V6H2zm20 2.8-9.5 6a1 1 0 0 1-1 0L2 8.8V18h20V8.8z"/></svg></a></li></ul>

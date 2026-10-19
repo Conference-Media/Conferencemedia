@@ -21,6 +21,7 @@
 .menu:not([hidden]) nav a:nth-child(2){animation-delay:.1s}
 .menu:not([hidden]) nav a:nth-child(3){animation-delay:.15s}
 .menu:not([hidden]) nav a:nth-child(4){animation-delay:.2s}
+.menu:not([hidden]) nav a:nth-child(5){animation-delay:.25s}
 .menu:not([hidden]) > .btn{animation-delay:.27s}
 
 /* menu closing: links slide on to the right and the overlay fades away */
@@ -28,5 +29,5 @@
 @keyframes menu-slide-out{from{opacity:1;transform:none}to{opacity:0;transform:translateX(48px)}}
 .menu.closing{animation:menu-fade-out .32s ease-in .08s both;pointer-events:none}
 .menu.closing nav a,.menu.closing > .btn{animation:menu-slide-out .3s cubic-bezier(.5,0,.75,0) both}
-.menu.closing nav a:nth-child(2){animation-delay:.03s}.menu.closing nav a:nth-child(3){animation-delay:.06s}.menu.closing nav a:nth-child(4){animation-delay:.09s}.menu.closing > .btn{animation-delay:.12s}
+.menu.closing nav a:nth-child(2){animation-delay:.03s}.menu.closing nav a:nth-child(3){animation-delay:.06s}.menu.closing nav a:nth-child(4){animation-delay:.09s}.menu.closing nav a:nth-child(5){animation-delay:.12s}.menu.closing > .btn{animation-delay:.12s}
 @media (prefers-reduced-motion:reduce){.menu:not([hidden]),.menu:not([hidden]) nav a,.menu:not([hidden]) > .btn,.menu.closing,.menu.closing nav a,.menu.closing > .btn{animation:none}}

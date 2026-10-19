@@ -31,3 +31,12 @@ footer.f3{display:block;text-align:left;padding:clamp(56px,7vw,96px) var(--gutte
 
 /* Social profiles without a link yet stay hidden until the real URLs are added */
 .social li:has(> a[data-ph]){display:none}
+
+/* Footer, centred: everything in one column */
+.f3-in{grid-template-columns:1fr;justify-items:center;text-align:center;gap:28px}
+.f3 .fl,.f3 .fr{display:flex;flex-direction:column;align-items:center;text-align:center}
+.f3 .fr{gap:18px}
+.f3 .social,.f3 ul.links{justify-content:center}
+.f3 .base{justify-content:center;text-align:center;flex-direction:column;align-items:center;gap:10px;width:100%}
+.f3 .fl .tag{margin-inline:auto}
+@media (max-width:720px){.f3 .fr{align-items:center;text-align:center}.f3 .social,.f3 ul.links{justify-content:center}}
