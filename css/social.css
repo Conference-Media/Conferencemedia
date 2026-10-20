@@ -40,3 +40,7 @@ footer.f3{display:block;text-align:left;padding:clamp(56px,7vw,96px) var(--gutte
 .f3 .base{justify-content:center;text-align:center;flex-direction:column;align-items:center;gap:10px;width:100%}
 .f3 .fl .tag{margin-inline:auto}
 @media (max-width:720px){.f3 .fr{align-items:center;text-align:center}.f3 .social,.f3 ul.links{justify-content:center}}
+
+/* Footer sign-off */
+.f3 .sig{display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.5}
+.f3 .sig b{font:400 18px/1.3 var(--serif);color:var(--paper);margin-bottom:2px}
