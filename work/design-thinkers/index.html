@@ -137,7 +137,10 @@ footer img{height:30px;width:auto}
 .ytf img{width:100%;height:100%;object-fit:cover;opacity:.8;transition:opacity .2s}
 .ytf:hover img{opacity:1}
 .ytf .pl{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;padding-left:5px}
-.ytf iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.ytf iframe,.ytf video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
+.scrim video.yt{display:block;height:auto}
+#slot{width:min(100%,calc((100vh - 96px)*16/9))}
+#slot .yt{width:100%}
 .feature{max-width:1000px;margin:0 auto;padding:clamp(40px,6vw,72px) var(--gutter) 0}
 .feature .ytf{margin:0 0 8px}
 .short{max-width:300px;margin:24px auto 8px}
@@ -335,18 +338,20 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
 
 <script>
 (function(){
-  /* YouTube IDs. A video's section stays hidden until its ID is filled in. */
-  var VIDS={day1:'',day2:'',full:''};
+  /* YouTube IDs, or a path to a video hosted on the site (starts with /). A video's section stays hidden until it's filled in. */
+  var VIDS={day1:'/media/designthinkers-day1.mp4',day2:'',full:''};
   var TITLES={day1:'DesignThinkers 2025 Day 1 recap',day2:'DesignThinkers 2025 Day 2 recap',full:'DesignThinkers 2025 full recap'};
   var top=document.getElementById('top');
   function onScroll(){top.classList.toggle('solid',window.scrollY>60)}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-  function frame(id,title,muted){var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1'+(muted?'&mute=1':'');f.title=title;f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;return f}
-  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){var b=e.target;if(e.isIntersecting&&!b.querySelector('iframe')){b.appendChild(frame(b.dataset.yt,b.dataset.t,true));io.unobserve(b)}})},{threshold:.5}):null;
+  function frame(id,title,muted){
+    if(id.charAt(0)==='/'){var v=document.createElement('video');v.src=id;v.title=title;v.setAttribute('aria-label',title);v.controls=true;v.autoplay=true;v.playsInline=true;v.muted=!!muted;v.loop=!!muted;v.preload='auto';v.poster='/img/dt-speaker.jpg';return v}
+    var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1'+(muted?'&mute=1':'');f.title=title;f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;return f}
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){var b=e.target;if(e.isIntersecting&&!b.querySelector('iframe,video')){b.appendChild(frame(b.dataset.yt,b.dataset.t,true));io.unobserve(b)}})},{threshold:.5}):null;
   document.querySelectorAll('[data-slot]').forEach(function(fig){
     var k=fig.dataset.slot,id=VIDS[k];if(!id)return;fig.hidden=false;
     var b=fig.querySelector('.ytf');b.dataset.yt=id;b.dataset.t=TITLES[k];
-    b.addEventListener('click',function(){if(!b.querySelector('iframe'))b.appendChild(frame(id,TITLES[k]))},{once:true});
+    b.addEventListener('click',function(){if(!b.querySelector('iframe,video'))b.appendChild(frame(id,TITLES[k]))},{once:true});
     if(io&&b.hasAttribute('data-auto'))io.observe(b);
   });
   var player=document.getElementById('player'),slot=document.getElementById('slot'),btn=document.getElementById('play');
