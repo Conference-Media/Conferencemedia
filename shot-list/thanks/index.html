@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<script src="/js/consent.js"></script>
+<title>Check your inbox | The Conference Shot List</title>
+<meta name="description" content="Your Conference Shot List is on its way.">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Conference Media">
+<meta property="og:title" content="The Conference Shot List (free download)">
+<meta property="og:description" content="Your Conference Shot List is on its way.">
+<meta property="og:image" content="https://conferencemedia.ca/img/dt-crowd.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://use.typekit.net" crossorigin>
+<link rel="stylesheet" href="https://use.typekit.net/mbw5cmn.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/css/lp.css">
+<style>
+body{min-height:100svh;display:flex;flex-direction:column}
+.t{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:calc(env(safe-area-inset-top,0px) + 110px) var(--gutter) 72px}
+.t .ok{width:64px;height:64px;border-radius:50%;background:var(--red);display:grid;place-items:center;margin:0 0 28px}
+.t .ok svg{width:28px;height:28px;fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.t h1{font-size:clamp(44px,7vw,92px);line-height:1;margin:0 0 18px}
+.t .lede{font-size:clamp(18px,1.8vw,21px);color:var(--body);max-width:30em;margin:0 0 10px}
+.t .lede b{color:var(--paper);font-weight:600}
+.t .help{color:var(--muted);font-size:15px;margin:0}
+.next{border-top:1px solid var(--line);margin-top:clamp(48px,7vw,80px);padding-top:clamp(40px,6vw,64px);width:min(720px,100%)}
+.next h2{font-size:clamp(30px,4vw,48px);line-height:1.06;margin:0 0 12px}
+.next p{color:var(--muted);margin:0 auto 28px;max-width:30em}
+.next .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn.ghost{background:transparent;box-shadow:inset 0 0 0 1.5px rgba(242,239,233,.55);color:var(--paper)}
+.btn.ghost:hover{background:rgba(242,239,233,.08)}
+</style>
+<script>gtag('event','generate_lead',{form:'shot-list'});</script>
+</head>
+<body data-v="thanks">
+<header class="lp-top"><a href="/" aria-label="Conference Media home"><img src="/img/logo.png" alt="Conference Media"></a></header>
+
+<main class="t">
+  <div class="ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+  <h1><span id="nm">You’re on the list</span><span class="r">.</span></h1>
+  <p class="lede">The Conference Shot List is on its way to <b id="em">your inbox</b>.</p>
+  <p class="help">Not there in a few minutes? Check Promotions or Spam.</p>
+
+  <section class="next">
+    <h2>Planning a conference<span class="r">?</span></h2>
+    <p>We’ll shoot the whole list for you, plus the recap video your sponsors will share.</p>
+    <div class="row"><a class="btn" href="/#book">Plan My Shoot</a><a class="btn ghost" href="/work/">See Our Work</a></div>
+  </section>
+</main>
+
+<footer class="lp-foot">
+  <a href="/" aria-label="Conference Media home"><img src="/img/logo.png" alt="Conference Media"></a>
+  <span>Conference photography and video · Toronto Based, North America wide</span>
+  <span class="pl"><a href="/privacy/">Privacy policy</a><a href="#" data-cookie-settings>Cookie settings</a></span>
+  <span>© 2026 Conference Media</span>
+</footer>
+
+<script>
+try{var s=JSON.parse(sessionStorage.getItem('cm-sl')||'null');if(s){if(s.n)document.getElementById('nm').textContent='You’re on the list, '+s.n;if(s.e)document.getElementById('em').textContent=s.e}}catch(e){}
+</script>
+</body>
+</html>
