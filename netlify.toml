@@ -21,3 +21,9 @@
   from = "/work/v3/*"
   to = "/work/"
   status = 301
+
+[[headers]]
+  for = "/downloads/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    X-Robots-Tag = "noindex"

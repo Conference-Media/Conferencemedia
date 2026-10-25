@@ -32,6 +32,7 @@ body{min-height:100svh;display:flex;flex-direction:column}
 .t .lede{font-size:clamp(18px,1.8vw,21px);color:var(--body);max-width:30em;margin:0 0 10px}
 .t .lede b{color:var(--paper);font-weight:600}
 .t .help{color:var(--muted);font-size:15px;margin:0}
+.t .now{margin:18px 0 0;font-size:15px}.t .now a{color:var(--paper);text-decoration-color:var(--red);text-underline-offset:4px}
 .next{border-top:1px solid var(--line);margin-top:clamp(48px,7vw,80px);padding-top:clamp(40px,6vw,64px);width:min(720px,100%)}
 .next h2{font-size:clamp(30px,4vw,48px);line-height:1.06;margin:0 0 12px}
 .next p{color:var(--muted);margin:0 auto 28px;max-width:30em}
@@ -49,6 +50,7 @@ body{min-height:100svh;display:flex;flex-direction:column}
   <h1><span id="nm">You’re on the list</span><span class="r">.</span></h1>
   <p class="lede">The Conference Shot List is on its way to <b id="em">your inbox</b>.</p>
   <p class="help">Not there in a few minutes? Check Promotions or Spam.</p>
+  <p class="now"><a href="/downloads/conference-shot-list.pdf" download data-dl>Or download it now</a></p>
 
   <section class="next">
     <h2>Planning a conference<span class="r">?</span></h2>
@@ -65,6 +67,7 @@ body{min-height:100svh;display:flex;flex-direction:column}
 </footer>
 
 <script>
+document.querySelector('[data-dl]').addEventListener('click',function(){if(window.gtag)gtag('event','file_download',{file_name:'conference-shot-list.pdf'})});
 try{var s=JSON.parse(sessionStorage.getItem('cm-sl')||'null');if(s){if(s.n)document.getElementById('nm').textContent='You’re on the list, '+s.n;if(s.e)document.getElementById('em').textContent=s.e}}catch(e){}
 </script>
 </body>
