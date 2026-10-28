@@ -1,0 +1,34 @@
+/* Project galleries: a photo wall per section ("From the stage", "On the floor"), tap any photo to view it full screen. Used on case study pages. */
+.gal-sec{max-width:1280px;margin:clamp(56px,8vw,96px) auto 0;padding:0 var(--gutter,24px)}
+.gal-head{text-align:center;margin:0 0 clamp(20px,3vw,32px)}
+.gal-head h2{font:400 clamp(30px,3.6vw,44px)/1.08 var(--serif);margin:0}
+.gal-head p{color:var(--muted);margin:8px 0 0;font-size:15px}
+.gal{columns:3 260px;column-gap:10px}
+.gal button{display:block;width:100%;margin:0 0 10px;padding:0;border:0;background:var(--stage,#111);border-radius:4px;overflow:hidden;cursor:zoom-in;break-inside:avoid}
+.gal img{display:block;width:100%;height:auto;transition:transform .6s ease,opacity .3s ease}
+.gal button:hover img{transform:scale(1.03)}
+.gal button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+@media (max-width:560px){.gal{columns:2;column-gap:6px}.gal button{margin-bottom:6px}}
+
+/* film: the recap video as the first media moment */
+.film{max-width:1280px;margin:clamp(40px,6vw,64px) auto;padding:0 var(--gutter,24px)}
+.film-frame{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;border-radius:6px;overflow:hidden;background:#111 center/cover;cursor:pointer;color:#fff}
+.film-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 40%,rgba(0,0,0,.6))}
+.film-frame .play{position:absolute;z-index:1;left:50%;top:50%;transform:translate(-50%,-50%);width:clamp(64px,8vw,92px);height:clamp(64px,8vw,92px);border-radius:50%;background:var(--red);display:grid;place-items:center;transition:transform .25s ease}
+.film-frame:hover .play{transform:translate(-50%,-50%) scale(1.06)}
+.film-frame .play svg{width:34%;height:34%;fill:#fff;margin-left:6%}
+.film-frame .cap{position:absolute;z-index:1;left:clamp(16px,3vw,28px);bottom:clamp(14px,2.4vw,24px);font:400 clamp(20px,2.4vw,30px)/1.1 var(--serif);text-align:left}
+.film-frame .cap small{display:block;font:600 13px var(--sans);letter-spacing:.06em;color:rgba(242,239,233,.8);margin-top:6px;text-transform:uppercase}
+.film-frame video{position:absolute;inset:0;width:100%;height:100%;z-index:2;background:#000}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.94);display:flex;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 56px) 56px 56px}
+.lb[hidden]{display:none}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:3px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.lb button{position:absolute;width:48px;height:48px;border-radius:50%;border:0;background:rgba(242,239,233,.12);color:var(--paper,#F2EFE9);font-size:26px;line-height:1;cursor:pointer}
+.lb button:hover{background:rgba(242,239,233,.24)}
+.lb .x{top:calc(env(safe-area-inset-top,0px) + 12px);right:12px}
+.lb .pv{left:12px;top:50%;transform:translateY(-50%)}
+.lb .nx{right:12px;top:50%;transform:translateY(-50%)}
+.lb .n{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-size:13px;color:var(--muted,#A9A49B)}
+@media (max-width:640px){.lb{padding:56px 8px 64px}.lb .pv,.lb .nx{top:auto;bottom:10px;transform:none}}
