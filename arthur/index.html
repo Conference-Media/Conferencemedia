@@ -26,6 +26,7 @@
 .a-hero{position:relative;min-height:min(92svh,900px);display:flex;align-items:flex-end;padding:calc(env(safe-area-inset-top,0px) + 110px) var(--gutter) clamp(48px,7vw,88px);overflow:hidden}
 .slides{position:absolute;inset:0}
 .slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:slide 18s infinite}
+.slides img:only-child{opacity:1;animation:none}
 .slides img:nth-child(1){opacity:1;animation-delay:0s}
 .slides img:nth-child(2){animation-delay:6s}
 .slides img:nth-child(3){animation-delay:12s}
@@ -35,6 +36,7 @@
 @media (prefers-reduced-motion:reduce){.slides img{animation:none}.slides img:not(:first-child){display:none}}
 .a-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,.94) 90%),linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,0) 60%)}
 .a-copy{position:relative;z-index:1;max-width:900px}
+@media (min-width:900px){.a-hero{justify-content:flex-end}.a-copy{max-width:600px}.a-copy h1{font-size:clamp(48px,6.4vw,96px)}.a-hero::after{background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.94) 92%),linear-gradient(270deg,rgba(0,0,0,.85),rgba(0,0,0,0) 55%)!important}}
 .a-copy .kick{margin-bottom:14px}
 .a-copy h1{font-size:clamp(48px,9vw,128px);line-height:.92;margin:0 0 22px;letter-spacing:-.01em}
 .a-copy h1 > span{display:block}
@@ -80,9 +82,7 @@
 <main>
   <section class="a-hero" aria-labelledby="h">
     <div class="slides" aria-hidden="true">
-      <img src="/img/arthur/a49.jpg" alt="" style="object-position:72% 30%">
-      <img src="/img/arthur/a53.jpg" alt="" style="object-position:72% 30%">
-      <img src="/img/arthur/a50.jpg" alt="" style="object-position:62% 30%">
+      <img src="/img/arthur/a46.jpg" alt="" style="object-position:22% 30%">
     </div>
     <div class="a-copy">
       <p class="kick">Speaker · Toronto Kickoff Convention · March 2026</p>
@@ -133,17 +133,10 @@
   </section>
 
   <section class="gal-sec" aria-labelledby="g0-h">
-    <div class="gal-head"><h2 id="g0-h">Arthur on stage<span class="r">.</span></h2><p>Every angle from his talk at the Toronto Kickoff Convention.</p></div>
+    <div class="gal-head"><h2 id="g0-h">Arthur on stage<span class="r">.</span></h2><p>On stage at the Toronto Kickoff Convention.</p></div>
     <div class="gal">
-      <button type="button" data-full="/img/arthur/a47.jpg"><img src="/img/arthur/a47-t.jpg" alt="Arthur on stage, seen from the back of the ballroom" loading="lazy" width="800" height="450"></button>
-      <button type="button" data-full="/img/arthur/a49.jpg"><img src="/img/arthur/a49-t.jpg" alt="Arthur at the podium" loading="lazy" width="800" height="450"></button>
-      <button type="button" data-full="/img/arthur/a53.jpg"><img src="/img/arthur/a53-t.jpg" alt="Arthur mid-talk, hands open, close up" loading="lazy" width="800" height="450"></button>
-      <button type="button" data-full="/img/arthur/a51.jpg"><img src="/img/arthur/a51-t.jpg" alt="Arthur addressing the full ballroom" loading="lazy" width="800" height="450"></button>
-      <button type="button" data-full="/img/arthur/a50.jpg"><img src="/img/arthur/a50-t.jpg" alt="Arthur speaking from the side of the stage" loading="lazy" width="800" height="450"></button>
-      <button type="button" data-full="/img/arthur/a52.jpg"><img src="/img/arthur/a52-t.jpg" alt="Arthur at the podium, looking out at the room" loading="lazy" width="800" height="450"></button>
+      <button type="button" data-full="/img/arthur/a46.jpg"><img src="/img/arthur/a46-t.jpg" alt="Arthur firing up the crowd on stage beside his co-host" loading="lazy" width="800" height="450"></button>
       <button type="button" data-full="/img/arthur/a48.jpg"><img src="/img/arthur/a48-t.jpg" alt="Arthur on stage with his co-host in front of the WFG CORE Financial screen" loading="lazy" width="800" height="450"></button>
-      <button type="button" data-full="/img/arthur/a46.jpg"><img src="/img/arthur/a46-t.jpg" alt="Arthur firing up the crowd beside his co-host" loading="lazy" width="800" height="450"></button>
-      <button type="button" data-full="/img/arthur/a54.jpg"><img src="/img/arthur/a54-t.jpg" alt="Arthur speaking at the podium" loading="lazy" width="800" height="450"></button>
     </div>
   </section>
 
