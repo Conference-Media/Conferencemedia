@@ -103,10 +103,10 @@ img{display:block;max-width:100%}
 @media (prefers-reduced-motion:reduce){.bar,.bar .logo img{transition:none}}
 
 /* hero */
-.hero{position:relative;overflow:hidden;border-radius:6px;isolation:isolate;-webkit-mask-image:-webkit-radial-gradient(white,black);min-height:clamp(540px,78vh,820px);display:flex;align-items:flex-end;background:#000 url("/img/hero-day1-poster.jpg") center/cover no-repeat}
+.hero{position:relative;overflow:hidden;border-radius:6px;isolation:isolate;-webkit-mask-image:-webkit-radial-gradient(white,black);min-height:clamp(540px,78vh,820px);display:flex;align-items:flex-end;background:#000 url("/img/hero-vooban-poster.jpg") center/cover no-repeat}
 .reel,.reel-fill{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .reel-fill{display:none}
-/* the hero reel is landscape (DesignThinkers Day 1), so it fills the frame on every screen */
+/* the hero reel is landscape (Vooban IMPACT AI 2026, 30 s muted loop from the recap), so it fills the frame on every screen */
 /* hero text: a strip along the bottom of the video on desktop, under the video on phones, so it never sits on the video's own titles */
 div.hero::after{background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0) 58%,rgba(0,0,0,.92) 100%)}
 @media (min-width:861px){
@@ -385,9 +385,9 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
   <main id="top">
     <!-- 1. Fit: who this is for, in search language -->
     <div class="hero">
-      <!-- Vertical reel: fills the frame on phones; on wider screens a blurred copy fills the sides -->
-      <video class="reel-fill" autoplay muted loop playsinline preload="auto" poster="/img/hero-day1-poster.jpg" aria-hidden="true"><source src="/media/hero-day1.webm" type="video/webm"><source src="/media/hero-day1.mp4" type="video/mp4"></video>
-      <video class="reel" autoplay muted loop playsinline preload="auto" poster="/img/hero-day1-poster.jpg" aria-hidden="true"><source src="/media/hero-day1.webm" type="video/webm"><source src="/media/hero-day1.mp4" type="video/mp4"></video>
+      <!-- Hero reel: 30 s muted loop cut from the Vooban IMPACT AI 2026 recap -->
+      <video class="reel-fill" autoplay muted loop playsinline preload="auto" poster="/img/hero-vooban-poster.jpg" aria-hidden="true"><source src="/media/hero-vooban.webm" type="video/webm"><source src="/media/hero-vooban.mp4" type="video/mp4"></video>
+      <video class="reel" autoplay muted loop playsinline preload="auto" poster="/img/hero-vooban-poster.jpg" aria-hidden="true"><source src="/media/hero-vooban.webm" type="video/webm"><source src="/media/hero-vooban.mp4" type="video/mp4"></video>
       <div class="hero-copy">
         <p class="display" aria-label="Content for conference organizers, speakers, and sponsors.">
           <span class="pre" aria-hidden="true">Content for conference<span class="r">:</span></span>
