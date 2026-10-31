@@ -62,7 +62,7 @@ function render(hi, lines) {
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F2EFE9;padding:32px 16px">
 <tr><td align="center">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border-radius:6px;font-family:Helvetica,Arial,sans-serif;color:#1a1a1a">
-<tr><td style="background:#000;padding:22px 28px;border-radius:6px 6px 0 0"><img src="${SITE}/img/logo.png" alt="Conference Media" height="26" style="display:block;height:26px;width:auto"></td></tr>
+<tr><td style="background:#ffffff;padding:24px 28px 8px;border-radius:6px 6px 0 0"><img src="${SITE}/img/email-logo.png" alt="Conference Media" width="113" height="26" style="display:block;height:26px;width:113px;border:0"></td></tr>
 <tr><td style="padding:28px 28px 8px;font-size:16px;line-height:1.6">
 <p style="margin:0 0 16px">${greet}</p>
 ${lines.map((l) => `<p style="margin:0 0 16px">${linkify(l)}</p>`).join('\n')}
