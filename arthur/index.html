@@ -24,8 +24,16 @@
 .ph-box{position:relative;background:#141414;border:1px dashed #3a3a3a;border-radius:4px;display:grid;place-items:center;color:#7a766f;font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:12px}
 .ph,p.ph,span.ph{color:#F5C84B!important}
 .a-hero{position:relative;min-height:min(92svh,900px);display:flex;align-items:flex-end;padding:calc(env(safe-area-inset-top,0px) + 110px) var(--gutter) clamp(48px,7vw,88px);overflow:hidden}
-.a-hero .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%}
-.a-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.92) 88%),linear-gradient(90deg,rgba(0,0,0,.6),rgba(0,0,0,0) 70%)}
+.slides{position:absolute;inset:0}
+.slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:slide 18s infinite}
+.slides img:nth-child(1){opacity:1;animation-delay:0s}
+.slides img:nth-child(2){animation-delay:6s}
+.slides img:nth-child(3){animation-delay:12s}
+@keyframes slide{0%{opacity:0;transform:scale(1.04)}4%{opacity:1}33%{opacity:1}38%{opacity:0;transform:scale(1)}100%{opacity:0}}
+.slides img:nth-child(1){animation-name:slide1}
+@keyframes slide1{0%{opacity:1;transform:scale(1.04)}33%{opacity:1}38%{opacity:0;transform:scale(1)}96%{opacity:0}100%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.slides img{animation:none}.slides img:not(:first-child){display:none}}
+.a-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,.94) 90%),linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,0) 60%)}
 .a-copy{position:relative;z-index:1;max-width:900px}
 .a-copy .kick{margin-bottom:14px}
 .a-copy h1{font-size:clamp(48px,9vw,128px);line-height:.92;margin:0 0 22px;letter-spacing:-.01em}
@@ -71,7 +79,11 @@
 
 <main>
   <section class="a-hero" aria-labelledby="h">
-    <img class="hero-img" src="/img/arthur/t1.jpg" alt="Arthur's team together at the Toronto Kickoff Convention">
+    <div class="slides" aria-hidden="true">
+      <img src="/img/arthur/a49.jpg" alt="" style="object-position:72% 30%">
+      <img src="/img/arthur/a53.jpg" alt="" style="object-position:72% 30%">
+      <img src="/img/arthur/a50.jpg" alt="" style="object-position:62% 30%">
+    </div>
     <div class="a-copy">
       <p class="kick">Speaker · Toronto Kickoff Convention · March 2026</p>
       <h1 id="h"><span>Arthur</span><span>Tafatsua Mwambiwa<span class="r">.</span></span></h1>
@@ -120,9 +132,25 @@
     <div class="ph-box">Video spot: Arthur's talk or a short highlight clip (optional)</div>
   </section>
 
+  <section class="gal-sec" aria-labelledby="g0-h">
+    <div class="gal-head"><h2 id="g0-h">Arthur on stage<span class="r">.</span></h2><p>Every angle from his talk at the Toronto Kickoff Convention.</p></div>
+    <div class="gal">
+      <button type="button" data-full="/img/arthur/a47.jpg"><img src="/img/arthur/a47-t.jpg" alt="Arthur on stage, seen from the back of the ballroom" loading="lazy" width="800" height="450"></button>
+      <button type="button" data-full="/img/arthur/a49.jpg"><img src="/img/arthur/a49-t.jpg" alt="Arthur at the podium" loading="lazy" width="800" height="450"></button>
+      <button type="button" data-full="/img/arthur/a53.jpg"><img src="/img/arthur/a53-t.jpg" alt="Arthur mid-talk, hands open, close up" loading="lazy" width="800" height="450"></button>
+      <button type="button" data-full="/img/arthur/a51.jpg"><img src="/img/arthur/a51-t.jpg" alt="Arthur addressing the full ballroom" loading="lazy" width="800" height="450"></button>
+      <button type="button" data-full="/img/arthur/a50.jpg"><img src="/img/arthur/a50-t.jpg" alt="Arthur speaking from the side of the stage" loading="lazy" width="800" height="450"></button>
+      <button type="button" data-full="/img/arthur/a52.jpg"><img src="/img/arthur/a52-t.jpg" alt="Arthur at the podium, looking out at the room" loading="lazy" width="800" height="450"></button>
+      <button type="button" data-full="/img/arthur/a48.jpg"><img src="/img/arthur/a48-t.jpg" alt="Arthur on stage with his co-host in front of the WFG CORE Financial screen" loading="lazy" width="800" height="450"></button>
+      <button type="button" data-full="/img/arthur/a46.jpg"><img src="/img/arthur/a46-t.jpg" alt="Arthur firing up the crowd beside his co-host" loading="lazy" width="800" height="450"></button>
+      <button type="button" data-full="/img/arthur/a54.jpg"><img src="/img/arthur/a54-t.jpg" alt="Arthur speaking at the podium" loading="lazy" width="800" height="450"></button>
+    </div>
+  </section>
+
   <section class="gal-sec" aria-labelledby="g-h">
     <div class="gal-head"><h2 id="g-h">Arthur's team<span class="r">.</span></h2><p>Part of the organization Arthur has built, together in Toronto.</p></div>
     <div class="gal">
+      <button type="button" data-full="/img/arthur/t1.jpg"><img src="/img/arthur/t1-t.jpg" alt="Arthur's team together in the Fairmont foyer" loading="lazy" width="800" height="533"></button>
       <button type="button" data-full="/img/arthur/hero.jpg"><img src="/img/arthur/hero-t.jpg" alt="Arthur's team celebrating with arms raised" loading="lazy" width="800" height="533"></button>
       <button type="button" data-full="/img/arthur/t2.jpg"><img src="/img/arthur/t2-t.jpg" alt="Team members cheering with arms raised" loading="lazy" width="800" height="533"></button>
       <button type="button" data-full="/img/arthur/t3.jpg"><img src="/img/arthur/t3-t.jpg" alt="Team members celebrating together" loading="lazy" width="800" height="533"></button>
@@ -134,7 +162,6 @@
   <section class="gal-sec" aria-labelledby="g2-h">
     <div class="gal-head"><h2 id="g2-h">The convention<span class="r">.</span></h2><p>The ballroom at the Toronto Kickoff Convention.</p></div>
     <div class="gal">
-      <button type="button" data-full="/img/arthur/c1.jpg"><img src="/img/arthur/c1-t.jpg" alt="Speaker on stage in front of the WFG screen, with the audience recording on phones" loading="lazy" width="800" height="450"></button>
       <button type="button" data-full="/img/arthur/c2.jpg"><img src="/img/arthur/c2-t.jpg" alt="Attendees smiling during a session" loading="lazy" width="800" height="450"></button>
       <button type="button" data-full="/img/arthur/c3.jpg"><img src="/img/arthur/c3-t.jpg" alt="Speaker addressing the ballroom under the crest" loading="lazy" width="800" height="450"></button>
       <button type="button" data-full="/img/arthur/c4.jpg"><img src="/img/arthur/c4-t.jpg" alt="Full ballroom from the back during a keynote" loading="lazy" width="800" height="450"></button>
