@@ -176,6 +176,20 @@ h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.6vw,62px);lin
 .perks strong{display:block;color:var(--paper);font-weight:600;font-size:17px;margin-bottom:2px}
 .link{font-weight:600;text-decoration-color:var(--red);text-decoration-thickness:2px;text-underline-offset:5px}
 @media (max-width:820px){.outcome{grid-template-columns:1fr}.outcome.flip .pics{order:0}}
+/* audience sliders: swipe or arrow through more work; tap a photo to view it full screen */
+.slider{display:block;position:relative;min-width:0}
+.slider .strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-x:contain;scrollbar-width:none;columns:auto;border-radius:4px}
+.slider .strip::-webkit-scrollbar{display:none}
+.slider .strip button{flex:0 0 86%;margin:0;aspect-ratio:3/2;scroll-snap-align:start;break-inside:auto}
+.slider .strip img{width:100%;height:100%;object-fit:cover;aspect-ratio:auto;border-radius:0}
+.slider .strip:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.slider .ctl{display:flex;align-items:center;justify-content:flex-end;gap:12px;margin-top:14px}
+.outcome.flip .slider .ctl{justify-content:flex-start}
+.slider .ctl button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(242,239,233,.28);background:transparent;color:var(--paper);font-size:24px;line-height:1;cursor:pointer;transition:background .2s,border-color .2s,opacity .2s}
+.slider .ctl button:hover:not(:disabled){background:var(--red);border-color:var(--red)}
+.slider .ctl button:disabled{opacity:.3;cursor:default}
+.slider .ct{font-size:13px;letter-spacing:.06em;color:var(--muted);min-width:4.5em;text-align:center;font-variant-numeric:tabular-nums}
+@media (max-width:820px){.slider .strip button{flex-basis:88%}.slider .ctl{justify-content:center}.outcome.flip .slider .ctl{justify-content:center}}
 
 /* same day */
 .day{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:start;padding-block:clamp(56px,8vw,104px);margin-top:clamp(40px,6vw,72px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -339,6 +353,7 @@ input[type="date"]::-webkit-date-and-time-value{text-align:center}
 </style>
 
 <link rel="stylesheet" href="/css/motion.css">
+<link rel="stylesheet" href="/css/gallery.css">
 <script>/* Motion on; and if we arrived by a link, put the spinning emblem up before the page draws */
 (function(d){try{if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('mo');
 var t=+sessionStorage.getItem('cm-t');if(!t)return;sessionStorage.removeItem('cm-t');if(Date.now()-t>15000)return;
@@ -347,6 +362,8 @@ var v=document.createElement('div');v.id='cm-veil';v.className='on spin';v.setAt
 v.style.setProperty('--sd',-Math.max(0,Date.now()-t)+'ms');v.innerHTML='<div class="stage">'+c('w')+c('e')+'</div>';
 d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.done&&v.parentNode)v.remove()},9000)}catch(e){}})(document.documentElement)</script>
 <script src="/js/motion.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+<script src="/js/slider.js" defer></script>
 <link rel="stylesheet" href="/css/social.css">
 </head>
 <body>
@@ -435,9 +452,20 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
     </div>
 
     <section class="outcome" id="organizers" aria-labelledby="o-h">
-      <div class="pics">
-        <img src="/img/crowd.jpg" alt="Packed conference audience applauding">
-        <img src="/img/aftermovies.jpg" alt="Attendees watching a keynote">
+      <div class="pics slider">
+        <div class="strip gal" tabindex="0" aria-label="Photo gallery, 10 photos. Swipe or use the arrows to see more.">
+          <button type="button" data-full="/img/crowd.jpg"><img src="/img/crowd.jpg" alt="Packed conference audience applauding" decoding="async"></button>
+          <button type="button" data-full="/img/dt-crowd.jpg"><img src="/img/dt-crowd.jpg" alt="Full theatre audience at DesignThinkers" decoding="async"></button>
+          <button type="button" data-full="/img/ballroom.jpg"><img src="/img/ballroom.jpg" alt="Ballroom gala with a full room of tables" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/chic-wide.jpg"><img src="/img/chic-wide.jpg" alt="Panel on stage in front of a packed hotel ballroom" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/selfie.jpg"><img src="/img/selfie.jpg" alt="Speaker taking a group selfie with the whole audience" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/voo-room.jpg"><img src="/img/voo-room.jpg" alt="Full room watching a keynote at Vooban Impact AI" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/keynote-room.jpg"><img src="/img/keynote-room.jpg" alt="Speaker walking the floor of a dinner keynote" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/nexelle.jpg"><img src="/img/nexelle.jpg" alt="Attendees cheering together for a group photo" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/design-thinkers.jpg"><img src="/img/design-thinkers.jpg" alt="Attendees celebrating in front of the DesignThinkers stage" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/gb-start100.jpg"><img src="/img/gb-start100.jpg" alt="Riders rolling through the start line of a charity ride" loading="lazy" decoding="async"></button>
+        </div>
+        <div class="ctl"><button type="button" class="pv" aria-label="Previous photos">‹</button><span class="ct" aria-hidden="true">1 / 10</span><button type="button" class="nx" aria-label="Next photos">›</button></div>
       </div>
       <div>
         <p class="kicker">FOR ORGANIZERS:</p>
@@ -453,9 +481,20 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
     </section>
 
     <section class="outcome flip" id="sponsors" aria-labelledby="s-h">
-      <div class="pics">
-        <img src="/img/booth.jpg" alt="Sponsor team at their trade show booth">
-        <img src="/img/booth2.jpg" alt="Two sponsor representatives at a branded booth">
+      <div class="pics slider">
+        <div class="strip gal" tabindex="0" aria-label="Photo gallery, 10 photos. Swipe or use the arrows to see more.">
+          <button type="button" data-full="/img/booth.jpg"><img src="/img/booth.jpg" alt="Sponsor team at their trade show booth" decoding="async"></button>
+          <button type="button" data-full="/img/booth2.jpg"><img src="/img/booth2.jpg" alt="Two sponsor representatives at a branded booth" decoding="async"></button>
+          <button type="button" data-full="/img/iab-tiktok.jpg"><img src="/img/iab-tiktok.jpg" alt="TikTok branded installation at a conference" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/n3-summit-2026.jpg"><img src="/img/n3-summit-2026.jpg" alt="Exhibitor demoing a robotic arm at a booth" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/haventree.jpg"><img src="/img/haventree.jpg" alt="Sponsor team in front of their branded backdrop" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/gb-coffee.jpg"><img src="/img/gb-coffee.jpg" alt="Branded coffee truck serving event guests" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/icsavings.jpg"><img src="/img/icsavings.jpg" alt="Sponsor team gathered at their booth" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/foodpreneur-lab-rc-show-2026.jpg"><img src="/img/foodpreneur-lab-rc-show-2026.jpg" alt="Exhibitor posing at a trade show booth" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/iab-chat.jpg"><img src="/img/iab-chat.jpg" alt="Attendees talking beside a sponsor banner" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/kitchen.jpg"><img src="/img/kitchen.jpg" alt="Brand demo in a show kitchen" loading="lazy" decoding="async"></button>
+        </div>
+        <div class="ctl"><button type="button" class="pv" aria-label="Previous photos">‹</button><span class="ct" aria-hidden="true">1 / 10</span><button type="button" class="nx" aria-label="Next photos">›</button></div>
       </div>
       <div>
         <p class="kicker">FOR SPONSORS:</p>
@@ -471,9 +510,20 @@ d.appendChild(v);d.classList.add('cm-in');setTimeout(function(){if(!v.dataset.do
     </section>
 
     <section class="outcome" id="speakers" aria-labelledby="k-h">
-      <div class="pics">
-        <img src="/img/stage.jpg" alt="Keynote speaker on stage with a microphone">
-        <img src="/img/clips.jpg" alt="Speaker presenting on a dark stage">
+      <div class="pics slider">
+        <div class="strip gal" tabindex="0" aria-label="Photo gallery, 10 photos. Swipe or use the arrows to see more.">
+          <button type="button" data-full="/img/stage.jpg"><img src="/img/stage.jpg" alt="Keynote speaker on stage with a microphone" decoding="async"></button>
+          <button type="button" data-full="/img/dt-speaker.jpg"><img src="/img/dt-speaker.jpg" alt="Speaker with a microphone against a blue stage" decoding="async"></button>
+          <button type="button" data-full="/img/hrff-speaker.jpg"><img src="/img/hrff-speaker.jpg" alt="Energetic keynote speaker on a festival stage" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/chic-laugh.jpg"><img src="/img/chic-laugh.jpg" alt="Fireside chat guest laughing on stage" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/pink-suit.jpg"><img src="/img/pink-suit.jpg" alt="Speaker in a pink suit presenting on stage" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/vooban-impact-ai-2025.jpg"><img src="/img/vooban-impact-ai-2025.jpg" alt="Two panelists in conversation on stage" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/mccarthy2.jpg"><img src="/img/mccarthy2.jpg" alt="Presenter gesturing at a law firm event" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/iab-mic.jpg"><img src="/img/iab-mic.jpg" alt="Panelist speaking from a lounge chair on stage" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/keynotes.jpg"><img src="/img/keynotes.jpg" alt="Speaker holding a microphone, audience in soft focus" loading="lazy" decoding="async"></button>
+          <button type="button" data-full="/img/clips.jpg"><img src="/img/clips.jpg" alt="Speaker presenting on a dark stage" loading="lazy" decoding="async"></button>
+        </div>
+        <div class="ctl"><button type="button" class="pv" aria-label="Previous photos">‹</button><span class="ct" aria-hidden="true">1 / 10</span><button type="button" class="nx" aria-label="Next photos">›</button></div>
       </div>
       <div>
         <p class="kicker">FOR SPEAKERS:</p>
