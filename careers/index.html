@@ -350,6 +350,7 @@ label small{font-weight:400;color:var(--muted);font-size:13px}
           <li><strong>Big galleries, consistent colour.</strong> Fast culling across thousands of photos.</li>
           <li><strong>Remote and reliable.</strong> Turnarounds you can count on.</li>
         </ul>
+        <p style="margin-top:1rem">Now hiring: <a href="/careers/photo-editor/">Photo editor</a> · <a href="/careers/video-editor/">Video editor</a></p>
       </div>
     </section>
   </div>
@@ -365,6 +366,7 @@ label small{font-weight:400;color:var(--muted);font-size:13px}
       <form id="careers" name="careers" method="POST" action="/careers/thanks/" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="careers">
         <input type="hidden" name="found-us-via">
+        <input type="hidden" name="applied_for">
         <p hidden><label>Leave this empty<input name="bot-field"></label></p>
         <label>First name<input name="first_name" type="text" autocomplete="given-name" required></label>
         <label>Last name<input name="last_name" type="text" autocomplete="family-name" required></label>
@@ -393,6 +395,7 @@ label small{font-weight:400;color:var(--muted);font-size:13px}
 </div></footer>
 
 <script>
+(function(){var m=location.search.match(/[?&]role=(photo-editor|video-editor)\b/);if(!m)return;var f=document.getElementById('careers');if(!f)return;var b=f.querySelector('input[value="Editing"]');if(b)b.checked=true;f.elements.applied_for.value=m[1]==='photo-editor'?'Photo editor':'Video editor'})();
 (function(){var top=document.getElementById('top');function f(){top.classList.toggle('solid',window.scrollY>60)}window.addEventListener('scroll',f,{passive:true});f()})();
 </script>
 </body>

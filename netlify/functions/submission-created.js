@@ -189,6 +189,7 @@ async function toAirtable(form, d, email) {
     const geo = geography(d.city);
     const notes = [
       `Applied via website on ${today()}.`,
+      d.applied_for && `Applied for: ${d.applied_for}`,
       d.city && !geo && `City: ${d.city}`,
       d.social && `Social: ${d.social}`,
       file,
